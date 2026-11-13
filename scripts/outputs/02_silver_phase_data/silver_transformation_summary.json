@@ -1,6 +1,6 @@
 [
   {
-    "configuration_sha256": "c9b03fcf815bb0c4c53e19f92e282c248ebad1a92f4422ca9953fba4efbd6473",
+    "configuration_sha256": "ce3847e2cfac8c771dc776a341d9a397d13e6c2f73b93909ce7594944a6a4745",
     "configuration": {
       "schema_version": "2.0",
       "limits_status": "provisional; see battery_specification.md; controlled datasheet and test protocol not supplied",
@@ -130,7 +130,7 @@
     }
   },
   {
-    "configuration_sha256": "c9b03fcf815bb0c4c53e19f92e282c248ebad1a92f4422ca9953fba4efbd6473",
+    "configuration_sha256": "ce3847e2cfac8c771dc776a341d9a397d13e6c2f73b93909ce7594944a6a4745",
     "configuration": {
       "schema_version": "2.0",
       "limits_status": "provisional; see battery_specification.md; controlled datasheet and test protocol not supplied",

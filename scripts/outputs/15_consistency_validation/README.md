@@ -1,3 +1,5 @@
+**Historical audit:** The checks below describe a prior package and have not been rerun for the current six-task rebuild. Use the current unit tests and regenerated outputs for this revision.
+
 # Merged submission - consistency validation
 
 - Automated artifact checks: **69 PASS**, **0 FAIL**.

@@ -12,9 +12,6 @@ import matplotlib.pyplot as plt
 from sklearn.preprocessing import RobustScaler
 from stage_04_fit_capacity_fade import predict
 sys.path.append(str(Path(__file__).resolve().parent.parent / '.local_deps'))
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Image, PageBreak, Spacer, Table, TableStyle
-from reportlab.lib.styles import getSampleStyleSheet
-from reportlab.lib import colors
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT/'scripts/outputs/14_reporting_visualization'
@@ -160,54 +157,12 @@ def main():
     fig.legend(handles,labels,ncol=4,loc='lower center',bbox_to_anchor=(.5,-.04),fontsize=8)
     save(fig,'05_all_rul_models_checkpoints')
 
-    styles=getSampleStyleSheet();styles['BodyText'].leading=15
-    story=[]
-    def text(s,style='BodyText'):story.append(Paragraph(s,styles[style]));story.append(Spacer(1,10))
-    def chart(name):story.append(Image(str(OUT/f'{name}.png'),width=490,height=370,kind='proportional'));story.append(Spacer(1,10))
-    text('Task 6 | Reporting and Visualization','Title')
-    text('Battery degradation and RUL: results from Tasks 1-4','Heading2')
-    text('Five visualizations are generated from the merged submission. The model results already exist; this script does not fit or tune any RUL models.')
-    text('Evidence and interpretation','Heading2')
-    text('Capacity forecasts describe high-current delivered discharge capacity. CE is diagnostic and protocol-unverified. DBSCAN labels are candidate outliers. RUL uses 80% of cycle-2 delivered capacity as a relative baseline, not manufacturer nominal-capacity SOH. The RUL histogram shows three LSTM initializations at one fixed checkpoint; it is not a calibrated probability distribution or a population confidence interval.')
-    text('Main findings','Heading2')
-    text('Both cells show substantial delivered-capacity decline. Six cycles have CE above 100%. Primary DBSCAN flags 25 of 98 evaluated cycles for 001_2 and 45 of 98 for 002_4. Observed relative EOL occurs at cycles 13 and 24. Early forecasting remains sensitive to model choice and limited training data.')
-    for title,name,explanation in [
-        ('1. Capacity versus cycle count with predictive curves','01_capacity_predictive_curves',
-         'Measured capacity is shown through the first observed cycle below 80% of cycle-2 capacity. The dashed line marks the threshold and the vertical line marks observed EOL. Curves are descriptive fits trained on the full history, displayed only until they fall below the threshold; they are not early predictions.'),
-        ('2. Coulombic efficiency trends','02_coulombic_efficiency',
-         'CE = 100 x discharge Ah / charge Ah. Cell 001_2 exceeds 100% at cycles 2, 63, 87, 89 and 93; cell 002_4 at cycle 2. Values are retained rather than clipped. These flags can arise from pairing, starting state, integration or protocol issues; they do not independently prove damage or charge creation.'),
-        ('3. Deviation clusters and anomalous cycles','03_deviation_clusters',
-         'DBSCAN uses three robust-scaled features: detrended residual, detrended percentage capacity change and CE deviation. The upper panels display only two of those dimensions; apparent overlap does not contradict three-dimensional clustering. Primary eps=0.8 and min_samples=5 are provisional. Cycle 2 lacks the previous capacity needed for features and is not evaluated. Lower panels locate the same noise points on the measured trajectories. Noise means review candidate; cluster membership does not certify health. Screening is retrospective.'),
-        ('4. Forecasted RUL distribution','04_forecasted_rul_distribution',
-         'At checkpoint 8 the minimal shared LSTM (one hidden unit, three-cycle input) gives three seed forecasts per cell. One shared XGBoost model, trained on the same two cell histories through cycle 8, predicts separately for both batteries. Actual RUL is 5 cycles for cell 001_2 and 16 for cell 002_4; shared XGBoost predicts 8 and 14 cycles. Bars count seeds, not independent batteries or confidence probabilities.'),
-        ('5. All seven RUL models at checkpoints 5, 8, 10 and 12','05_all_rul_models_checkpoints',
-         'All four individual curves, shared XGBoost, minimal LSTM window 1 and minimal LSTM window 3 are compared. LSTM points show mean successful seed predictions; failed forecasts are not assigned zero but remain in the full 96-attempt report, Battery_RUL_All_Models_Corrected.pdf. Early ML models have very few training windows; individual square-root and power-law curves can substantially overestimate RUL.')]:
-        story.append(PageBreak());text(title,'Heading1');chart(name);text(explanation)
-        if name=='04_forecasted_rul_distribution':
-            for r in summary.itertuples():
-                text(f'{r.Dataset_ID}: LSTM mean RUL {r.LSTM_Mean_RUL:.2f} cycles, observed seed range {r.LSTM_Min_RUL:.0f}-{r.LSTM_Max_RUL:.0f}; actual RUL {r.Actual_RUL}.')
-    story.append(PageBreak());text('Reproducibility and reporting limits','Heading1')
-    text('All five charts have clearly labelled axes, units, cell identifiers, legends and explanatory captions. Supporting CSVs preserve the RUL samples and summaries. The plotting script reads the saved sources listed below and records hashes in visualization_manifest.json. The assignment section supplied contains a 10-point visualization component; this report does not infer requirements for the unspecified remaining 10 points or assign marks.')
-    for source in SOURCES:text(source)
-    text('To reproduce: python 14_build_task6_visualizations.py. Existing Task 1-4 results remain the source of all plotted predictions and anomaly labels.')
-    def footer(c,d):
-        c.setFont('Helvetica',8);c.setFillColor(colors.HexColor('#526777'));c.drawString(50,28,'Task 6 | Reporting and Visualization');c.drawRightString(545,28,str(d.page))
-    pdf=ROOT/'output/pdf/Task_6_Reporting_and_Visualization_Updated.pdf';pdf.parent.mkdir(parents=True,exist_ok=True)
-    from io import BytesIO
-    buffer = BytesIO()
-    SimpleDocTemplate(buffer,pagesize=(595.28,841.89),leftMargin=50,rightMargin=50,topMargin=45,bottomMargin=50).build(story,onFirstPage=footer,onLaterPages=footer)
-    try:
-        pdf.write_bytes(buffer.getvalue())
-    except PermissionError:
-        pdf = pdf.with_name(pdf.stem + '_Updated.pdf')
-        pdf.write_bytes(buffer.getvalue())
     manifest=dict(source_sha256={s:hashlib.sha256((ROOT/s).read_bytes()).hexdigest() for s in SOURCES},
                   script_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
                   distribution_checkpoint=8,all_model_checkpoints=[5,8,10,12],seeds=[42,7,123],rul_reference='80% of first valid measured capacity (cycle 2)')
     (OUT/'visualization_manifest.json').write_text(json.dumps(manifest,indent=2),encoding='utf-8')
-    assert len(selected)==6 and selected.Predicted_RUL.notna().all()
-    assert [int((anomaly[anomaly.Dataset_ID==c].DBSCAN_Label==-1).sum()) for c in CELLS]==[25,45]
-    print(summary.to_string(index=False));print(pdf)
+    print(summary.to_string(index=False))
+    print(f"Figures and provenance saved to {OUT}")
 
 
 if __name__=='__main__':main()

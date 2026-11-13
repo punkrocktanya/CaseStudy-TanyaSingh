@@ -1,6 +1,6 @@
 {
-  "input_sha256": "53feb1f8315b071c0b7081b5c05bfd4370983bd02cb27dd9a65596fda9539868",
-  "script_sha256": "35fab1e9892b96b7f7b9dfbff813da0f76269138b835945cba0695264d87bc25",
+  "input_sha256": "5cc2c03bb1cb0dfe78e6d82199196251c6247f54e4c022895a4efccccf7707b5",
+  "script_sha256": "51d68fa2fe87bed9ad2acbb77ea36de2bebc8c5d3dbf7a4c628c2fb6eb715a70",
   "checkpoints": [
     5,
     8,
@@ -24,5 +24,5 @@
   },
   "normalization": "each cell by own cycle-2 capacity",
   "forecast": "individual recursive forecasts from one shared model",
-  "xgboost_version": "3.1.3"
+  "xgboost_version": "3.2.0"
 }

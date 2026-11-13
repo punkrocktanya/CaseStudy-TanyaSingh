@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+import os
 import hashlib
 import json
 
@@ -298,6 +299,10 @@ def main():
         'input_sha256':hashlib.sha256(INPUT_FILE.read_bytes()).hexdigest(),
         'measurement_policy':'All normalized measurement rows retained in source order in Parquet; Excel rejection sheet is a separate review view.',
         'outputs':exported}, indent=2), encoding='utf-8')
+    if os.environ.get('BATTERY_EXPORT_REVIEW_XLSX') != '1':
+        print(f"Rows read={len(checked):,}; retained={len(retained):,}; rejected={len(rejected):,}")
+        print('Review workbook skipped; set BATTERY_EXPORT_REVIEW_XLSX=1 to create it.')
+        return
     workbook = Workbook(write_only=True)
     unified_ws = workbook.create_sheet("Unified_Data")
     append_frame(unified_ws, retained)

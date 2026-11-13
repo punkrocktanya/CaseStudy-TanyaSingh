@@ -24,9 +24,9 @@
     123
   ],
   "parameters": 18,
-  "torch_version": "2.10.0+cpu",
-  "input_sha256": "53feb1f8315b071c0b7081b5c05bfd4370983bd02cb27dd9a65596fda9539868",
-  "script_sha256": "40fb2845ec2dca5f4c338e0a0c3131425c7e5ac6dda44a4496e3f6a6d1385add",
+  "torch_version": "2.15.0+cpu",
+  "input_sha256": "5cc2c03bb1cb0dfe78e6d82199196251c6247f54e4c022895a4efccccf7707b5",
+  "script_sha256": "f5c65a0f5faa75fce83642f56f5b6ad2e77c68770337f30a108cb7cffeb82fef",
   "validation": "Fixed settings; no tuning or early stopping. No independent validation claimed.",
   "hidden_state": "reset per window",
   "normalization": "own cycle-2 capacity",

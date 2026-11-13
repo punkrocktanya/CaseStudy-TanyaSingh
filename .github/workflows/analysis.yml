@@ -1,4 +1,4 @@
-name: Full analysis and report
+name: Analysis from packaged processed data
 on:
   workflow_dispatch:
 permissions:
@@ -6,37 +6,27 @@ permissions:
 jobs:
   analysis:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 90
     env:
       MPLBACKEND: Agg
+      PYTHONUTF8: '1'
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-          cache: pip
+      - name: Install CPU PyTorch
+        run: python -m pip install "torch>=2.2,<3" --index-url https://download.pytorch.org/whl/cpu
       - run: python -m pip install -r requirements.txt
-      - name: Run analysis and record results
+      - name: Run Tasks 2 to 6 using packaged processed data
         run: |
-          python scripts/run_with_report.py stage_04_fit_capacity_fade.py
-          python scripts/run_with_report.py 05_compare_capacity_models.py
-          python scripts/run_with_report.py 06_differential_voltage.py
-          python scripts/run_with_report.py 07_detect_battery_anomalies.py
-          python scripts/run_with_report.py stage_08_individual_curve_rul.py
-          python scripts/run_with_report.py stage_09_estimate_rul_xgboost_shared.py
-          python scripts/run_with_report.py stage_10_estimate_rul_lstm_minimal.py
-          python scripts/run_with_report.py 11_build_common_checkpoint_comparison.py
-          python scripts/run_with_report.py stage_13_scale_module_pack.py
-          python scripts/run_with_report.py 14_build_task6_visualizations.py
-          python scripts/run_with_report.py build_short_report.py
-      - name: Upload results and reports
+          for task in 2 3 4 5 6; do python scripts/run_six_tasks.py --task "$task"; done
+      - uses: actions/upload-artifact@v4
         if: always()
-        uses: actions/upload-artifact@v4
         with:
           name: battery-analysis-results
           path: |
-            scripts/outputs/execution_reports/
-            scripts/outputs/14_reporting_visualization/
+            scripts/outputs/
             output/pdf/
+            Technical_Report.pdf
           if-no-files-found: warn
-          retention-days: 14
