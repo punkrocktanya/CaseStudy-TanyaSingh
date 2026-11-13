@@ -81,10 +81,13 @@ class MergedRUL(unittest.TestCase):
         np.testing.assert_allclose(scored.Absolute_Error,abs(scored.Predicted_RUL-scored.Actual_RUL))
 
     def test_all_models_share_input_hash(self):
-        h=hashlib.sha256(INPUT.read_bytes()).hexdigest()
+        data=INPUT.read_bytes()
+        # Git normalizes text to LF; historical models recorded the original CRLF bytes.
+        hashes={hashlib.sha256(data).hexdigest(), hashlib.sha256(data.replace(b'\r\n',b'\n').replace(b'\n',b'\r\n')).hexdigest()}
         import json
-        for path in [CURVE_OUT/'manifest.json',XGB_OUT/'manifest.json',LSTM_OUT/'manifest.json']:
-            self.assertEqual(json.loads(path.read_text())['input_sha256'],h)
+        recorded=[json.loads(path.read_text())['input_sha256'] for path in [CURVE_OUT/'manifest.json',XGB_OUT/'manifest.json',LSTM_OUT/'manifest.json']]
+        self.assertEqual(len(set(recorded)),1)
+        self.assertIn(recorded[0],hashes)
 
     def test_common_checkpoint_includes_all_seed_attempts(self):
         path=ROOT/'outputs/rul_common_checkpoint/predictions.csv'
