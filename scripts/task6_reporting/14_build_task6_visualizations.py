@@ -24,16 +24,16 @@ from stage_04_fit_capacity_fade import predict
 sys.path.append(str(Path(__file__).resolve().parents[2] / '.local_deps'))
 
 ROOT = Path(__file__).resolve().parents[2]
-OUT = ROOT/'scripts/outputs/14_reporting_visualization'
+OUT = ROOT/'scripts/task6_reporting/outputs/14_reporting_visualization'
 OUT.mkdir(parents=True, exist_ok=True)
 CELLS = ['001_2','002_4']
 plt.rcParams.update({'font.size':10, 'axes.spines.top':False, 'axes.spines.right':False,
                      'axes.titleweight':'bold', 'savefig.facecolor':'white'})
-SOURCES = ['scripts/outputs/04_capacity_fade/cycle_capacity_analysis.csv',
-           'scripts/outputs/04_capacity_fade/model_parameters.csv', 'scripts/outputs/04_capacity_fade/predictions.csv',
-           'scripts/outputs/07_anomaly_detection/anomaly_features.csv',
-           'scripts/outputs/10_rul_lstm/predictions.csv','scripts/outputs/09_rul_xgboost/predictions.csv',
-           'scripts/outputs/11_rul_model_comparison/all_attempts.csv']
+SOURCES = ['scripts/task2_degradation_modeling/outputs/04_capacity_fade/cycle_capacity_analysis.csv',
+           'scripts/task2_degradation_modeling/outputs/04_capacity_fade/model_parameters.csv', 'scripts/task2_degradation_modeling/outputs/04_capacity_fade/predictions.csv',
+           'scripts/task3_anomaly_detection/outputs/07_anomaly_detection/anomaly_features.csv',
+           'scripts/task4_rul_estimation/outputs/10_rul_lstm/predictions.csv','scripts/task4_rul_estimation/outputs/09_rul_xgboost/predictions.csv',
+           'scripts/task4_rul_estimation/outputs/11_rul_model_comparison/all_attempts.csv']
 
 
 def read(path):

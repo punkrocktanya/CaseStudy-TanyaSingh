@@ -28,10 +28,10 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parents[2]
 CONFIG_PATH = ROOT / "battery_thresholds.json"
 DEFAULT_INPUTS = {
-    "001_2": ROOT / "scripts"/"outputs" / "01_data_cleaning" / "LR1865SZ_cycles201217_001_2_clean.parquet",
-    "002_4": ROOT / "scripts"/"outputs" / "01_data_cleaning" / "LR1865SZ_cycles201214_002_4_clean.parquet",
+    "001_2": ROOT / "scripts"/"task1_data_engineering" / "outputs" / "01_data_cleaning" / "LR1865SZ_cycles201217_001_2_clean.parquet",
+    "002_4": ROOT / "scripts"/"task1_data_engineering" / "outputs" / "01_data_cleaning" / "LR1865SZ_cycles201214_002_4_clean.parquet",
 }
-DEFAULT_OUTPUT_DIR = ROOT / "scripts"/"outputs" / "03_gold_cycle_features"
+DEFAULT_OUTPUT_DIR = ROOT / "scripts"/"task1_data_engineering" / "outputs" / "03_gold_cycle_features"
 REQUIRED_COLUMNS = [
     "Data_Point", "Test_Time(s)", "Current(A)", "Capacity(Ah)",
     "Voltage(V)", "Energy(Wh)", "Temperature(℃)", "Date_Time", "Cycle_Index",

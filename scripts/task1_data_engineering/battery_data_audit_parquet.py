@@ -328,7 +328,7 @@ def markdown_report(summaries, generated_files):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("inputs", nargs="+", help="One or more Parquet input files")
-    parser.add_argument("--out", default="audit_output", help="Output directory")
+    parser.add_argument("--out", default=str(_TaskPath(__file__).resolve().parent / 'outputs' / 'audit_output'), help="Output directory")
     args = parser.parse_args()
     output_dir = Path(args.out)
     output_dir.mkdir(parents=True, exist_ok=True)

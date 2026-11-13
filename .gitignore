@@ -15,3 +15,10 @@ __pycache__/
 /scripts/outputs/03_gold_cycle_features/interval_diagnostics_*.parquet
 /scripts/outputs/validation_baseline*/
 **/.DS_Store
+# Task-local preprocessing intermediates and per-row diagnostics remain local.
+/scripts/task1_data_engineering/outputs/01_data_cleaning/*.xlsx
+/scripts/task1_data_engineering/outputs/01_data_cleaning/*_clean.parquet
+/scripts/task1_data_engineering/outputs/03_gold_cycle_features/interval_diagnostics_*.parquet
+/scripts/task1_data_engineering/outputs/validation_baseline*/
+/scripts/task6_reporting/outputs/submission/
+/scripts/task1_data_engineering/outputs/audit_output/

@@ -1,9 +1,0 @@
-Dataset_ID,Method,Attempts,Scored,MAE_Cycles,Bias_Cycles,Coverage_pct
-001_2,Exponential (individual curve),2,2,0.5,-0.5,100.0
-001_2,Linear (individual curve),2,2,1.0,-1.0,100.0
-001_2,Minimal LSTM (window 3),6,6,3.6666666666666665,3.0,100.0
-001_2,Shared XGBoost,2,2,2.5,2.5,100.0
-002_4,Exponential (individual curve),2,2,2.0,2.0,100.0
-002_4,Linear (individual curve),2,2,0.5,0.5,100.0
-002_4,Minimal LSTM (window 3),6,6,5.333333333333333,-1.6666666666666667,100.0
-002_4,Shared XGBoost,2,2,2.0,0.0,100.0

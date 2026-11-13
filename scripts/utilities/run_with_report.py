@@ -13,11 +13,11 @@ from pathlib import Path
 import argparse, subprocess, sys, datetime, csv
 ROOT=Path(__file__).resolve().parents[2]
 SCRIPTS=ROOT/'scripts'
-REPORTS=ROOT/'scripts'/'outputs'/'execution_reports'
+REPORTS=ROOT/'scripts'/'utilities' / 'outputs'/'execution_reports'
 
 def snapshot():
     result={}
-    for folder in [ROOT/'scripts'/'outputs',ROOT/'output',ROOT/'deliverables']:
+    for folder in [ROOT/'scripts',ROOT/'output',ROOT/'deliverables']:
         if folder.exists():
             for p in folder.rglob('*'):
                 if p.is_file() and REPORTS not in p.parents:
@@ -25,12 +25,15 @@ def snapshot():
     return result
 
 def main():
+    global REPORTS
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('script',help='Python file path relative to scripts/')
     parser.add_argument('script_args',nargs=argparse.REMAINDER)
     args=parser.parse_args();target=(SCRIPTS/args.script).resolve()
     if SCRIPTS.resolve() not in target.parents or target.suffix!='.py' or not target.is_file() or target==Path(__file__).resolve():
         parser.error('Choose an existing Python file under scripts/, excluding this runner')
+    if target.parent.name.startswith('task'):
+        REPORTS = target.parent / 'outputs' / 'execution_reports'
     REPORTS.mkdir(parents=True,exist_ok=True);before=snapshot()
     try:
         p=subprocess.run([sys.executable,str(target),*args.script_args],cwd=ROOT,text=True,encoding='utf-8',errors='replace',stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
@@ -42,7 +45,7 @@ def main():
     def esc(v):return str(v).replace('|','\\|').replace('\n',' ')
     lines=['# Result: '+target.name,'',f'- Status: {"SUCCESS" if status==0 else "FAILED"} (exit {status})',f'- UTC: {stamp}',f'- Script arguments: `{args.script_args}`',f'- Changed output files: {len(changed)}','','## Output files','']
     if changed:lines.extend('- ['+esc(n)+'](../../../'+n.replace(' ','%20')+')' for n in changed[:100])
-    else:lines.append('No changed files detected in scripts/outputs/, output/, or deliverables/. See console output; libraries may have no standalone result.')
+    else:lines.append('No changed files detected in scripts/, output/, or deliverables/. See console output; libraries may have no standalone result.')
     if len(changed)>100:lines.append(f'- Plus {len(changed)-100} additional files.')
     metrics=[n for n in changed if n.endswith('.csv') and any(k in n.lower() for k in ['metric','summary','prediction'])]
     if metrics:lines+=['','## Result previews','','Unmodified previews of generated CSVs; interpret with the method and data limitations.']

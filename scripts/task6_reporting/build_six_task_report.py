@@ -20,8 +20,10 @@ from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, Tabl
 from pypdf import PdfReader
 
 ROOT = Path(__file__).resolve().parents[2]
-OUT = ROOT / 'scripts/outputs'
-DEST = ROOT / 'output/pdf/Technical_Report_Module_Outputs.pdf'
+_task_sys.path.append(str(_task_scripts))
+from output_paths import TaskOutputs
+OUT = TaskOutputs()
+DEST = ROOT / 'scripts/task6_reporting/outputs/Technical_Report.pdf'
 S = getSampleStyleSheet()
 S.add(ParagraphStyle(name='BodySmall', fontName='Helvetica', fontSize=8.5, leading=11.5, spaceAfter=6))
 S.add(ParagraphStyle(name='CaptionSmall', fontName='Helvetica', fontSize=7.5, leading=10, textColor=colors.HexColor('#526574'), spaceAfter=6))
@@ -101,6 +103,8 @@ def main():
     SimpleDocTemplate(str(DEST),pagesize=(595.28,841.89),leftMargin=48,rightMargin=48,topMargin=40,bottomMargin=50).build(st,onFirstPage=footer,onLaterPages=footer)
     pages=len(PdfReader(str(DEST)).pages)
     if pages != 5: raise RuntimeError(f'Expected 5 pages, got {pages}')
+    (ROOT / 'output/pdf').mkdir(parents=True, exist_ok=True)
+    shutil.copyfile(DEST, ROOT / 'output/pdf/Technical_Report_Module_Outputs.pdf')
     shutil.copyfile(DEST, ROOT / 'Technical_Report.pdf')
     print(f'Created {DEST} ({pages} pages)')
 if __name__=='__main__': main()

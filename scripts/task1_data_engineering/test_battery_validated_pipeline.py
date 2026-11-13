@@ -124,7 +124,7 @@ class IntervalTests(unittest.TestCase):
         self.assertEqual(parser(90000),90000)
 
     def test_saved_dataset_contracts(self):
-        path=pipeline.ROOT/'scripts'/'outputs'/'03_gold_cycle_features'/'battery_cycle_features_gold.parquet'
+        path=pipeline.ROOT/'scripts'/'task1_data_engineering' / 'outputs'/'03_gold_cycle_features'/'battery_cycle_features_gold.parquet'
         if not path.exists(): self.skipTest('Build outputs first')
         try:
             gold=pd.read_parquet(path)

@@ -30,13 +30,13 @@
   "source_hashes": {
     "001_2": {
       "LR1865SZ_cycles201217_001_2.xlsx": "ecc9707183050678ba7682d0be5ded805151e6bd27323348fbe943129dd6fff7",
-      "scripts\\outputs\\01_data_cleaning\\LR1865SZ_cycles201217_001_2_clean.parquet": "c72f475b649da26170a9b4652032c1af41931e0207eab1451fdcbc30e54740dc",
-      "scripts\\outputs\\02_silver_phase_data\\LR1865SZ_cycles201217_001_2_silver.parquet": "844581b8d1772be6e5db67a0adc3abf2054bc820336e7f490625f33b4aacfcc0"
+      "scripts\\task1_data_engineering\\outputs\\01_data_cleaning\\LR1865SZ_cycles201217_001_2_clean.parquet": "c72f475b649da26170a9b4652032c1af41931e0207eab1451fdcbc30e54740dc",
+      "scripts\\task1_data_engineering\\outputs\\02_silver_phase_data\\LR1865SZ_cycles201217_001_2_silver.parquet": "844581b8d1772be6e5db67a0adc3abf2054bc820336e7f490625f33b4aacfcc0"
     },
     "002_4": {
       "LR1865SZ_cycles201214_002_4.xlsx": "2a6490251db71c98ddd95ce1bc2e28a6d2ca387923606d65099a0af890e651f6",
-      "scripts\\outputs\\01_data_cleaning\\LR1865SZ_cycles201214_002_4_clean.parquet": "9c4a37a2db78e2d65de5dbc5535d4efeb9d2a1bd3d2d4f90c0efa98cf6b3ff02",
-      "scripts\\outputs\\02_silver_phase_data\\LR1865SZ_cycles201214_002_4_silver.parquet": "4ef17217ac0782c7405209ffe2d52a8aa45b49e9c494460f6ec73a5ed5d54175"
+      "scripts\\task1_data_engineering\\outputs\\01_data_cleaning\\LR1865SZ_cycles201214_002_4_clean.parquet": "9c4a37a2db78e2d65de5dbc5535d4efeb9d2a1bd3d2d4f90c0efa98cf6b3ff02",
+      "scripts\\task1_data_engineering\\outputs\\02_silver_phase_data\\LR1865SZ_cycles201214_002_4_silver.parquet": "4ef17217ac0782c7405209ffe2d52a8aa45b49e9c494460f6ec73a5ed5d54175"
     }
   },
   "measurement_reconciliation": {
@@ -170,17 +170,17 @@
     }
   },
   "code_hashes": {
-    "01_clean_and_validate.py": "e32c996ba42d1d100dcb00a0ddc17a452a9563fd9b05f9b0752e8f95389eb43c",
-    "01_normalize_timestamps.py": "43ef73bdb4b2f728a35c7a492af7243558cc54d906bf17fc63eae0c5c59fce4b",
-    "02_silver_transform.py": "a79e68ea88ea943f10fea608976ce9194871caaa4eb9f3f2b0f44db07de9c729",
-    "03_build_cycle_features.py": "97a31af78b6dd42b3c84f3b30d5b985ad66ae06050dd032be18dc2e79670327a",
+    "01_clean_and_validate.py": "942d9620cf09499e46e5f0f71c894796b1cc69993554503461588fe1a623a376",
+    "01_normalize_timestamps.py": "a138a29929113eaa98238d0f9dd9dd9eb83a64c0eea5cc35834996aa8f347fd2",
+    "02_silver_transform.py": "8d7847ee6ae75f4cbd562e37e973dc0478068089397b141694c9782fd7040e60",
+    "03_build_cycle_features.py": "54bffda338a886d5d2c2d4a6429625123fc7034a1d97513dcbadb52897da7d68",
     "battery_config.py": "1c4e7861d76ad07ca5840e27fa016e678a870eef478f55cca5488bb0562beeb4",
     "battery_data_audit_parquet.py": "229f2e1088dedc3fb3ea75732adc872004fc674524ab84b8bf97a8c51c215139",
-    "battery_validated_pipeline.py": "a881b1562116ffe16bdd0a3e683157d09453de246b5498a3d6b657c5be2e9b01",
-    "run_cleaning_pipeline.py": "9a270602b9d26029e579b1614dc8ab59a470a31714ae1e2e03b4ecc788ee86a6",
+    "battery_validated_pipeline.py": "2b8f40ea6332c693a0d0e11bdc46a6a6c86dc52ec02cd327e12e70acd77a676a",
+    "run_cleaning_pipeline.py": "a00e9e551f3c54fdf25898ca69589736cda69035ea47ff60d92477227708e5cd",
     "task1_preprocess.py": "36221eeecde7158f6134ed5f8f4fa83412c66e3af9963a1137dca9c3ba728e7b",
-    "test_battery_validated_pipeline.py": "dba86dc9fdc7ea27123615f74a18f7e70f3b988288b1640feac02853a2547963",
-    "test_task_entrypoints.py": "0f5b9d40a662f502d98f21af7c0980e0307358a15f8655ff7a5a0ec6789e3bc6",
+    "test_battery_validated_pipeline.py": "14042ef1151e346ecfe022f9f42d810bddb5932888a45d148f76ed2ff80e4417",
+    "test_task_entrypoints.py": "26cdacb914e213400a297202cae82c45d01129009126b10baf9294bc30a3028e",
     "__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
   },
   "output_rows": 202,

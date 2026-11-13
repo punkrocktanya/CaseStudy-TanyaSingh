@@ -1,6 +1,0 @@
-{
-  "window": 3,
-  "lstm_seed": 42,
-  "forecast": "fixed-origin recursive 15 cycles",
-  "physics": "positive nonincreasing phenomenological surrogate; not mechanistic"
-}

@@ -18,5 +18,5 @@
   "normalization": "only for shared power exponent; each model fit per battery",
   "threshold": "first integer cycle strictly below 80% of own cycle-2 discharge capacity",
   "input_sha256": "5cc2c03bb1cb0dfe78e6d82199196251c6247f54e4c022895a4efccccf7707b5",
-  "script_sha256": "daa8f8626652187f468e8581bdfdc162350df2f8483d10dca0763860a2573d87"
+  "script_sha256": "b280fe31b83ae203b66124829ce8c2172e1fed2d87d9df93d9143eb8c3f8d16f"
 }

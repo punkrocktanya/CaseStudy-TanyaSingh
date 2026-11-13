@@ -1,7 +1,0 @@
-Window,Checkpoint,Seed,Dataset_ID,Training_Windows,Predicted_EOL,Actual_EOL,Predicted_RUL,Actual_RUL,Error,Absolute_Error,Status
-3,8,42,001_2,8,26.0,13,18.0,5,13.0,13.0,crossing_predicted
-3,8,42,002_4,8,33.0,24,25.0,16,9.0,9.0,crossing_predicted
-3,8,7,001_2,8,12.0,13,4.0,5,-1.0,1.0,crossing_predicted
-3,8,7,002_4,8,17.0,24,9.0,16,-7.0,7.0,crossing_predicted
-3,8,123,001_2,8,16.0,13,8.0,5,3.0,3.0,crossing_predicted
-3,8,123,002_4,8,21.0,24,13.0,16,-3.0,3.0,crossing_predicted

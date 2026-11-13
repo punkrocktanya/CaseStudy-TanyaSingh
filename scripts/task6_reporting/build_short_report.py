@@ -18,7 +18,7 @@ from reportlab.lib.styles import getSampleStyleSheet,ParagraphStyle
 from reportlab.lib.enums import TA_LEFT
 from reportlab.lib.utils import ImageReader
 ROOT=Path(__file__).resolve().parents[2]
-DEST=ROOT/'output/pdf/Technical_Report_Module_Outputs.pdf'
+DEST=ROOT/'scripts/task6_reporting/outputs/Historical_Technical_Report.pdf'
 BLUE=colors.HexColor('#17486b'); PALE=colors.HexColor('#eaf1f5'); MUTED=colors.HexColor('#516575')
 styles=getSampleStyleSheet(); styles.add(ParagraphStyle(name='TinyBody',fontName='Helvetica',fontSize=8.4,leading=11.2,spaceAfter=6));styles.add(ParagraphStyle(name='TinyCaption',fontName='Helvetica',fontSize=7.8,leading=10,textColor=MUTED,spaceAfter=5));styles.add(ParagraphStyle(name='SmallHead',fontName='Helvetica-Bold',fontSize=11.5,leading=14,textColor=BLUE,spaceBefore=8,spaceAfter=5)); styles['Title'].textColor=BLUE
 
@@ -31,16 +31,16 @@ def tbl(headers,rows,widths=None):
     return t
 
 def fig(name,max_height=215,width=490):
-    path=ROOT/'scripts/outputs/14_reporting_visualization'/f'{name}.png'
+    path=ROOT/'scripts/task6_reporting/outputs/14_reporting_visualization'/f'{name}.png'
     iw,ih=ImageReader(str(path)).getSize();k=min(width/iw,max_height/ih)
     return Image(str(path),iw*k,ih*k)
 
 def main():
-    fade=pd.read_csv(ROOT/'scripts/outputs/04_capacity_fade/cycle_capacity_analysis.csv',dtype={'Dataset_ID':str})
-    curve=pd.read_csv(ROOT/'scripts/outputs/08_rul_individual_curves/metrics.csv',dtype={'Dataset_ID':str})
-    xgb=pd.read_csv(ROOT/'scripts/outputs/09_rul_xgboost/metrics.csv',dtype={'Dataset_ID':str})
-    lstm=pd.read_csv(ROOT/'scripts/outputs/10_rul_lstm/metrics.csv',dtype={'Dataset_ID':str})
-    fair=pd.read_csv(ROOT/'scripts/outputs/11_rul_model_comparison/all_method_common_metrics.csv',dtype={'Dataset_ID':str})
+    fade=pd.read_csv(ROOT/'scripts/task2_degradation_modeling/outputs/04_capacity_fade/cycle_capacity_analysis.csv',dtype={'Dataset_ID':str})
+    curve=pd.read_csv(ROOT/'scripts/task4_rul_estimation/outputs/08_rul_individual_curves/metrics.csv',dtype={'Dataset_ID':str})
+    xgb=pd.read_csv(ROOT/'scripts/task4_rul_estimation/outputs/09_rul_xgboost/metrics.csv',dtype={'Dataset_ID':str})
+    lstm=pd.read_csv(ROOT/'scripts/task4_rul_estimation/outputs/10_rul_lstm/metrics.csv',dtype={'Dataset_ID':str})
+    fair=pd.read_csv(ROOT/'scripts/task4_rul_estimation/outputs/11_rul_model_comparison/all_method_common_metrics.csv',dtype={'Dataset_ID':str})
     st=[]
     def add(*things):st.extend(things)
     def page(head):
@@ -89,7 +89,7 @@ def main():
     add(p('Differential voltage: process and results','SmallHead'))
     add(p('<b>Process:</b> Select discharge cycles 2, 10, 25, 50, 75 and 100. Integrate current over time to obtain capacity Q; consolidate duplicate Q values using median voltage; interpolate voltage onto 301 capacity points. Smooth using three Savitzky-Golay windows (11, 21 and 31 points), calculate dV/dQ, and identify candidate peaks within the interior 10-90% of discharged capacity. Compare candidates across windows and neighbouring cycles.'))
     add(p('<b>Results:</b> Measured discharge capacity decreases from 1.511 to 0.270 Ah for 001_2 and from 1.688 to 0.453 Ah for 002_4 between cycles 2 and 100. The dV/dQ traces also change shape. Of the saved representative candidates, 20/33 for 001_2 and 3/21 for 002_4 pass the window-and-neighbour stability heuristic. These counts depend on detection settings and do not establish matching features or identify electrode mechanisms. Polarization, smoothing and duplicate voltage readings limit interpretation.'))
-    paths=[ROOT/'scripts/outputs/06_differential_voltage/interior_comparison_001_2.png',ROOT/'scripts/outputs/06_differential_voltage/interior_comparison_002_4.png']
+    paths=[ROOT/'scripts/task2_degradation_modeling/outputs/06_differential_voltage/interior_comparison_001_2.png',ROOT/'scripts/task2_degradation_modeling/outputs/06_differential_voltage/interior_comparison_002_4.png']
     imgs=[]
     for path in paths:
         iw,ih=ImageReader(str(path)).getSize(); k=min(238/iw,105/ih); imgs.append(Image(str(path),iw*k,ih*k))
@@ -101,11 +101,11 @@ def main():
     add(p('<b>LSTM method:</b> (1) At each checkpoint, retain only observations available through that cycle. (2) Divide each cell’s capacities by its own cycle-2 capacity, setting the exploratory EOL threshold to 0.80. (3) Build one- or three-cycle sequences within each cell and pair them with the next normalized capacity change. (4) Pool the windows and train a shared one-hidden-unit LSTM separately with seeds 42, 7 and 123. (5) Forecast each cell separately: predict the next change, add it to the last capacity and feed the result back until it falls below 0.80. (6) Predicted RUL = predicted EOL cycle minus checkpoint; compare with observed RUL. A non-crossing within the 1,000-cycle horizon is recorded as a failed crossing.'))
     add(p('The histogram uses three-cycle windows at checkpoint 8. Seeds are repeated model runs, not independent batteries. Curve extrapolation uses checkpoint-only data; shared XGBoost learns next-capacity changes from three-capacity windows. Coverage accompanies error because failed crossings are not scored as zero.','TinyCaption'))
     add(p('LSTM forecast curves at checkpoint 8','SmallHead'))
-    path=ROOT/'scripts/outputs/10_rul_lstm/checkpoint_8.png'
+    path=ROOT/'scripts/task4_rul_estimation/outputs/10_rul_lstm/checkpoint_8.png'
     iw,ih=ImageReader(str(path)).getSize(); k=min(490/iw,125/ih); add(Image(str(path),iw*k,ih*k))
     add(p('One- and three-cycle windows are shown; coloured curves represent seeds 42, 7 and 123. Later measurements are for evaluation.','TinyCaption'))
     add(p('XGBoost forecast at checkpoint 8','SmallHead'))
-    path=ROOT/'scripts/outputs/09_rul_xgboost/shared_forecast_checkpoint_8.png'
+    path=ROOT/'scripts/task4_rul_estimation/outputs/09_rul_xgboost/shared_forecast_checkpoint_8.png'
     iw,ih=ImageReader(str(path)).getSize(); k=min(490/iw,115/ih); add(Image(str(path),iw*k,ih*k))
     add(p('The forecast is trained only on histories available through cycle 8; later measurements are shown for evaluation. Only eight pooled training windows are available, and the two cells are not independent external validation.','TinyCaption'))
 

@@ -18,7 +18,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from stage_04_fit_capacity_fade import fit,predict,metrics
 
-OUT=ROOT/'scripts/outputs/04_capacity_fade'
+OUT=ROOT/'scripts/task2_degradation_modeling/outputs/04_capacity_fade'
 
 def main():
     data=pd.read_csv(OUT/'cycle_capacity_analysis.csv',dtype={'Dataset_ID':str})

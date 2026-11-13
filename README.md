@@ -16,7 +16,7 @@ python scripts/task5_pack_scaling/task5_pack_scaling.py
 python scripts/task6_reporting/task6_report_and_visualizations.py
 ```
 
-Each task folder has its own runnable entry script, README and `outputs/` containing its reviewable tables and plots. The entry scripts run the validated stages in their task folders and refresh the copies; the authoritative intermediate results remain in `scripts/outputs/`. Shared imports between task folders support the existing analysis logic. Large intermediate Excel workbooks, cleaned Parquet files and per-row interval diagnostics are not copied into task folders.
+Each task folder has its own runnable entry script, README and `outputs/` containing its reviewable tables and plots. The entry scripts run the validated stages in their task folders. Each task writes its authoritative results, plots and intermediate data directly to its own `outputs/` folder. Shared imports between tasks support the existing analysis logic. Large preprocessing intermediates are kept locally and excluded from Git.
 
 To run all tasks in order, use `python scripts/run_six_tasks.py`. Run tests with `python -m unittest discover -s scripts -p "test_*.py"`. Individual tasks require the outputs of earlier tasks; see their READMEs for prerequisites.
 
@@ -39,4 +39,4 @@ The complete run starts from `LR1865SZ_cycles201217_001_2.xlsx` and `LR1865SZ_cy
 - Model comparisons use very few histories from two cells and are not independent unseen-cell validation. Seed variation is not a calibrated fleet RUL distribution.
 - Pack results use assumed cell variation, thermal acceleration and balancing, with no calibrated dynamic voltage or electrothermal/BMS model. They are scenario illustrations, not measured pack forecasts.
 
-The report is written to `output/pdf/Technical_Report_Module_Outputs.pdf` and copied to `Technical_Report.pdf`. Checksums in `SUBMISSION_MANIFEST.json` are a historical package snapshot and will change when inputs or generated results change.
+The report is written to `scripts/task6_reporting/outputs/Technical_Report.pdf`, with convenience copies at `output/pdf/Technical_Report_Module_Outputs.pdf` and `Technical_Report.pdf`. Checksums in `SUBMISSION_MANIFEST.json` are a historical package snapshot and will change when inputs or generated results change.

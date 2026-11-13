@@ -18,13 +18,13 @@ from pathlib import Path
 import pandas as pd
 import numpy as np
 ROOT=Path(__file__).resolve().parents[2]
-OUT=ROOT/'scripts/outputs/11_rul_model_comparison'
+OUT=ROOT/'scripts/task4_rul_estimation/outputs/11_rul_model_comparison'
 COMMON=(8,10)
 
 def normalized_predictions():
-    curve=pd.read_csv(ROOT/'scripts/outputs/08_rul_individual_curves/predictions.csv',dtype={'Dataset_ID':str})
-    xgb=pd.read_csv(ROOT/'scripts/outputs/09_rul_xgboost/predictions.csv',dtype={'Dataset_ID':str})
-    lstm=pd.read_csv(ROOT/'scripts/outputs/10_rul_lstm/predictions.csv',dtype={'Dataset_ID':str})
+    curve=pd.read_csv(ROOT/'scripts/task4_rul_estimation/outputs/08_rul_individual_curves/predictions.csv',dtype={'Dataset_ID':str})
+    xgb=pd.read_csv(ROOT/'scripts/task4_rul_estimation/outputs/09_rul_xgboost/predictions.csv',dtype={'Dataset_ID':str})
+    lstm=pd.read_csv(ROOT/'scripts/task4_rul_estimation/outputs/10_rul_lstm/predictions.csv',dtype={'Dataset_ID':str})
     rows=[]
     for r in curve.itertuples():
         rows.append(dict(Dataset_ID=r.Dataset_ID,Method=r.Model+' (individual curve)',Checkpoint=int(r.Checkpoint),Seed='deterministic',Actual_RUL=float(r.Actual_RUL),Predicted_RUL=r.Predicted_RUL,Status=r.Status))

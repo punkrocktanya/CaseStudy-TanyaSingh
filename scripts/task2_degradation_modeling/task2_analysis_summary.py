@@ -21,7 +21,9 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 ROOT = Path(__file__).resolve().parents[2]
-OUTPUTS = ROOT / 'scripts' / 'outputs'
+_task_sys.path.append(str(_task_scripts))
+from output_paths import TaskOutputs
+OUTPUTS = TaskOutputs()
 OUT = OUTPUTS / '06_differential_voltage'
 SELECT = (2, 10, 25, 50, 75, 100)
 

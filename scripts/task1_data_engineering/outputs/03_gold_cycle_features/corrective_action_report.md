@@ -1,7 +1,7 @@
 # Battery pipeline corrective-action report
 
 - **Result:** The code checks have been strengthened. The results remain a diagnostic dataset.
-- Original files and the previous results are preserved in `scripts/outputs/validation_baseline_20261111`.
+- Original files and the previous results are preserved in `scripts/task1_data_engineering/outputs/validation_baseline_20261111`.
 - Gold now reads Silver and keeps its source row IDs, phase IDs, and cycle membership.
 - Repeated test times are counted separately. They represent zero elapsed time, not automatically lost charge.
 - Calendar-clock reversals are warnings. A valid test-clock interval is no longer discarded just because the calendar clock goes backwards.

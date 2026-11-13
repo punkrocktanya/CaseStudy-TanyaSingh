@@ -16,7 +16,7 @@ from reportlab.platypus import SimpleDocTemplate,Paragraph,Table,TableStyle,Page
 from reportlab.lib.styles import getSampleStyleSheet,ParagraphStyle
 from reportlab.lib import colors
 ROOT=Path(__file__).resolve().parents[2]
-OUT=ROOT/'output/pdf/Battery_RUL_Limitations_and_Validation.pdf'
+OUT=ROOT/'scripts/task6_reporting/outputs/Battery_RUL_Limitations_and_Validation.pdf'
 styles=getSampleStyleSheet();styles['Title'].textColor=colors.HexColor('#194b6a');styles['BodyText'].fontSize=9.2;styles['BodyText'].leading=13.5;styles.add(ParagraphStyle(name='GridText',fontSize=8.0,leading=10.7));styles.add(ParagraphStyle(name='LabelHead',fontSize=11,leading=15,fontName='Helvetica-Bold',textColor=colors.HexColor('#17486b'),spaceAfter=6))
 def h(s):return Paragraph(s,styles['LabelHead'])
 def p(s):return Paragraph(s,styles['BodyText'])
@@ -59,13 +59,13 @@ def main():
  add(p('Forecast target: <b>RUL(c) = observed relative-EOL cycle - checkpoint cycle c</b>. Predictions are the first forecast future integer cycle strictly below the threshold. Full future traces exist for scoring and visual review, not training.'))
  page('All seven RUL methods | common checkpoints')
  add(p('All seven methods are evaluated at checkpoints 8 and 10 for both cells. It retains individual seed attempts. MAE is conditional on successful crossings; coverage is calculated from all attempts.'))
- f=pd.read_csv(ROOT/'scripts/outputs/11_rul_model_comparison/all_method_common_metrics.csv',dtype={'Dataset_ID':str})
+ f=pd.read_csv(ROOT/'scripts/task4_rul_estimation/outputs/11_rul_model_comparison/all_method_common_metrics.csv',dtype={'Dataset_ID':str})
  rows=[]
  for r in f.itertuples():rows.append([r.Dataset_ID,r.Method.replace(' (individual curve)','').replace('Minimal LSTM (window 3)','LSTM w3').replace('Minimal LSTM (window 1)','LSTM w1'),f'{r.MAE_Cycles:.2f}',f'{r.Scored}/{r.Attempts}',f'{r.Coverage_pct:.0f}%'])
  add(tab(['Cell','Model','MAE (cycles)','Scored','Coverage'],rows,[67,190,87,70,76]),Spacer(1,12))
  add(p('The lower MAE of a simple curve model at these checkpoints is a valid result. It does not imply that XGBoost or LSTM are incorrectly implemented; it shows that their additional flexibility is not reliably useful in this extremely low-data setting.'))
  add(Spacer(1,9),h('Coverage outside the common comparison'))
- a=pd.read_csv(ROOT/'scripts/outputs/11_rul_model_comparison/all_checkpoint_metrics.csv',dtype={'Dataset_ID':str})
+ a=pd.read_csv(ROOT/'scripts/task4_rul_estimation/outputs/11_rul_model_comparison/all_checkpoint_metrics.csv',dtype={'Dataset_ID':str})
  for method in ['Minimal LSTM (window 1)','Minimal LSTM (window 3)','Linear (individual curve)','Exponential (individual curve)','Shared XGBoost']:
   sel=a[a.Method==method]
   add(p(f'<b>{html.escape(method)}:</b> '+ '; '.join(f"{r.Dataset_ID}: {int(r.Scored)}/{int(r.Attempts)} scored ({r.Coverage_pct:.1f}%), conditional MAE {r.MAE_Cycles:.2f} cycles" for r in sel.itertuples())))

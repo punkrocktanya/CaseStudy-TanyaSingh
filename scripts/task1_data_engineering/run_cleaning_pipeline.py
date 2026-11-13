@@ -31,7 +31,7 @@ def main():
     run("01_clean_and_validate.py")
     run("02_silver_transform.py")
     run("03_build_cycle_features.py")
-    print("Battery pipeline completed; see scripts/outputs/03_gold_cycle_features/corrective_action_report.md for release limits.")
+    print("Battery pipeline completed; see scripts/task1_data_engineering/outputs/03_gold_cycle_features/corrective_action_report.md for release limits.")
 
 
 if __name__ == "__main__":

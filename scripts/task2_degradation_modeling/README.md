@@ -12,7 +12,7 @@ python scripts/task2_degradation_modeling/task2_degradation_modeling.py
 
 Run Task 1 first. The analysis is in outputs/06_differential_voltage/task2_analysis.md; feature positions do not identify LLI/LAM on their own.
 
-This entry point runs the validated implementation files in this folder in order and then copies their reviewable results into this folder. It stops on an error. The authoritative working outputs remain in `scripts/outputs/`; copies are refreshed only when this task runs. Intermediate Excel workbooks, cleaned Parquet files and per-row interval diagnostics are omitted from the copies to avoid duplicating large files.
+This entry point runs the implementation files in this folder in order and stops on an error. Its authoritative results, plots and intermediate files are written directly to this folder’s `outputs/`. Some large preprocessing intermediates are kept locally and excluded from Git.
 
 ## Implementation
 

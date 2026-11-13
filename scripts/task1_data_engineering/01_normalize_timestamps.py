@@ -27,7 +27,7 @@ from openpyxl.utils import get_column_letter
 
 
 ROOT = Path(__file__).resolve().parents[2]
-OUTPUT_DIR = ROOT / "scripts"/"outputs" / "01_data_cleaning"
+OUTPUT_DIR = ROOT / "scripts"/"task1_data_engineering" / "outputs" / "01_data_cleaning"
 OUTPUT_FILE = OUTPUT_DIR / "01_timestamp_normalized.xlsx"
 SOURCES = [
     (ROOT / "LR1865SZ_cycles201217_001_2.xlsx", "Cell_001_2"),

@@ -1,10 +1,12 @@
+> Historical model guide: paths and results below describe an earlier analysis. For current commands and results, see [Task 2](scripts/task2_degradation_modeling/README.md) and [Task 4](scripts/task4_rul_estimation/README.md).
+
 # Capacity modelling - current merged submission
 
 ## Objective and data
 
 The target is delivered high-current discharge capacity (Ah), not independently reference-tested SOH. The two input cells are `001_2` and `002_4`. Only their usable cycles 2-100 are used. Validation forecasts cycles 71-85 from fits through cycle 70; test forecasts 86-100 using history through cycle 85. Both are fixed-origin 15-cycle horizons. No future actual capacity enters the recursive ML forecasts.
 
-Run `python 05_compare_capacity_models.py`; outputs are saved under `scripts/outputs/capacity_comparison_local`. The raw Excel files are not required when the cycle-feature CSV is present.
+Run `python 05_compare_capacity_models.py`; outputs are saved under `scripts/task2_degradation_modeling/outputs/05_capacity_model_comparison`. The raw Excel files are not required when the cycle-feature CSV is present.
 
 ## Compared capacity-forecast models
 
@@ -24,8 +26,8 @@ Run `python 05_compare_capacity_models.py`; outputs are saved under `scripts/out
 | Random Forest | 0.012454 | 0.021403 |
 | Updated minimal LSTM | 0.037969 | 0.051164 |
 
-Values derive from `scripts/outputs/capacity_comparison_local/metrics.csv`. They do not establish superiority on unseen batteries; window overlap and the two-cell population are major limitations.
+Values derive from `scripts/task2_degradation_modeling/outputs/05_capacity_model_comparison/metrics.csv`. They do not establish superiority on unseen batteries; window overlap and the two-cell population are major limitations.
 
 ## Separate early-relative-RUL comparison
 
-Run `stage_08_individual_curve_rul.py`, `stage_09_estimate_rul_xgboost_shared.py` and `stage_10_estimate_rul_lstm_minimal.py`, followed by `11_build_common_checkpoint_comparison.py`. The early-RUL endpoint is the first integer cycle below 80% of cycle-2 delivered capacity, not nominal-reference SOH. The fair comparison at checkpoints 8 and 10 uses common attempts and includes the minimal three-cycle LSTM seed runs, preserving failures and coverage. See `scripts/outputs/rul_common_checkpoint/README.md` and `output/pdf/Battery_RUL_Limitations_and_Validation.pdf`.
+Run `stage_08_individual_curve_rul.py`, `stage_09_estimate_rul_xgboost_shared.py` and `stage_10_estimate_rul_lstm_minimal.py`, followed by `11_build_common_checkpoint_comparison.py`. The early-RUL endpoint is the first integer cycle below 80% of cycle-2 delivered capacity, not nominal-reference SOH. The fair comparison at checkpoints 8 and 10 uses common attempts and includes the minimal three-cycle LSTM seed runs, preserving failures and coverage. See `scripts/task4_rul_estimation/outputs/11_rul_model_comparison/README.md` and `output/pdf/Battery_RUL_Limitations_and_Validation.pdf`.
