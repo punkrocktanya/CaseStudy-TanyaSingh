@@ -3,7 +3,7 @@ import json
 import hashlib
 import numpy as np
 import pandas as pd
-from individual_curve_rul import INPUT
+from stage_08_individual_curve_rul import INPUT
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
@@ -30,7 +30,7 @@ def main():
     fig,axes=plt.subplots(1,2,figsize=(12,4.5),constrained_layout=True)
     for ax,(cell,g) in zip(axes,data.groupby('Dataset_ID')):
         # Only the early exponential coefficient supplies a scenario baseline.
-        from fit_capacity_fade import fit
+        from stage_04_fit_capacity_fade import fit
         h=g[g.Cycle_Index<=8].sort_values('Cycle_Index'); q0=h.Discharge_Capacity_Ah.iloc[0]
         k=fit('Exponential',h.Cycle_Index.to_numpy()-2,h.Cycle_Index.to_numpy()-2,h.Discharge_Capacity_Ah.to_numpy())[1]
         shape=(CONFIG['ensemble_size'],CONFIG['modules_in_series'],CONFIG['series_groups_per_module'],CONFIG['parallel_cells'])

@@ -1,6 +1,6 @@
 # Shared minimal LSTM experiment
 
-Run `python estimate_rul_lstm_minimal.py` and `python -m unittest test_rul_lstm_minimal` from the project root after installing dependencies.
+Run `python stage_10_estimate_rul_lstm_minimal.py` and `python -m unittest test_rul_lstm_minimal` from the project root after installing dependencies.
 
 One shared model per checkpoint/window/seed, trained on both batteries' available histories only. Main input window: 3 cycles; separate baseline: 1 cycle. One LSTM layer, one hidden unit, one linear change output: 18 trainable parameters. Hidden state resets per input window; the 1-cycle baseline has no temporal memory across observations. Each cell is normalized by its own cycle-2 capacity. Windows never cross cell boundaries. Forecasts use predicted capacities recursively until the first strictly-below-0.8 crossing or 1,000 future steps. Raw predictions are not forced to decline. Both cells remain pre-EOL at checkpoints 5, 8, 10 and 12.
 

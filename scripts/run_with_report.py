@@ -3,11 +3,11 @@ from pathlib import Path
 import argparse, subprocess, sys, datetime, csv
 ROOT=Path(__file__).resolve().parent.parent
 SCRIPTS=ROOT/'scripts'
-REPORTS=ROOT/'outputs'/'execution_reports'
+REPORTS=ROOT/'scripts'/'outputs'/'execution_reports'
 
 def snapshot():
     result={}
-    for folder in [ROOT/'outputs',ROOT/'output',ROOT/'deliverables']:
+    for folder in [ROOT/'scripts'/'outputs',ROOT/'output',ROOT/'deliverables']:
         if folder.exists():
             for p in folder.rglob('*'):
                 if p.is_file() and REPORTS not in p.parents:
@@ -31,8 +31,8 @@ def main():
     report=REPORTS/(target.stem+'_'+stamp+'.md')
     def esc(v):return str(v).replace('|','\\|').replace('\n',' ')
     lines=['# Result: '+target.name,'',f'- Status: {"SUCCESS" if status==0 else "FAILED"} (exit {status})',f'- UTC: {stamp}',f'- Script arguments: `{args.script_args}`',f'- Changed output files: {len(changed)}','','## Output files','']
-    if changed:lines.extend('- ['+esc(n)+'](../../'+n.replace(' ','%20')+')' for n in changed[:100])
-    else:lines.append('No changed files detected in outputs/, output/, or deliverables/. See console output; libraries may have no standalone result.')
+    if changed:lines.extend('- ['+esc(n)+'](../../../'+n.replace(' ','%20')+')' for n in changed[:100])
+    else:lines.append('No changed files detected in scripts/outputs/, output/, or deliverables/. See console output; libraries may have no standalone result.')
     if len(changed)>100:lines.append(f'- Plus {len(changed)-100} additional files.')
     metrics=[n for n in changed if n.endswith('.csv') and any(k in n.lower() for k in ['metric','summary','prediction'])]
     if metrics:lines+=['','## Result previews','','Unmodified previews of generated CSVs; interpret with the method and data limitations.']

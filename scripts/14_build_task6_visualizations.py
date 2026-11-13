@@ -10,23 +10,23 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import RobustScaler
-from fit_capacity_fade import predict
+from stage_04_fit_capacity_fade import predict
 sys.path.append(str(Path(__file__).resolve().parent.parent / '.local_deps'))
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Image, PageBreak, Spacer, Table, TableStyle
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib import colors
 
 ROOT = Path(__file__).resolve().parent.parent
-OUT = ROOT/'outputs/14_reporting_visualization'
+OUT = ROOT/'scripts/outputs/14_reporting_visualization'
 OUT.mkdir(parents=True, exist_ok=True)
 CELLS = ['001_2','002_4']
 plt.rcParams.update({'font.size':10, 'axes.spines.top':False, 'axes.spines.right':False,
                      'axes.titleweight':'bold', 'savefig.facecolor':'white'})
-SOURCES = ['outputs/04_capacity_fade/cycle_capacity_analysis.csv',
-           'outputs/04_capacity_fade/model_parameters.csv', 'outputs/04_capacity_fade/predictions.csv',
-           'outputs/07_anomaly_detection/anomaly_features.csv',
-           'outputs/10_rul_lstm/predictions.csv','outputs/09_rul_xgboost/predictions.csv',
-           'outputs/11_rul_model_comparison/all_attempts.csv']
+SOURCES = ['scripts/outputs/04_capacity_fade/cycle_capacity_analysis.csv',
+           'scripts/outputs/04_capacity_fade/model_parameters.csv', 'scripts/outputs/04_capacity_fade/predictions.csv',
+           'scripts/outputs/07_anomaly_detection/anomaly_features.csv',
+           'scripts/outputs/10_rul_lstm/predictions.csv','scripts/outputs/09_rul_xgboost/predictions.csv',
+           'scripts/outputs/11_rul_model_comparison/all_attempts.csv']
 
 
 def read(path):
@@ -189,7 +189,7 @@ def main():
     story.append(PageBreak());text('Reproducibility and reporting limits','Heading1')
     text('All five charts have clearly labelled axes, units, cell identifiers, legends and explanatory captions. Supporting CSVs preserve the RUL samples and summaries. The plotting script reads the saved sources listed below and records hashes in visualization_manifest.json. The assignment section supplied contains a 10-point visualization component; this report does not infer requirements for the unspecified remaining 10 points or assign marks.')
     for source in SOURCES:text(source)
-    text('To reproduce: python build_task6_visualizations.py. Existing Task 1-4 results remain the source of all plotted predictions and anomaly labels.')
+    text('To reproduce: python 14_build_task6_visualizations.py. Existing Task 1-4 results remain the source of all plotted predictions and anomaly labels.')
     def footer(c,d):
         c.setFont('Helvetica',8);c.setFillColor(colors.HexColor('#526777'));c.drawString(50,28,'Task 6 | Reporting and Visualization');c.drawRightString(545,28,str(d.page))
     pdf=ROOT/'output/pdf/Task_6_Reporting_and_Visualization_Updated.pdf';pdf.parent.mkdir(parents=True,exist_ok=True)

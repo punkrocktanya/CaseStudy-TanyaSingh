@@ -49,13 +49,13 @@ def main():
  add(p('Forecast target: <b>RUL(c) = observed relative-EOL cycle - checkpoint cycle c</b>. Predictions are the first forecast future integer cycle strictly below the threshold. Full future traces exist for scoring and visual review, not training.'))
  page('All seven RUL methods | common checkpoints')
  add(p('All seven methods are evaluated at checkpoints 8 and 10 for both cells. It retains individual seed attempts. MAE is conditional on successful crossings; coverage is calculated from all attempts.'))
- f=pd.read_csv(ROOT/'outputs/11_rul_model_comparison/all_method_common_metrics.csv',dtype={'Dataset_ID':str})
+ f=pd.read_csv(ROOT/'scripts/outputs/11_rul_model_comparison/all_method_common_metrics.csv',dtype={'Dataset_ID':str})
  rows=[]
  for r in f.itertuples():rows.append([r.Dataset_ID,r.Method.replace(' (individual curve)','').replace('Minimal LSTM (window 3)','LSTM w3').replace('Minimal LSTM (window 1)','LSTM w1'),f'{r.MAE_Cycles:.2f}',f'{r.Scored}/{r.Attempts}',f'{r.Coverage_pct:.0f}%'])
  add(tab(['Cell','Model','MAE (cycles)','Scored','Coverage'],rows,[67,190,87,70,76]),Spacer(1,12))
  add(p('The lower MAE of a simple curve model at these checkpoints is a valid result. It does not imply that XGBoost or LSTM are incorrectly implemented; it shows that their additional flexibility is not reliably useful in this extremely low-data setting.'))
  add(Spacer(1,9),h('Coverage outside the common comparison'))
- a=pd.read_csv(ROOT/'outputs/11_rul_model_comparison/all_checkpoint_metrics.csv',dtype={'Dataset_ID':str})
+ a=pd.read_csv(ROOT/'scripts/outputs/11_rul_model_comparison/all_checkpoint_metrics.csv',dtype={'Dataset_ID':str})
  for method in ['Minimal LSTM (window 1)','Minimal LSTM (window 3)','Linear (individual curve)','Exponential (individual curve)','Shared XGBoost']:
   sel=a[a.Method==method]
   add(p(f'<b>{html.escape(method)}:</b> '+ '; '.join(f"{r.Dataset_ID}: {int(r.Scored)}/{int(r.Attempts)} scored ({r.Coverage_pct:.1f}%), conditional MAE {r.MAE_Cycles:.2f} cycles" for r in sel.itertuples())))
@@ -63,9 +63,9 @@ def main():
  page('Integration and code-consistency checklist')
  add(h('What was changed in the merged project'))
  add(tab(['Component','Change / validation'],[
- ('RUL scripts','Replaced three original scripts with individual_curve_rul.py, estimate_rul_xgboost_shared.py and estimate_rul_lstm_minimal.py.'),
+ ('RUL scripts','Replaced three original scripts with stage_08_individual_curve_rul.py, stage_09_estimate_rul_xgboost_shared.py and stage_10_estimate_rul_lstm_minimal.py.'),
  ('Prediction artifacts','Removed old three RUL output folders. Added refreshed predictions, metrics, plots, LSTM weights and XGBoost UBJ files.'),
- ('Capacity and pack imports','Updated compare_capacity_models.py and scale_module_pack.py so they do not import deleted RUL functions.'),
+ ('Capacity and pack imports','Updated 05_compare_capacity_models.py and stage_13_scale_module_pack.py so they do not import deleted RUL functions.'),
  ('Forecast comparison','Regenerated a common-checkpoint table; failures remain visible and model coverage is explicit.'),
  ('Reporting','Regenerated short five-page report, detailed report and Task 6 charts/PDF from new outputs; added complete seven-model / 96-attempt RUL report.'),
  ('Tests','Added merged-model tests for checkpoint causality, error arithmetic, EOL targets, model artifacts, and shared input hashes.'),

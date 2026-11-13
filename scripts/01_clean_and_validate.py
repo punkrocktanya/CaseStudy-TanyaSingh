@@ -16,7 +16,7 @@ from openpyxl.utils import get_column_letter
 
 
 ROOT = Path(__file__).resolve().parent.parent
-OUTPUT_DIR = ROOT / "outputs" / "01_data_cleaning"
+OUTPUT_DIR = ROOT / "scripts"/"outputs" / "01_data_cleaning"
 INPUT_FILE = OUTPUT_DIR / "01_timestamp_normalized.xlsx"
 OUTPUT_FILE = OUTPUT_DIR / "02_unified_cleaned_data.xlsx"
 DATA_SHEETS = ["Cell_001_2", "Cell_002_4"]
