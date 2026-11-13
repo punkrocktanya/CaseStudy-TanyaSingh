@@ -23,8 +23,8 @@ Requires Tasks 1 and 2 to have been run first (uses `cycle_capacity_analysis.csv
 = 12S2P, 24 cells.
 
 **Step 1 — Cell baseline**
-Fits Exponential Q = q₀·exp(−k·n) to cycles ≤ 8 of each cell. Uses q₀ (cycle-1
-capacity) and k (rate) as population baseline parameters.
+Fits Exponential Q = q₀·exp(−k·n) to cycles ≤ 8 of each cell. Uses q₀ (cycle-2
+delivered capacity) and k (rate) as population baseline parameters.
 
 **Step 2 — Monte Carlo ensemble (E = 100 samples)**
 Draws initial capacities from Lognormal(μ=q₀, CV=3 %) and fade rates from
@@ -46,23 +46,23 @@ Uniform random SOC deficits in [0, 3 %] assigned before balancing.
 
 **Step 6 — Topology envelope**
 Pack capacity = min over modules of [min over series groups of (sum of parallel capacities × SOC)].
-EOL when pack/BOL < 0.80.
+EOL occurs when the envelope falls below 80% of an ideal, fully charged identical-cell 2P baseline (2 × cycle-2 capacity). This is not each simulated pack’s own initial accessible capacity.
 
 ## Key results
 
 | Cell baseline | Scenario | Mean EOL (cycle) | Mean balance loss (Wh) |
 |---|---|---|---|
-| 001_2 | uniform_no_balance | 11.8 | 0.00 |
-| 001_2 | gradient_no_balance | 10.3 | 0.00 |
-| 001_2 | gradient_active | 10.3 | 0.07 |
-| 001_2 | gradient_passive | 9.9 | 1.56 |
-| 002_4 | uniform_no_balance | 22.7 | 0.00 |
-| 002_4 | gradient_no_balance | 19.8 | 0.00 |
-| 002_4 | gradient_active | 19.7 | 0.07 |
-| 002_4 | gradient_passive | 18.9 | 1.71 |
+| 001_2 | uniform_no_balance | 10.11 | 0.00 |
+| 001_2 | gradient_no_balance | 8.97 | 0.00 |
+| 001_2 | gradient_active | 8.96 | 0.07 |
+| 001_2 | gradient_passive | 8.59 | 1.56 |
+| 002_4 | uniform_no_balance | 19.45 | 0.00 |
+| 002_4 | gradient_no_balance | 16.91 | 0.00 |
+| 002_4 | gradient_active | 16.91 | 0.07 |
+| 002_4 | gradient_passive | 16.00 | 1.71 |
 
-- Passive balancing performs worse than active because it bleeds usable charge.
-- Temperature gradient reduces mean EOL by ~1.5 cycles (001_2) and ~3 cycles (002_4).
+- In these assumed scenarios, passive balancing has a greater initial simulated loss than active balancing.
+- Temperature gradient reduces mean EOL by ~1.14 cycles (001_2) and ~2.54 cycles (002_4).
 
 ## Outputs
 
@@ -73,8 +73,7 @@ EOL when pack/BOL < 0.80.
 
 ## Limitations
 
-- Ea = 20,000 J/mol is unrealistically low for Li-ion capacity fade (literature: 40,000–80,000 J/mol);
-  the thermal gradient effect is therefore underestimated.
+- Ea = 20,000 J/mol is assumed rather than calibrated for these cells; the direction and size of thermal-model error are unknown.
 - No voltage/OCV model — only charge-availability (Ah) envelope.
 - No unequal parallel-cell current dynamics, thermal ODE, resistance growth, or BMS voltage cutoff.
 - Balancing SOC corrections held fixed over ageing; balancing heat not fed back into degradation.

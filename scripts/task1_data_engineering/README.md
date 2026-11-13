@@ -21,13 +21,13 @@ python scripts/task1_data_engineering/task1_data_engineering.py
 - Exports all rows (including rejected) to Parquet for full traceability.
 
 **Silver — `02_silver_transform.py`**
-- Assigns charge/discharge/rest phase labels from current sign (deadband 0.005 A).
+- Assigns charge/discharge/rest phase labels from current sign (deadband 0.05 A).
 - Checks phase continuity and counter agreement.
 - Retains row-level quality flags.
 
 **Gold — `03_build_cycle_features.py`**
 - Trapezoidal current integration within valid phase intervals
-  (same cycle, same phase, 0 < dt ≤ 5 s, no artifact, no timestamp reversal).
+  (same cycle, same phase, 0 < dt ≤ 5 s, no artifact; calendar-clock reversals are flagged but do not veto a valid test-clock interval).
 - Derives per-cycle: Discharge_Capacity_Ah, Charge_Capacity_Ah, Coulombic_Efficiency_pct,
   Discharge_Energy_Wh, Duration_s, C-rate (mean and P99), cumulative energy throughput.
 - Marks `Computationally_Complete` and `Discharge_Integration_Valid` per cycle.

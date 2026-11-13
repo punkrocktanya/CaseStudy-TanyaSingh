@@ -66,8 +66,8 @@ def main():
     add(para('Two LR1865SZ laboratory cells (001_2, 002_4) with 99 complete discharge cycles each (cycles 2–100). The cells have different operating currents and are not a matched population. Temperature is absent from both datasets.'))
     add(head2('Method'))
     add(para('<b>Bronze</b> — Reads source Excel workbooks; validates 9 required schema columns; applies 22 per-row quality checks (timestamp gaps/reversals, voltage/current plausibility, counter resets, duplicate rows, cycle-index jumps). Every row is retained with a REJECTED/FLAGGED/OK status and a quality_flags string. Anomalous measurements are not silently removed.'))
-    add(para('<b>Silver</b> — Assigns charge, discharge, and rest phase labels from current sign (deadband 0.005 A). Checks phase continuity and counter agreement per cycle.'))
-    add(para('<b>Gold</b> — Trapezoidal current integration within valid intervals (same phase, 0 &lt; dt ≤ 5 s, no artifact, no timestamp reversal). Derives per-cycle: Discharge_Capacity_Ah, Charge_Capacity_Ah, Coulombic_Efficiency_pct, Discharge_Energy_Wh, duration, C-rate (mean and P99). Marks Computationally_Complete and Discharge_Integration_Valid.'))
+    add(para('<b>Silver</b> — Assigns charge, discharge, and rest phase labels from current sign (deadband 0.05 A). Checks phase continuity and counter agreement per cycle.'))
+    add(para('<b>Gold</b> — Trapezoidal current integration within valid intervals (same phase, 0 &lt; dt ≤ 5 s, no artifact; calendar-clock reversals are audited but do not veto valid test-clock intervals). Derives per-cycle: Discharge_Capacity_Ah, Charge_Capacity_Ah, Coulombic_Efficiency_pct, Discharge_Energy_Wh, duration, C-rate (mean and P99). Marks Computationally_Complete and Discharge_Integration_Valid.'))
     add(head2('Key results'))
     add(table(['Cell','Cycle-2 discharge (Ah)','80 % threshold (Ah)','First cycle below 80 %'],eol_rows,[110,120,120,130]))
     declines=[]
@@ -89,8 +89,8 @@ def main():
     add(head2('Key results'))
     best=evaluation[(evaluation.Scope=='validation') & (evaluation.Model!='Fixed-origin persistence')].sort_values('RMSE_Ah').groupby('Dataset_ID',sort=True).first()
     vrows=[[cell, row.Model, f'{row.RMSE_Ah:.4f}', f'{row.R2:.3f}'] for cell,row in best.iterrows()]
-    add(table(['Cell','Winning model (val RMSE)','Val RMSE (Ah)','Full-series R²'],vrows,[80,185,100,105]))
-    add(para('001_2 Exponential full-series: q0=1.432 Ah, k=0.0195/cycle, R²=0.987. 002_4: q0=1.764 Ah, k=0.0145/cycle, R²=0.994. Test R² is negative for most models — persistence outperforms extrapolation on the narrow 15-cycle test window.'))
+    add(table(['Cell','Winning model (val RMSE)','Val RMSE (Ah)','Validation R²'],vrows,[80,185,100,105]))
+    add(para('001_2 Exponential full-series: q0=1.432 Ah, k=0.0195/cycle, R²=0.987. 002_4: q0=1.764 Ah, k=0.0145/cycle, R²=0.994. Test R² is negative for most models on this narrow 15-cycle window; performance varies by cell.'))
     add(head2('Limitations'))
     add(para('Fade_Rate_Ah_per_Cycle_Smoothed follows ΔQ sign (negative = fade); the unsmoothed Fade_Rate_Ah_per_Cycle uses −ΔQ (positive = fade). The sign convention differs between columns. Square-root time model uses future timestamps and is excluded from live-forecast winner selection. High-current polarization and changing charge endpoints are conflated with ageing in all fits.'))
 
@@ -125,28 +125,33 @@ def main():
          f'{r.Bias_Cycles:+.1f}' if pd.notna(r.Bias_Cycles) else 'NA',
          f'{r.Scored}/{r.Attempts}'] for r in subset.itertuples()]
     add(table(['Cell','Method','MAE (cyc)','Bias (cyc)','Scored/att'],mr,[55,185,65,65,60]))
-    add(para('Power law overestimates 002_4 RUL by 11 cycles. Square-root cycle overestimates 002_4 by 47 cycles (uses future timestamps — do not use as forecast). LSTM window=1 achieves MAE 1.3 on 001_2 but −6.1 bias on 002_4 (systematic early prediction).'))
+    add(para('Power law overestimates 002_4 RUL by 11 cycles. Square-root cycle overestimates 002_4 by 47 cycles; it uses cycle index. The separate square-root time comparison uses observed future timestamps. LSTM window=1 achieves MAE 1.3 on 001_2 but −6.1 bias on 002_4 (systematic early prediction).'))
     add(head2('Limitations'))
-    add(para('Both cells in XGBoost and LSTM training sets — results are descriptive, not generalisable. Only 4 checkpoints × 2 cells = 8 scored attempts per method. Actual EOL is 11 and 22 cycles; most checkpoints leave ≤ 14 cycles of history. LSTM has 1 hidden unit — a minimal proof-of-concept. Seed spread reflects initialisation sensitivity, not a population distribution.'))
+    add(para('Both cells in XGBoost and LSTM training sets — results are descriptive, not generalisable. The shared-model evaluation uses four checkpoints; scored attempts and seed counts differ by method. Actual relative EOL is cycle 13 (001_2) and cycle 24 (002_4). LSTM has 1 hidden unit — a minimal proof-of-concept. Seed spread reflects initialisation sensitivity, not a population distribution.'))
 
     # ── PAGE 5: Pack Scaling, Fleet, Limitations ──────────────────────────────
     page('5 | Module/Pack Scaling, Fleet Analytics and Limitations')
     add(head2('Method — Pack scaling'))
-    add(para('Synthetic 12S2P pack: 4 series groups × 2 parallel cells × 3 modules = 24 cells. Monte Carlo (E=100): lognormal capacity (CV=3 %) and rate (CV=15 %) draws centred on each cell\'s exponential fit. Linear 0–10 K temperature gradient with Arrhenius acceleration (Ea=20,000 J/mol, assumed). Four scenarios: uniform/gradient × no-balance/passive/active (η=85 %). Envelope: sum parallels, min series groups, min modules. EOL at pack/BOL &lt; 0.80.'))
+    add(para('Synthetic 12S2P pack: 4 series groups × 2 parallel cells × 3 modules = 24 cells. Monte Carlo (E=100): lognormal capacity (CV=3 %) and rate (CV=15 %) draws centred on each cell\'s exponential fit. Linear 0–10 K temperature gradient with Arrhenius acceleration (Ea=20,000 J/mol, assumed). Four scenarios: uniform/gradient × no-balance/passive/active (η=85 %). Envelope: sum parallels, min series groups, min modules. EOL when pack Ah / ideal fully charged identical-cell 2P reference (2 × cycle-2 Ah) &lt; 0.80; this is not each sampled pack’s actual initial accessible capacity.'))
     selected=pack[pack.Scenario.isin(['uniform_no_balance','gradient_no_balance','gradient_passive','gradient_active'])]
     pr=[[r.Dataset_ID, r.Scenario.replace('_',' '), f'{r.Mean_EOL:.1f}', f'{r.Mean_Initial_Balance_Loss_Wh:.2f}'] for r in selected.itertuples()]
     add(table(['Cell','Scenario','Mean EOL (cyc)','Balance loss (Wh)'],pr,[75,185,90,100]))
-    add(para('Gradient cuts EOL by ~1.5 cycles (001_2) and ~3 cycles (002_4). Passive balancing bleeds usable charge (1.6 Wh loss) and underperforms active (0.07 Wh loss).','CaptionSmall'))
+    changes=[]
+    for cell,g in pack.groupby('Dataset_ID'):
+        uniform=g.loc[g.Scenario.eq('uniform_no_balance'),'Mean_EOL'].iloc[0]
+        gradient=g.loc[g.Scenario.eq('gradient_no_balance'),'Mean_EOL'].iloc[0]
+        changes.append(f'{escape(str(cell))}: {uniform-gradient:.2f} cycles')
+    add(para('Mean EOL reduction from the assumed gradient: ' + '; '.join(changes) + '. Balancing losses are initial simulated losses, not measured per-cycle losses.','CaptionSmall'))
     add(head2('Fleet analytics and battery passport extensions'))
-    add(para('To scale to a fleet: (1) replace assumed CVs with measured cell-population distributions; (2) replace Ea with chemistry-calibrated values (literature: 40,000–80,000 J/mol for Li-ion); (3) cluster-based surrogate — group cells into 5–10 DBSCAN clusters by thermal state and voltage residuals, run RUL inference only on cluster centroids. Reduces inference cost by >99 % vs. per-cell digital twin while retaining weakest-link sensitivity. Battery Passport records must carry: test conditions, provenance hash, SOH definition, model version, uncertainty bands, and applicable reporting standard.'))
+    add(para('To scale to a fleet: (1) replace assumed CVs with measured cell-population distributions; (2) replace Ea with chemistry-calibrated values; (3) cluster-based surrogate — group cells into 5–10 DBSCAN clusters by thermal state and voltage residuals, run RUL inference only on cluster centroids. Potential inference savings and weakest-group sensitivity must be benchmarked and validated. Battery Passport records must carry: test conditions, provenance hash, SOH definition, model version, uncertainty bands, and applicable reporting standard.'))
     add(para('<i>Full methodology in outputs/13_pack_scaling/pack_scaling_methodology.md. §D–F summarised below.</i>','CaptionSmall'))
     add(head2('Module intermediate step (§D) | Pack RUL propagation (§E)'))
     add(para('<b>§D — Two-stage aggregation:</b> cell→module: Q_module = min_s[sum_p Q_{m,s,p}·SOC] per module independently (each module has its own thermal/balancing history). module→pack: Q_pack = min_m Q_module. Parallel-cell averaging reduces effective CV entering the series-minimum. Practically: flag a module for replacement when its P05 retention crosses 80 %, even if pack mean is above threshold; grade modules for second-life by (mean, variance) of remaining capacity.'))
-    add(para('<b>§E — Pack RUL:</b> n_pack_EOL^(e) = min over all cells of n_cell_EOL^(e) per ensemble member. The minimum of N variables shifts left and narrows as N grows — pack RUL is shorter and more predictable than single-cell RUL. Report P05 (warranty), P50 (median), P95 (optimistic). Propagate LSTM uncertainty via bootstrap: retrain on B resamples, obtain B EOLs per cell, build pack EOL distribution from all B×N_cells predictions.'))
+    add(para('<b>§E — Pack RUL:</b> Pack EOL is the cycle when the topology envelope (sum parallels, min series groups, min modules) first falls below 80 % of the ideal reference — not simply the cycle when the earliest individual cell crosses the threshold. Because parallel cells contribute additively, a single weak cell is partially compensated by its partner; it is the weakest series group, not the weakest cell, that drives the module. Per-ensemble pack EOL is recorded from the envelope simulation directly. Ensemble quantiles describe assumed scenarios, not calibrated warranty predictions. Bootstrap propagation of LSTM uncertainty is proposed future work.'))
     add(head2('Degradation mode interactions (§F)'))
-    add(para('<b>SEI growth:</b> spatially correlated within each thermal zone — use correlated lognormal sampling, not independent draws. <b>Lithium plating:</b> highest risk in the lowest-impedance parallel cell (current crowding), not the lowest-capacity cell; makes fast-charge degradation superlinear in pack size; detectable as dV/dQ anode staging peak loss. <b>Mechanical fatigue:</b> anti-correlates with balancing undercharge — chronically undercharged cells see smaller SOC swings and less particle cracking, partially compensating their electrochemical disadvantage.'))
+    add(para('<b>Potential mechanisms:</b> SEI growth, lithium plating, current imbalance and mechanical fatigue may affect pack ageing. Their relative contributions, spatial correlations and dV/dQ signatures are not identified by these two high-current datasets; mechanism-specific measurements and validated models are needed.'))
     add(head2('Pipeline-wide limitations'))
-    add(para('Two cells, different currents, no temperature, provisional 2.5 Ah rating, no external validation. Fade_Rate_Ah_per_Cycle_Smoothed sign is opposite to its unsmoothed counterpart. Pack Ea=20,000 J/mol underestimates thermal acceleration (use 40,000–80,000 J/mol). No voltage/OCV model or balancing heat feedback in simulation. assert len(g)==99 in stage_04 is brittle on reruns. Voltage plausibility bounds (2.5/4.3 V) hardcoded alongside config-driven spec bounds.'))
+    add(para('Two cells, different currents, no temperature, provisional 2.5 Ah rating, no external validation. Fade_Rate_Ah_per_Cycle_Smoothed sign is opposite to its unsmoothed counterpart. Pack Ea=20,000 J/mol is assumed and requires chemistry-specific calibration. No voltage/OCV model or balancing heat feedback in simulation. assert len(g)==99 in stage_04 is brittle on reruns. Voltage plausibility bounds (2.5/4.3 V) hardcoded alongside config-driven spec bounds.'))
 
     def footer(canvas,doc):
         canvas.setFont('Helvetica',8)

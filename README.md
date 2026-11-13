@@ -147,8 +147,7 @@ coulombic efficiency (%), energy throughput (Wh), C-rate, quality flags.
 | `outputs/04_capacity_fade/predictions.csv` | Per-cycle model predictions |
 | `outputs/06_differential_voltage/feature_cycle_summary.csv` | dV/dQ candidate summary |
 
-**What you get:** Exponential wins validation RMSE for both cells (001_2: 0.064 Ah,
-002_4: 0.008 Ah). Full-series R² > 0.98 for both.
+**What you get:** Lowest empirical validation RMSE is square-root time for 001_2 (0.0274 Ah) and exponential for 002_4 (0.0078 Ah). The square-root-time validation uses observed future timestamps, so it is a conditional retrospective comparison.
 
 ---
 
@@ -215,7 +214,7 @@ DBSCAN noise cycles. 002_4 has 0 local/exponential flags, ~45/98 DBSCAN noise cy
 | `outputs/13_pack_scaling/scenario_summary.csv` | Mean/min/max EOL and balance loss per scenario |
 | `outputs/13_pack_scaling/pack_scaling_methodology.md` | Full methodology (§A–G): cell variation, thermal gradients, balancing, module step, RUL propagation, degradation modes, worked example |
 
-**What you get:** Synthetic 12S2P pack. Temperature gradient cuts EOL by ~1.5–3 cycles.
+**What you get:** Synthetic 12S2P pack. Temperature gradient cuts mean EOL by ~1.14 cycles (001_2) and ~2.54 cycles (002_4) in these assumed scenarios.
 Passive balancing (~1.6 Wh loss) underperforms active (~0.07 Wh loss).
 
 ---
@@ -246,7 +245,7 @@ Passive balancing (~1.6 Wh loss) underperforms active (~0.07 Wh loss).
 
 | Cell | Cycle-2 capacity | Observed EOL | Best model | Val RMSE | Exp. k |
 |---|---|---|---|---|---|
-| 001_2 | 1.511 Ah | Cycle 13 | Exponential | 0.064 Ah | 0.0195 /cycle |
+| 001_2 | 1.511 Ah | Cycle 13 | Square-root time* | 0.0274 Ah | 0.0195 /cycle |
 | 002_4 | 1.688 Ah | Cycle 24 | Exponential | 0.008 Ah | 0.0145 /cycle |
 
 Capacity decline cycle 2→100: 001_2 −82 %, 002_4 −73 %.
@@ -285,7 +284,7 @@ Task 5 → scenario_summary.csv ────────────────
 | `Fade_Rate_Ah_per_Cycle_Smoothed` has opposite sign to `Fade_Rate_Ah_per_Cycle` | `stage_04_fit_capacity_fade.py` | Naming inconsistency — use unsmoothed or negate smoothed |
 | Voltage "outside plausible" bounds (2.5/4.3 V) hardcoded | `01_clean_and_validate.py` | Low — both currently correct alongside config |
 | `assert len(g)==99` crashes if cell has < 99 valid cycles | `stage_04_fit_capacity_fade.py` | Fragile on rerun with different data |
-| Pack `Ea = 20,000 J/mol` unrealistically low | `stage_13_scale_module_pack.py` | Underestimates thermal gradient effect (use 40,000–80,000) |
+| Pack `Ea = 20,000 J/mol` assumed | `stage_13_scale_module_pack.py` | Thermal sensitivity requires chemistry-specific calibration |
 | `cycle_elapsed_s` groupby uses unvalidated cycle index | `01_clean_and_validate.py` | NaN indices silently excluded |
 
 ---

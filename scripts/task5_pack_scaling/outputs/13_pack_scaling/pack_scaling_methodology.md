@@ -8,6 +8,9 @@
 
 ---
 
+> **Interpretation:** Mechanism interactions and fleet strategies below are hypotheses or
+> proposed extensions; they are not identified or validated by these two cell datasets.
+
 ## 1. Proposed Methodology
 
 The core abstraction is a **virtual $N_s \times N_p$ cell array**, where the pack's total
@@ -17,7 +20,7 @@ cells:
 
 $$Q_\text{pack}(n) = \min_{m} \left[ \min_{s} \left( \sum_{p} Q_{m,s,p}(n) \cdot \text{SOC}_{m,s,p} \right) \right]$$
 
-End-of-life is declared when $Q_\text{pack}(n) / Q_\text{pack}^\text{BOL} < 0.80$.
+The implemented threshold is $Q_\text{pack}(n)/(2q_0)<0.80$, relative to an ideal fully charged identical-cell 2P group. It is not each simulated pack’s actual initial capacity.
 
 ---
 
@@ -192,46 +195,29 @@ effective CV entering the pack-level calculation is lower than the raw cell CV.
 
 ### E. Pack-Level RUL Propagation
 
-The cell-level RUL model (task 4, `stage_08_individual_curve_rul.py` and
-`10_rul_lstm.py`) produces a predicted EOL cycle $\hat{n}_\text{EOL}$ per cell. Converting
-this to a **pack-level RUL** requires formalising the weakest-link relationship across the
-full ensemble.
+For each ensemble member, propagate **cell capacity trajectories**, not only cell EOL
+cycles. At each future cycle, sum accessible capacities within each parallel group,
+then take the minimum over series groups and modules:
 
-**Step 1 — build the joint EOL distribution.**
-For each ensemble member $e$ and each cell $(m, s, p)$, the cell-level model gives a
-predicted EOL $\hat{n}_{e,m,s,p}$. The pack EOL for that ensemble member is:
+$$Q_\text{pack}^{(e)}(n) = \min_{m,s}\sum_p Q_{e,m,s,p}(n)\,\text{SOC}_{e,m,s,p}.$$
 
-$$\hat{n}_\text{pack}^{(e)} = \min_{m,s,p}\ \hat{n}_{e,m,s,p}$$
+The present simulation defines $Q_\mathrm{ref}=2q_0$ as the capacity of an ideal,
+fully charged 2P group with identical cells. It records the first cycle where
+$Q_\text{pack}^{(e)}(n)/Q_\mathrm{ref}<0.80$. This common ideal reference is **not**
+the actual initial accessible capacity of each simulated pack: initial variation and
+SOC deficits can contribute to the crossing. Using each pack's own initial accessible
+capacity instead would answer a different retention question and requires a rerun.
 
-Taking this minimum across all cells converts the per-cell EOL distribution into a
-**pack EOL distribution**. Because the minimum of $N$ random variables shifts left and
-narrows as $N$ grows, the pack RUL is both shorter and more predictable than the
-single-cell RUL — a counterintuitive result that the Mean-Pack approach completely misses.
+The first individual cell to cross its own threshold does not necessarily determine
+pack EOL: its parallel partner contributes to the group. Report the first crossing of
+the simulated pack envelope for each ensemble member, with the forecast horizon and
+non-crossing count. Scenario quantiles describe the assumed ensemble only; they are
+not calibrated confidence intervals or validated warranty/safety thresholds.
 
-**Step 2 — report pack RUL with calibrated uncertainty.**
-
-| Statistic | Meaning |
-|---|---|
-| $\text{P50}(\hat{n}_\text{pack})$ | Median predicted pack EOL cycle |
-| $\text{P05}(\hat{n}_\text{pack})$ | Conservative (safe) RUL — 95 % of ensemble members last at least this long |
-| $\text{P95}(\hat{n}_\text{pack})$ | Optimistic RUL — only 5 % of ensemble members last this long |
-| $\text{P50} - n_\text{current}$ | **Pack RUL in remaining cycles** at the current cycle $n_\text{current}$ |
-
-The P05 value is the operationally relevant figure for safety and warranty decisions.
-
-**Step 3 — update RUL online.**
-At each new cycle, the pipeline re-fits the exponential model to the latest capacity
-measurements, generates a fresh ensemble, and recomputes $\hat{n}_\text{pack}$. The RUL
-estimate shrinks monotonically and its uncertainty band narrows as more cycles of real
-data constrain the rate distribution.
-
-**Step 4 — propagate task-4 LSTM uncertainty.**
-The LSTM in `10_rul_lstm.py` produces a point estimate. To propagate uncertainty into the
-pack RUL, replace the point estimate with a **bootstrap ensemble**: re-train the LSTM on
-$B$ bootstrap resamples of the available cycle history, obtain $B$ predicted EOL values
-per cell, and use all $B \times N_\text{cells}$ predictions to construct
-$\hat{n}_\text{pack}^{(e)}$. This keeps the pack-level uncertainty bands honest rather
-than implying false precision from a single model run.
+For future RUL analysis, subtract the current cycle from each valid pack crossing.
+Updating forecasts or bootstrapping cell models is proposed work, not implemented in
+this simulation. Correlations, training uncertainty and pack voltage/current constraints
+would need validation before interpreting a population-level distribution.
 
 ---
 

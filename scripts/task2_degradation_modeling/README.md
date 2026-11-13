@@ -45,13 +45,14 @@ check requires peak to appear in all three windows and in a neighbouring cycle.
 
 ## Key results
 
-| Cell | q₀ (full fit) | k (/cycle) | Full R² | Val RMSE (Ah) | Winner |
+| Cell | Exponential q₀ (full fit) | Exponential k (/cycle) | Exponential full R² | Best empirical val RMSE (Ah) | Winner |
 |---|---|---|---|---|---|
-| 001_2 | 1.432 Ah | 0.01954 | 0.987 | 0.0644 | Exponential |
+| 001_2 | 1.432 Ah | 0.01954 | 0.987 | 0.0274 | Square-root time* |
 | 002_4 | 1.764 Ah | 0.01454 | 0.994 | 0.0078 | Exponential |
 
 - Capacity decline: 001_2 drops 1.511→0.270 Ah (−82 %); 002_4 drops 1.688→0.453 Ah (−73 %).
-- Test R² is negative for most models (narrow 15-cycle window; persistence wins on this range).
+- *Square-root-time validation uses observed future timestamps, so it is a conditional retrospective comparison rather than a deployable fixed-origin forecast.
+- Test R² is negative for most models on the narrow 15-cycle window; performance varies by cell and baseline.
 - Power-law sensitivity (CE-filter effect): max 0.42 Ah change for 001_2 — substantial.
 - dV/dQ stable detections: 20/33 candidates for 001_2, 3/21 for 002_4 (across 6 cycles).
 
