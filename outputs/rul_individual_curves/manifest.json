@@ -1,0 +1,22 @@
+{
+  "checkpoints": [
+    5,
+    8,
+    10,
+    12,
+    15,
+    20
+  ],
+  "models": [
+    "Linear",
+    "Exponential",
+    "Square-root cycle",
+    "Power law"
+  ],
+  "individual_parameters": true,
+  "power_exponent": "shared estimated across cells still pre-EOL at checkpoint; intercept and loss coefficient cell-specific",
+  "normalization": "only for shared power exponent; each model fit per battery",
+  "threshold": "first integer cycle strictly below 80% of own cycle-2 discharge capacity",
+  "input_sha256": "53feb1f8315b071c0b7081b5c05bfd4370983bd02cb27dd9a65596fda9539868",
+  "script_sha256": "9b5b066b7b85fec0d740a8a55e6f2f2b60a8ce856be2e0b89ebb7fe0b65d0391"
+}

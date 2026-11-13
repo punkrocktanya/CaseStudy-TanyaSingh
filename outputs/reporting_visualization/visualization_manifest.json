@@ -1,0 +1,25 @@
+{
+  "source_sha256": {
+    "outputs/capacity_fade/cycle_capacity_analysis.csv": "53feb1f8315b071c0b7081b5c05bfd4370983bd02cb27dd9a65596fda9539868",
+    "outputs/capacity_fade/model_parameters.csv": "de087ec16a431a98158c2302450cca0adbc82ed9340ddc5bab376df0fd7edb42",
+    "outputs/capacity_fade/predictions.csv": "4557a5d681f5ed3411861f5c2987a30566f6453e3b793ecf1bb389c06f6450f7",
+    "outputs/anomaly_detection/anomaly_features.csv": "75a084eab06166da186036d6ddf2eb7921117de07b048a89e7c636dece594683",
+    "outputs/rul_lstm_minimal/predictions.csv": "4ff8465b757f208923daf897d6e424fdedb376bbbb28c7735a123ecf5112c212",
+    "outputs/rul_xgboost_shared/predictions.csv": "3491fa1c6598c5d9dec1fd75090a20fb49bcb5151c5211ba0f977663cb19f48c",
+    "outputs/rul_common_checkpoint/all_attempts.csv": "28fe37d515babceb5a5a44350e83aec1e0d0e0bf9355cfcc3122f61c8b368209"
+  },
+  "script_sha256": "49dda5079bdf5abc3400d981d11fcf9051a77579ae5ea32b98150f6114767613",
+  "distribution_checkpoint": 8,
+  "all_model_checkpoints": [
+    5,
+    8,
+    10,
+    12
+  ],
+  "seeds": [
+    42,
+    7,
+    123
+  ],
+  "rul_reference": "80% of first valid measured capacity (cycle 2)"
+}

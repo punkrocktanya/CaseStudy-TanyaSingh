@@ -1,0 +1,19 @@
+{
+  "series_groups_per_module": 4,
+  "parallel_cells": 2,
+  "modules_in_series": 3,
+  "ensemble_size": 100,
+  "seed": 42,
+  "capacity_cv": 0.03,
+  "rate_cv": 0.15,
+  "reference_temperature_K": 298.15,
+  "activation_energy_J_mol": 20000,
+  "maximum_temperature_offset_K": 10,
+  "initial_soc_spread": 0.03,
+  "balance_current_A": 0.05,
+  "balance_hours": 1,
+  "active_transfer_efficiency": 0.85,
+  "horizon": 300,
+  "source_sha256": "53feb1f8315b071c0b7081b5c05bfd4370983bd02cb27dd9a65596fda9539868",
+  "interpretation": "Synthetic scenarios only; uncertainty bands reflect assumed parameter distributions, not measured population confidence"
+}

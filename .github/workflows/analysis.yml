@@ -1,0 +1,42 @@
+name: Full analysis and report
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  analysis:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      MPLBACKEND: Agg
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - run: python -m pip install -r requirements.txt
+      - name: Run analysis and record results
+        run: |
+          python scripts/run_with_report.py fit_capacity_fade.py
+          python scripts/run_with_report.py compare_capacity_models.py
+          python scripts/run_with_report.py differential_voltage.py
+          python scripts/run_with_report.py detect_battery_anomalies.py
+          python scripts/run_with_report.py individual_curve_rul.py
+          python scripts/run_with_report.py estimate_rul_xgboost_shared.py
+          python scripts/run_with_report.py estimate_rul_lstm_minimal.py
+          python scripts/run_with_report.py build_common_checkpoint_comparison.py
+          python scripts/run_with_report.py scale_module_pack.py
+          python scripts/run_with_report.py build_task6_visualizations.py
+          python scripts/run_with_report.py build_short_report.py
+      - name: Upload results and reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: battery-analysis-results
+          path: |
+            outputs/execution_reports/
+            outputs/reporting_visualization/
+            output/pdf/
+          if-no-files-found: warn
+          retention-days: 14

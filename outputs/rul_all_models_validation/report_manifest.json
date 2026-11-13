@@ -1,0 +1,16 @@
+{
+  "all_attempts": 96,
+  "curve_attempts": 40,
+  "xgboost_attempts": 8,
+  "lstm_attempts": 48,
+  "unscored_attempts": 5,
+  "models": 7,
+  "common_rows": 14,
+  "pages": 9,
+  "source_sha256": {
+    "outputs/rul_individual_curves/predictions.csv": "8a6181487fee9b1889eddd006bc8789ff516fdaaca0292a97f5eb850e4f8ca54",
+    "outputs/rul_xgboost_shared/predictions.csv": "3491fa1c6598c5d9dec1fd75090a20fb49bcb5151c5211ba0f977663cb19f48c",
+    "outputs/rul_lstm_minimal/predictions.csv": "4ff8465b757f208923daf897d6e424fdedb376bbbb28c7735a123ecf5112c212",
+    "outputs/rul_common_checkpoint/all_method_common_metrics.csv": "0cd016b226e73ad7c222e31e99d5567462f00744de5580281166d1ed9ab9726f"
+  }
+}

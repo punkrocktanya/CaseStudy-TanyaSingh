@@ -1,0 +1,9 @@
+Dataset_ID,Scenario,Mean_EOL,Min_EOL,Max_EOL,Mean_Initial_Balance_Loss_Wh
+001_2,gradient_active,10.32,9.0,11.0,0.06633511615076497
+001_2,gradient_no_balance,10.33,9.0,11.0,0.0
+001_2,gradient_passive,9.94,8.0,11.0,1.5618764535493048
+001_2,uniform_no_balance,11.82,10.0,14.0,0.0
+002_4,gradient_active,19.73,16.0,24.0,0.0714806433407634
+002_4,gradient_no_balance,19.78,17.0,24.0,0.0
+002_4,gradient_passive,18.86,15.0,23.0,1.7127801888121905
+002_4,uniform_no_balance,22.69,19.0,27.0,0.0

@@ -1,0 +1,15 @@
+Dataset_ID,Method,Attempts,Scored,MAE_Cycles,Bias_Cycles,Coverage_pct
+001_2,Exponential (individual curve),4,3,0.6666666666666666,-0.6666666666666666,75.0
+001_2,Linear (individual curve),4,3,1.3333333333333333,-1.3333333333333333,75.0
+001_2,Minimal LSTM (window 1),12,12,1.25,0.25,100.0
+001_2,Minimal LSTM (window 3),12,11,3.5454545454545454,3.1818181818181817,91.67
+001_2,Power law (individual curve),4,3,4.0,4.0,75.0
+001_2,Shared XGBoost,4,4,4.0,4.0,100.0
+001_2,Square-root cycle (individual curve),4,4,6.25,6.25,100.0
+002_4,Exponential (individual curve),6,6,2.5,1.5,100.0
+002_4,Linear (individual curve),6,6,1.8333333333333333,0.16666666666666666,100.0
+002_4,Minimal LSTM (window 1),12,12,6.083333333333333,-6.083333333333333,100.0
+002_4,Minimal LSTM (window 3),12,11,5.2727272727272725,-1.0909090909090908,91.67
+002_4,Power law (individual curve),6,6,14.0,14.0,100.0
+002_4,Shared XGBoost,4,4,2.75,0.25,100.0
+002_4,Square-root cycle (individual curve),6,6,39.666666666666664,39.666666666666664,100.0

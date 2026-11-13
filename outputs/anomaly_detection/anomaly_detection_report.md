@@ -1,0 +1,95 @@
+# Battery anomaly screening
+
+- Source: Gold, complete valid cycles 2–100; cells fitted separately.
+- This is retrospective screening. Full-series fitting and centered neighborhoods use future observations; it is not an online warning system.
+- Exponential reference: Q=q0 exp(-kn). Residual = observed minus expected.
+- Robust z=(value−median)/(1.4826 MAD); |z|>3 triggers review. Zero MAD leaves scores undefined.
+- Local deviation = Q(n)−[Q(n−1)+Q(n+1)]/2. Endpoints have no local score. A single unusual cycle can also flag its neighbors.
+- Trend candidate requires both exponential and local flags, to reduce confusion with model curvature. Individual flags remain visible.
+- DBSCAN uses residual minus its centered 11-cycle median, percentage change minus its centered 11-cycle median, and CE minus its cell median. RobustScaler applies median/IQR scaling.
+- Missing features are excluded, not imputed. Cycle 2 has no prior selected capacity and is not evaluated by DBSCAN.
+- Primary eps=0.8, min_samples=5 are provisional. Twelve combinations of eps=0.5/0.8/1.2/1.6 and min_samples=4/5/7 provide noise fractions. These fractions are parameter sensitivity, not probabilities.
+- DVA and apparent DCIR are omitted: no validated complete-cycle feature set is established. Raw energy/capacity are omitted from clustering to limit degradation-trend confounding.
+- Cluster membership does not imply health. A noise point does not prove sensor error or battery damage. No records are deleted.
+- Existing quality status and CE flags are retained for cross-checking. Attribution to measurement, protocol or battery behaviour requires reviewing the source trace.
+
+## Results
+
+- 001_2: exponential flags 0; local flags 9; joint trend candidates 0; primary DBSCAN noise 25; DBSCAN unevaluated 1.
+  - Cycle 4: Residual/local review; local deviation; DBSCAN noise fraction=0.25.
+  - Cycle 5: DBSCAN candidate; local deviation; DBSCAN noise fraction=1.00.
+  - Cycle 6: Residual/local review; local deviation; DBSCAN noise fraction=0.33.
+  - Cycle 8: DBSCAN candidate; local deviation; DBSCAN noise fraction=1.00.
+  - Cycle 9: Residual/local review; local deviation; DBSCAN noise fraction=0.33.
+  - Cycle 10: Residual/local review; local deviation; DBSCAN noise fraction=0.33.
+  - Cycle 11: DBSCAN candidate; ; DBSCAN noise fraction=0.42.
+  - Cycle 12: Residual/local review; local deviation; DBSCAN noise fraction=0.33.
+  - Cycle 20: DBSCAN candidate; ; DBSCAN noise fraction=0.75.
+  - Cycle 25: DBSCAN candidate; ; DBSCAN noise fraction=0.75.
+  - Cycle 26: DBSCAN candidate; local deviation; DBSCAN noise fraction=0.42.
+  - Cycle 27: Residual/local review; local deviation; DBSCAN noise fraction=0.33.
+  - Cycle 28: DBSCAN candidate; ; DBSCAN noise fraction=0.50.
+  - Cycle 42: DBSCAN candidate; ; DBSCAN noise fraction=0.50.
+  - Cycle 43: DBSCAN candidate; ; DBSCAN noise fraction=0.50.
+  - Cycle 49: DBSCAN candidate; ; DBSCAN noise fraction=0.50.
+  - Cycle 55: DBSCAN candidate; ; DBSCAN noise fraction=0.50.
+  - Cycle 58: DBSCAN candidate; ; DBSCAN noise fraction=0.50.
+  - Cycle 60: DBSCAN candidate; ; DBSCAN noise fraction=0.50.
+  - Cycle 62: DBSCAN candidate; ; DBSCAN noise fraction=0.50.
+  - Cycle 74: DBSCAN candidate; ; DBSCAN noise fraction=0.50.
+  - Cycle 81: DBSCAN candidate; ; DBSCAN noise fraction=0.50.
+  - Cycle 85: DBSCAN candidate; ; DBSCAN noise fraction=0.50.
+  - Cycle 87: DBSCAN candidate; CE above 100%; DBSCAN noise fraction=0.50.
+  - Cycle 88: DBSCAN candidate; ; DBSCAN noise fraction=0.75.
+  - Cycle 89: DBSCAN candidate; CE above 100%; DBSCAN noise fraction=0.75.
+  - Cycle 91: DBSCAN candidate; ; DBSCAN noise fraction=0.50.
+  - Cycle 93: DBSCAN candidate; CE above 100%; DBSCAN noise fraction=0.50.
+  - Cycle 96: DBSCAN candidate; ; DBSCAN noise fraction=0.50.
+  - Cycle 98: DBSCAN candidate; ; DBSCAN noise fraction=0.50.
+  - Cycle 100: DBSCAN candidate; ; DBSCAN noise fraction=0.42.
+- 002_4: exponential flags 0; local flags 0; joint trend candidates 0; primary DBSCAN noise 45; DBSCAN unevaluated 1.
+  - Cycle 3: DBSCAN candidate; ; DBSCAN noise fraction=1.00.
+  - Cycle 4: DBSCAN candidate; ; DBSCAN noise fraction=1.00.
+  - Cycle 5: DBSCAN candidate; ; DBSCAN noise fraction=1.00.
+  - Cycle 6: DBSCAN candidate; ; DBSCAN noise fraction=1.00.
+  - Cycle 8: DBSCAN candidate; ; DBSCAN noise fraction=0.42.
+  - Cycle 9: DBSCAN candidate; ; DBSCAN noise fraction=0.50.
+  - Cycle 15: DBSCAN candidate; ; DBSCAN noise fraction=0.42.
+  - Cycle 19: DBSCAN candidate; ; DBSCAN noise fraction=0.50.
+  - Cycle 21: DBSCAN candidate; ; DBSCAN noise fraction=0.50.
+  - Cycle 22: DBSCAN candidate; ; DBSCAN noise fraction=0.67.
+  - Cycle 23: DBSCAN candidate; ; DBSCAN noise fraction=1.00.
+  - Cycle 24: DBSCAN candidate; ; DBSCAN noise fraction=1.00.
+  - Cycle 25: DBSCAN candidate; ; DBSCAN noise fraction=0.50.
+  - Cycle 35: DBSCAN candidate; ; DBSCAN noise fraction=0.50.
+  - Cycle 39: DBSCAN candidate; ; DBSCAN noise fraction=0.75.
+  - Cycle 45: DBSCAN candidate; ; DBSCAN noise fraction=0.50.
+  - Cycle 47: DBSCAN candidate; ; DBSCAN noise fraction=1.00.
+  - Cycle 50: DBSCAN candidate; ; DBSCAN noise fraction=1.00.
+  - Cycle 52: DBSCAN candidate; ; DBSCAN noise fraction=0.50.
+  - Cycle 53: DBSCAN candidate; ; DBSCAN noise fraction=0.42.
+  - Cycle 59: DBSCAN candidate; ; DBSCAN noise fraction=1.00.
+  - Cycle 60: DBSCAN candidate; ; DBSCAN noise fraction=0.58.
+  - Cycle 61: DBSCAN candidate; ; DBSCAN noise fraction=0.50.
+  - Cycle 62: DBSCAN candidate; ; DBSCAN noise fraction=0.58.
+  - Cycle 63: DBSCAN candidate; ; DBSCAN noise fraction=0.50.
+  - Cycle 67: DBSCAN candidate; ; DBSCAN noise fraction=1.00.
+  - Cycle 68: DBSCAN candidate; ; DBSCAN noise fraction=0.75.
+  - Cycle 69: DBSCAN candidate; ; DBSCAN noise fraction=1.00.
+  - Cycle 70: DBSCAN candidate; ; DBSCAN noise fraction=0.50.
+  - Cycle 71: DBSCAN candidate; ; DBSCAN noise fraction=0.50.
+  - Cycle 73: DBSCAN candidate; ; DBSCAN noise fraction=0.50.
+  - Cycle 78: DBSCAN candidate; ; DBSCAN noise fraction=0.50.
+  - Cycle 79: DBSCAN candidate; ; DBSCAN noise fraction=0.50.
+  - Cycle 80: DBSCAN candidate; ; DBSCAN noise fraction=1.00.
+  - Cycle 81: DBSCAN candidate; ; DBSCAN noise fraction=0.50.
+  - Cycle 83: DBSCAN candidate; ; DBSCAN noise fraction=0.50.
+  - Cycle 84: DBSCAN candidate; ; DBSCAN noise fraction=0.75.
+  - Cycle 86: DBSCAN candidate; ; DBSCAN noise fraction=0.75.
+  - Cycle 91: DBSCAN candidate; ; DBSCAN noise fraction=1.00.
+  - Cycle 92: DBSCAN candidate; ; DBSCAN noise fraction=1.00.
+  - Cycle 93: DBSCAN candidate; ; DBSCAN noise fraction=1.00.
+  - Cycle 96: DBSCAN candidate; ; DBSCAN noise fraction=0.75.
+  - Cycle 98: DBSCAN candidate; ; DBSCAN noise fraction=0.42.
+  - Cycle 99: DBSCAN candidate; ; DBSCAN noise fraction=0.50.
+  - Cycle 100: DBSCAN candidate; ; DBSCAN noise fraction=0.42.

@@ -1,0 +1,25 @@
+Dataset_ID,Method,Checkpoint,Seed,Actual_RUL,Predicted_RUL,Status,Signed_Error,Absolute_Error,Scored
+001_2,Linear (individual curve),8,deterministic,5.0,4.0,crossing_predicted,-1.0,1.0,True
+001_2,Exponential (individual curve),8,deterministic,5.0,5.0,crossing_predicted,0.0,0.0,True
+002_4,Linear (individual curve),8,deterministic,16.0,16.0,crossing_predicted,0.0,0.0,True
+002_4,Exponential (individual curve),8,deterministic,16.0,18.0,crossing_predicted,2.0,2.0,True
+001_2,Linear (individual curve),10,deterministic,3.0,2.0,crossing_predicted,-1.0,1.0,True
+001_2,Exponential (individual curve),10,deterministic,3.0,2.0,crossing_predicted,-1.0,1.0,True
+002_4,Linear (individual curve),10,deterministic,14.0,15.0,crossing_predicted,1.0,1.0,True
+002_4,Exponential (individual curve),10,deterministic,14.0,16.0,crossing_predicted,2.0,2.0,True
+001_2,Shared XGBoost,8,deterministic,5.0,8.0,crossing_predicted,3.0,3.0,True
+002_4,Shared XGBoost,8,deterministic,16.0,14.0,crossing_predicted,-2.0,2.0,True
+001_2,Shared XGBoost,10,deterministic,3.0,5.0,crossing_predicted,2.0,2.0,True
+002_4,Shared XGBoost,10,deterministic,14.0,16.0,crossing_predicted,2.0,2.0,True
+001_2,Minimal LSTM (window 3),8,42,5.0,18.0,crossing_predicted,13.0,13.0,True
+002_4,Minimal LSTM (window 3),8,42,16.0,25.0,crossing_predicted,9.0,9.0,True
+001_2,Minimal LSTM (window 3),8,7,5.0,4.0,crossing_predicted,-1.0,1.0,True
+002_4,Minimal LSTM (window 3),8,7,16.0,9.0,crossing_predicted,-7.0,7.0,True
+001_2,Minimal LSTM (window 3),8,123,5.0,8.0,crossing_predicted,3.0,3.0,True
+002_4,Minimal LSTM (window 3),8,123,16.0,13.0,crossing_predicted,-3.0,3.0,True
+001_2,Minimal LSTM (window 3),10,42,3.0,7.0,crossing_predicted,4.0,4.0,True
+002_4,Minimal LSTM (window 3),10,42,14.0,16.0,crossing_predicted,2.0,2.0,True
+001_2,Minimal LSTM (window 3),10,7,3.0,2.0,crossing_predicted,-1.0,1.0,True
+002_4,Minimal LSTM (window 3),10,7,14.0,7.0,crossing_predicted,-7.0,7.0,True
+001_2,Minimal LSTM (window 3),10,123,3.0,3.0,crossing_predicted,0.0,0.0,True
+002_4,Minimal LSTM (window 3),10,123,14.0,10.0,crossing_predicted,-4.0,4.0,True
