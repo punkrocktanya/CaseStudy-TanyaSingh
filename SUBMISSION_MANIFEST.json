@@ -7,8 +7,8 @@
     },
     {
       "path": ".github/workflows/tests.yml",
-      "bytes": 798,
-      "sha256": "aebd69fd80da9038d474b90211634e216ee1d6ad6a249f4f2005fd4a8b233df3"
+      "bytes": 817,
+      "sha256": "bbec98d0916536d908fe4a5d7e23e13b3c98d6f0e2ba4f9998bbc47f4ce4a922"
     },
     {
       "path": ".gitignore",
@@ -17,8 +17,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 1840,
-      "sha256": "d17d2b7d8faabfb31d565192111ff045a95779c05c3eacfb4b1b44e8c54844aa"
+      "bytes": 1839,
+      "sha256": "ffd39ba617a1d7d4291f5669a02895b2d5e5cdf4ac824b9686ea2bdd9d500500"
     },
     {
       "path": "TASK3_MODEL_GUIDE.md",
@@ -37,8 +37,8 @@
     },
     {
       "path": "battery_specification.md",
-      "bytes": 1012,
-      "sha256": "c5b6145a8ac9c859ce9a9f73c6a9a907f5bc066fd8b16d1774ee9026efff8b10"
+      "bytes": 1007,
+      "sha256": "7145280a87d64553a72b867234e829fa3ff5790254e509236993c0f37f9d81b9"
     },
     {
       "path": "battery_thresholds.json",
@@ -47,8 +47,8 @@
     },
     {
       "path": "notebooks/visualization_report.ipynb",
-      "bytes": 7642,
-      "sha256": "5aeafd1b2deaac6d4e3b76720c529f9f67e6fb55617b09d10410c31212f94439"
+      "bytes": 7473,
+      "sha256": "cebeb3cc50ca5ae11822a7259df9b026c6c4ca5ac403b3845b20214f3f0b3acf"
     },
     {
       "path": "output/pdf/Technical_Report_Module_Outputs.pdf",
@@ -67,18 +67,18 @@
     },
     {
       "path": "outputs/anomaly_detection/anomaly_detection_report.md",
-      "bytes": 6915,
-      "sha256": "c2c2e3f2c1c4fc42d1aebf2b8214981663581edbd1b5fa49f9b660d8b14f23d8"
+      "bytes": 6821,
+      "sha256": "f2d0f93e9fe89286270f87e52c48254444ed1d1e5e2a01367fd31188386bfa0b"
     },
     {
       "path": "outputs/anomaly_detection/anomaly_features.csv",
-      "bytes": 208099,
-      "sha256": "75a084eab06166da186036d6ddf2eb7921117de07b048a89e7c636dece594683"
+      "bytes": 207900,
+      "sha256": "9642797bb3c9df91082178c28e34c0032dd8ee8ef4e7c811ba7d310e375066af"
     },
     {
       "path": "outputs/anomaly_detection/anomaly_summary.csv",
-      "bytes": 19197,
-      "sha256": "bc91605c20695d37c46f4f0b5f02fe82bc876d085659813521a240d6759a1404"
+      "bytes": 18998,
+      "sha256": "f6eb714c6b3b4de5362d1d34278253446ce8cc7632b4201cfa07811fc6591cf1"
     },
     {
       "path": "outputs/anomaly_detection/dbscan_clusters.png",
@@ -87,18 +87,18 @@
     },
     {
       "path": "outputs/anomaly_detection/dbscan_labels.csv",
-      "bytes": 5108,
-      "sha256": "3b37a8a604f07bdb8ec628d978621b1369db264f2d5e2c8478bedf8aa3e26dd2"
+      "bytes": 4909,
+      "sha256": "45f8ebf2c18a00eb819a9a4f9d731719fb191c437caa84131a22e7588db091b1"
     },
     {
       "path": "outputs/anomaly_detection/parameter_sensitivity.csv",
-      "bytes": 472,
-      "sha256": "b157370f9dd736537d5d4b9f0dcb080b6eff77182154556216c9cf5cab1af691"
+      "bytes": 447,
+      "sha256": "4ee2b162b55afffb50fac516a483047153d67c37a30fefc825c5d9df6ab7c136"
     },
     {
       "path": "outputs/anomaly_detection/trend_anomalies.csv",
-      "bytes": 11775,
-      "sha256": "0ca2e68097f281ed336f2a245ca0eb677befa440a037ce84b2104db495ef70aa"
+      "bytes": 11765,
+      "sha256": "264f7a1360e9ecf1f067d554d5666504b99983fc3bad7f1e6be5c46c4a74dfae"
     },
     {
       "path": "outputs/battery_cleaning/README.md",
@@ -107,13 +107,13 @@
     },
     {
       "path": "outputs/battery_cleaning/cleaning_manifest.json",
-      "bytes": 1924,
-      "sha256": "5fcd4fc767bfb7d1b0f11a1d3dae7f534c2b4948a98fd205d16b907aef515280"
+      "bytes": 1881,
+      "sha256": "0958cc49c67edf7c599f4253d9745d433a406b284dc23aa9b166ecbbf65ff505"
     },
     {
       "path": "outputs/battery_cleaning/normalization_manifest.json",
-      "bytes": 1813,
-      "sha256": "4b02e221f1b32e22039f169a70d7992892ef48105d34fd20992a3fbbd889ac06"
+      "bytes": 1770,
+      "sha256": "a67ff648d2476682abb646a005c78b5fe9223b2493e0afdbb019da2d56352af2"
     },
     {
       "path": "outputs/capacity_comparison_local/metrics.csv",
@@ -167,13 +167,13 @@
     },
     {
       "path": "outputs/capacity_fade/capacity_fade_rate_analysis.csv",
-      "bytes": 29943,
-      "sha256": "af2c8b90f557c205962ecaec91377574c8a6da76d6fbd1c85d9daad0c4104777"
+      "bytes": 29744,
+      "sha256": "f97021e122d2c191924a7419da89a4c28bfeef524fdbaac7f59b43e9694d5995"
     },
     {
       "path": "outputs/capacity_fade/capacity_fade_report.md",
-      "bytes": 2825,
-      "sha256": "80927d5c9548d59a70053390172574e98d9e36f0b93e45cfc246a2bd39e24660"
+      "bytes": 2789,
+      "sha256": "70d2b94f233bd45f41730f3679785b213503b336f3e38ae2da5da8b1800b6cc7"
     },
     {
       "path": "outputs/capacity_fade/chronological_test_001_2.png",
@@ -187,63 +187,63 @@
     },
     {
       "path": "outputs/capacity_fade/cycle_capacity_analysis.csv",
-      "bytes": 192167,
-      "sha256": "53feb1f8315b071c0b7081b5c05bfd4370983bd02cb27dd9a65596fda9539868"
+      "bytes": 191968,
+      "sha256": "bab932741b8048c8a74e6fd82c6713c2726bdfb8e6d0dcfd130e2b2246d9c3e8"
     },
     {
       "path": "outputs/capacity_fade/evaluation_metrics.csv",
-      "bytes": 2712,
-      "sha256": "bed861f21cbe79b410bc6bd5c761e1f38ff899ffc20520ee76b27a71cb3c896e"
+      "bytes": 2683,
+      "sha256": "b2c7137d55df73055954cb44fd243c9f132f53e86bca746a98e81fe1d6106a4c"
     },
     {
       "path": "outputs/capacity_fade/model_parameters.csv",
-      "bytes": 2559,
-      "sha256": "de087ec16a431a98158c2302450cca0adbc82ed9340ddc5bab376df0fd7edb42"
+      "bytes": 2534,
+      "sha256": "df16700a64559d5c341ee5dbaf10ebdfed9ffa504ad95ca23a2cdd2ced70a81d"
     },
     {
       "path": "outputs/capacity_fade/model_review_followup.md",
-      "bytes": 4097,
-      "sha256": "4031c845c208365c80d54843741d8dfb2c702e7476d6856694e746f39b850fb6"
+      "bytes": 4053,
+      "sha256": "ce5a45028abb527213998e0cfd6a914350204bb192af26e2285598b27359604c"
     },
     {
       "path": "outputs/capacity_fade/power_law_sensitivity_review.csv",
-      "bytes": 2092,
-      "sha256": "46ccf980a5583dbee46658cb61f8cad62f6b05ba687815643a71bf1c9f968faa"
+      "bytes": 2077,
+      "sha256": "7bb40d64d6fb9edcd2295d8d6395266a74581360d844a75c9837086e6ec2aaee"
     },
     {
       "path": "outputs/capacity_fade/predictions.csv",
-      "bytes": 76967,
-      "sha256": "4557a5d681f5ed3411861f5c2987a30566f6453e3b793ecf1bb389c06f6450f7"
+      "bytes": 75934,
+      "sha256": "b3ffe73b4a56cd136018b2d80088e3f440a12dca0ced1e5dfd1ac85eb2e8bd31"
     },
     {
       "path": "outputs/capacity_fade/run_manifest.json",
-      "bytes": 242,
-      "sha256": "fb64b449b8b92c825fabfc5d249117a2409de25dc6ab35ea4344f1ef9c594c0f"
+      "bytes": 237,
+      "sha256": "c4730e85f608ac2dcece0d9e5b42a9394819e39d41641472cb1a7e8eb22fd20d"
     },
     {
       "path": "outputs/capacity_fade/square_root_anchor_review.csv",
-      "bytes": 635,
-      "sha256": "622e330a2a88534a3a2653459e5d781550164e5c097378d686e513b744f30ba0"
+      "bytes": 630,
+      "sha256": "5c84928b9fd02fca33dcf3a707661d55512d3d2cbedfe86c17fcdd71af36114d"
     },
     {
       "path": "outputs/capacity_fade/test_bias_comparison.csv",
-      "bytes": 1150,
-      "sha256": "d760fb0f6d5f249e30aea02c1784f9793994f14d79713a648fc4a8c0c513f7a2"
+      "bytes": 1139,
+      "sha256": "b47e7d51baa8639c56d509886a1bb6fdf881d4bc891cf7418bced1dfa1b12056"
     },
     {
       "path": "outputs/differential_voltage/revised/README.md",
-      "bytes": 2456,
-      "sha256": "19d62d22eae2295bb5973e28173613e5945b36afe39afe23c0cdd905c351398e"
+      "bytes": 2437,
+      "sha256": "a8f9d3ed8106913d0580bd81618161e19734ca4415b8619555192b88ff0424b1"
     },
     {
       "path": "outputs/differential_voltage/revised/duplicate_capacity_audit.csv",
-      "bytes": 47637,
-      "sha256": "33d7bef804f83cf8a5f5c2d751200a14127f7c80247fc48fcebd18fc1a4f30d3"
+      "bytes": 46860,
+      "sha256": "15906bff9470905cc30b0c1b98401035415777ee3f118e04e597f23e16b4b349"
     },
     {
       "path": "outputs/differential_voltage/revised/integration_audit.csv",
-      "bytes": 1186,
-      "sha256": "f8d1b8d1b0166fdfc8421058d7e7d2aae654e7d9c3f3af6c466b72e41e734111"
+      "bytes": 1153,
+      "sha256": "409cefd74a25a2278f5dbf3a641ea67547d037b48864f41c8723fd5e8ef2483a"
     },
     {
       "path": "outputs/differential_voltage/revised/interior_comparison_001_2.png",
@@ -267,18 +267,18 @@
     },
     {
       "path": "outputs/differential_voltage/revised/peak_candidates.csv",
-      "bytes": 51120,
-      "sha256": "e92ca04759f5f45f76ad16c7fdf6ae47e8d17b89fb5e53b6ec69439182157283"
+      "bytes": 50614,
+      "sha256": "9edb1d37d976762a31cdea91ab14bba1d7a0cbe7308e3de3514993148a99f92e"
     },
     {
       "path": "outputs/differential_voltage/revised/physical_grid_sensitivity.csv",
-      "bytes": 1243482,
-      "sha256": "3222e672852567f86f22dd335932151d58806903f21ffb2807a021cbf23bbd01"
+      "bytes": 1225511,
+      "sha256": "27cc97aba3dd25a6df187189c5d7616d9c91fb0814e47fc724b1da2dbbd596d5"
     },
     {
       "path": "outputs/differential_voltage/revised/representative_features.csv",
-      "bytes": 5559,
-      "sha256": "51a00717bf86e2133a8db98ec998eedb7f42a5ad8ab6c3dc2cb9c23380ef3786"
+      "bytes": 5504,
+      "sha256": "661326ceab1a4bb93701f3be1108979c8c8dad79c1fe6d1e217e3f91894254e6"
     },
     {
       "path": "outputs/differential_voltage/revised/sensitivity_001_2.png",
@@ -292,8 +292,8 @@
     },
     {
       "path": "outputs/differential_voltage/revised/trace_001_2_10.csv",
-      "bytes": 16977,
-      "sha256": "b8760e9a301bd303d7644a1cfaf0fd3d37f3efded194dc64aab416321980c492"
+      "bytes": 16347,
+      "sha256": "ade9db7f0854e42513ea7c5362f08f7240e10ebab626efb007108663dcc3ebed"
     },
     {
       "path": "outputs/differential_voltage/revised/trace_001_2_10.png",
@@ -302,8 +302,8 @@
     },
     {
       "path": "outputs/differential_voltage/revised/trace_001_2_100.csv",
-      "bytes": 3693,
-      "sha256": "422d93ebcbe8f9aceeccd74f10ec61fa242f050cf022720bcf5f8138203172c2"
+      "bytes": 3557,
+      "sha256": "183655f2c9ac7535b9003a1c207d23f3f9d72a505eebdbf347777993b0df68c4"
     },
     {
       "path": "outputs/differential_voltage/revised/trace_001_2_100.png",
@@ -312,8 +312,8 @@
     },
     {
       "path": "outputs/differential_voltage/revised/trace_001_2_2.csv",
-      "bytes": 20366,
-      "sha256": "12c6ff24d4ecbe0702128b2451075e1ec29080ebfa912f75686bf619d2bbf599"
+      "bytes": 19610,
+      "sha256": "045fef85d43841ddfbbc4edaad07d0c7d4fce9af2552dc245d8300c7c26a355a"
     },
     {
       "path": "outputs/differential_voltage/revised/trace_001_2_2.png",
@@ -322,8 +322,8 @@
     },
     {
       "path": "outputs/differential_voltage/revised/trace_001_2_25.csv",
-      "bytes": 11594,
-      "sha256": "bf74828cf6c79843a55867cb45e2ce6c92ebb7feb336cca0af8728bed2df56e4"
+      "bytes": 11166,
+      "sha256": "833bfd3eebc320afefb09d896fe4f6390f650f8c8b376e048dbd59eead8e613b"
     },
     {
       "path": "outputs/differential_voltage/revised/trace_001_2_25.png",
@@ -332,8 +332,8 @@
     },
     {
       "path": "outputs/differential_voltage/revised/trace_001_2_50.csv",
-      "bytes": 7349,
-      "sha256": "4ee1df7bc556c3779e7b6722845bf48690101013421b3d38a44250a2ed72624d"
+      "bytes": 7080,
+      "sha256": "cae0733bbc5598bc16d2aa52c21a91144567da9118cb4e8a7a8bced9b3028184"
     },
     {
       "path": "outputs/differential_voltage/revised/trace_001_2_50.png",
@@ -342,8 +342,8 @@
     },
     {
       "path": "outputs/differential_voltage/revised/trace_001_2_75.csv",
-      "bytes": 5035,
-      "sha256": "fb09730a659edbfbd40ebf0579aad8f85bc2355ce67cc598c3ed0d706ccf5329"
+      "bytes": 4850,
+      "sha256": "10365986776fb4776d76d0e9ad56585ef55e06f3bae741c3007f7eff75f25814"
     },
     {
       "path": "outputs/differential_voltage/revised/trace_001_2_75.png",
@@ -352,8 +352,8 @@
     },
     {
       "path": "outputs/differential_voltage/revised/trace_002_4_10.csv",
-      "bytes": 30675,
-      "sha256": "8bbc86557b98c6c990f4c3d0e56674a68bd509cedd6ab4930213a2ab3fed6854"
+      "bytes": 29537,
+      "sha256": "aef8e171512bb632bd6c62dab16c03adae1f6bf4fab53e3afcd01113372229ea"
     },
     {
       "path": "outputs/differential_voltage/revised/trace_002_4_10.png",
@@ -362,8 +362,8 @@
     },
     {
       "path": "outputs/differential_voltage/revised/trace_002_4_100.csv",
-      "bytes": 9214,
-      "sha256": "71aee5187fa958ee36c8981fc183309fea9fe49d427484b83851c5b02040332e"
+      "bytes": 8878,
+      "sha256": "c70c8beb2d556e116d08484ed5dc27842c60185eefbfc712593a2a5a27a12166"
     },
     {
       "path": "outputs/differential_voltage/revised/trace_002_4_100.png",
@@ -372,8 +372,8 @@
     },
     {
       "path": "outputs/differential_voltage/revised/trace_002_4_2.csv",
-      "bytes": 33847,
-      "sha256": "3744f3273d77ca7a7ce81fa50af4ddae6ecb6a532be6166ee89d6d96f15910a4"
+      "bytes": 32589,
+      "sha256": "036820f90e4992b9dcffe8a01c7447bfd2802fb24df9867cdec2e6a93bec5ef7"
     },
     {
       "path": "outputs/differential_voltage/revised/trace_002_4_2.png",
@@ -382,8 +382,8 @@
     },
     {
       "path": "outputs/differential_voltage/revised/trace_002_4_25.csv",
-      "bytes": 26531,
-      "sha256": "844447bea50aef9e4af0e713805d3852b8418483d38eac6d6985f458ba672501"
+      "bytes": 25549,
+      "sha256": "2b06c8290fa6664996e40cdd87b3093399dea9bc6d7683fcf550dbee9e84520e"
     },
     {
       "path": "outputs/differential_voltage/revised/trace_002_4_25.png",
@@ -392,8 +392,8 @@
     },
     {
       "path": "outputs/differential_voltage/revised/trace_002_4_50.csv",
-      "bytes": 17461,
-      "sha256": "4d620c5e7ecbbd224abf5f3e4a05d8a6b77c02303e21faac8247995a248f429e"
+      "bytes": 16818,
+      "sha256": "29a29515b99677d4ad5d9446c067cea2044163d666e77876c19192be2ac6b38a"
     },
     {
       "path": "outputs/differential_voltage/revised/trace_002_4_50.png",
@@ -402,8 +402,8 @@
     },
     {
       "path": "outputs/differential_voltage/revised/trace_002_4_75.csv",
-      "bytes": 12152,
-      "sha256": "1543c2ebedb8fbfb35cf8f6367e3aff401d3d004d2b06056392828784e3f9201"
+      "bytes": 11707,
+      "sha256": "9ba950ea585c20429be4b2d7d836bc35ddaa57e961ccb819cc7933dab8e804f0"
     },
     {
       "path": "outputs/differential_voltage/revised/trace_002_4_75.png",
@@ -417,8 +417,8 @@
     },
     {
       "path": "outputs/gold/battery_cycle_features_gold.csv",
-      "bytes": 162658,
-      "sha256": "38431968b48338c04bd5eee6aceead7f383edf0ba48e7f40ca7436a25d84a2a4"
+      "bytes": 162455,
+      "sha256": "080b0503bf984cd14104a8914da5c7b5c68264da82ee0ada73bc0294eec03442"
     },
     {
       "path": "outputs/gold/battery_cycle_features_gold.parquet",
@@ -427,53 +427,53 @@
     },
     {
       "path": "outputs/gold/corrective_action_report.md",
-      "bytes": 7936,
-      "sha256": "7bf39f4050605e0837404a5d53ec3ce026cb12940e9484d993db50c46aa1ebb5"
+      "bytes": 7837,
+      "sha256": "2d8c5ebee7616f16310863c48df5d54e616e46f8f0bac8bb032721cd59269b30"
     },
     {
       "path": "outputs/gold/cycle_feature_report.md",
-      "bytes": 7936,
-      "sha256": "7bf39f4050605e0837404a5d53ec3ce026cb12940e9484d993db50c46aa1ebb5"
+      "bytes": 7837,
+      "sha256": "2d8c5ebee7616f16310863c48df5d54e616e46f8f0bac8bb032721cd59269b30"
     },
     {
       "path": "outputs/gold/cycle_feature_summary.json",
-      "bytes": 8839,
-      "sha256": "270a374f3d89eba68323169e722452b6c9755b0878ee72544487a945524367f6"
+      "bytes": 8638,
+      "sha256": "353cb7d8d5f2e0b8e34342ca9ce20d3caeac56b15a2de983185647d23a15c25c"
     },
     {
       "path": "outputs/gold/independent_validation_report.md",
-      "bytes": 7936,
-      "sha256": "7bf39f4050605e0837404a5d53ec3ce026cb12940e9484d993db50c46aa1ebb5"
+      "bytes": 7837,
+      "sha256": "2d8c5ebee7616f16310863c48df5d54e616e46f8f0bac8bb032721cd59269b30"
     },
     {
       "path": "outputs/gold/named_anomaly_review.csv",
-      "bytes": 9680,
-      "sha256": "25261c65797a87edec8cc3f28cf59fc9356dbd9664e1dde3f18e84ab26da33c6"
+      "bytes": 9669,
+      "sha256": "7d9851a4c8b79821ae51edc15664076c86e5c0c733cf5abb6e59f7a486baf455"
     },
     {
       "path": "outputs/gold/phase_counter_audit.csv",
-      "bytes": 71113,
-      "sha256": "213e753c23f40a54e5506e4fd2132d362e377fac4623c363ed03d67d8409d833"
+      "bytes": 70304,
+      "sha256": "838cc227b24766d07c3ee9b01ae2d6fd55f8076e56e4f85d858d5bf76442418e"
     },
     {
       "path": "outputs/gold/phase_coverage_audit.csv",
-      "bytes": 61699,
-      "sha256": "0804a97ab004ca8d6255c3e91435dda20f66fab77f6f94c7f9f7ba1366424e2e"
+      "bytes": 61096,
+      "sha256": "05b7aad3e0c62e5341800d06c1e29080fb0f6130c319e6466ce3ad10be5933a0"
     },
     {
       "path": "outputs/gold/validation_manifest.json",
-      "bytes": 8839,
-      "sha256": "270a374f3d89eba68323169e722452b6c9755b0878ee72544487a945524367f6"
+      "bytes": 8638,
+      "sha256": "353cb7d8d5f2e0b8e34342ca9ce20d3caeac56b15a2de983185647d23a15c25c"
     },
     {
       "path": "outputs/pack_scaling/README.md",
-      "bytes": 1768,
-      "sha256": "f607a3d5d95502806de51b066eda008bcca1caecc283d8da9801e182ddf79e18"
+      "bytes": 1759,
+      "sha256": "4c9e3755ccfd147300b57dc35a60db077bcf1e2a11fd101d49b223a25670a685"
     },
     {
       "path": "outputs/pack_scaling/assumptions.json",
-      "bytes": 660,
-      "sha256": "b24d4f70df6399f614cd0c2ea203562c8cbb9e9c1b46fb25ff8f676833e9535b"
+      "bytes": 642,
+      "sha256": "0d4687e60a446ac0d9ace9498e4f9e6ab0d5e5711db4dec72d486be532fc9bd1"
     },
     {
       "path": "outputs/pack_scaling/scenario_retention.png",
@@ -482,18 +482,18 @@
     },
     {
       "path": "outputs/pack_scaling/scenario_samples.csv",
-      "bytes": 35636,
-      "sha256": "6f014e8535b36783c32a2376476fa1c939c6e0dac6aa1100eb6d75db3d15d928"
+      "bytes": 34835,
+      "sha256": "980c3a93a122ba0174d19080580c3f16162d5a70b5fc6d20c243fce18e4fdca0"
     },
     {
       "path": "outputs/pack_scaling/scenario_summary.csv",
-      "bytes": 492,
-      "sha256": "ccdba90e174f4c9f59d9dd0d274e986aef435e2fe57921df9b81d2d376034f55"
+      "bytes": 483,
+      "sha256": "c42257d8dd14d2381199235082232abb95dc0b4971537b73cb1f5305149094a8"
     },
     {
       "path": "outputs/pack_scaling/scenario_trajectories.csv",
-      "bytes": 214821,
-      "sha256": "22adc5d726c0cf8bbc0f76025538d03dee5c51b9a8b3045dcf5041ed3c22ead8"
+      "bytes": 212412,
+      "sha256": "7cea4e1a65e7858d0eeab646bd82541d69e7765a75259a6ac7f40b7bf2225ae0"
     },
     {
       "path": "outputs/reporting_visualization/01_capacity_predictive_curves.pdf",
@@ -682,8 +682,8 @@
     },
     {
       "path": "outputs/rul_lstm_minimal/README.md",
-      "bytes": 2022,
-      "sha256": "bfd7ae5b1f93b4ca954985b7bcb39eaa0cbea47299d93c27e5a4c33ffbe6a91f"
+      "bytes": 2011,
+      "sha256": "f78901335e89c1cfeae03f0ac5d444e8d2952348c75bcca0d1c5dec39075e564"
     },
     {
       "path": "outputs/rul_lstm_minimal/checkpoint_10.png",
@@ -957,13 +957,13 @@
     },
     {
       "path": "outputs/silver/silver_transformation_report.md",
-      "bytes": 3747,
-      "sha256": "6d24b2a38d5c9c2337c09b8a7a0056cc668d45a9c9bc7bc484f1a7757ab32f54"
+      "bytes": 3621,
+      "sha256": "9c1cc1dd5ddb4a92e4395cff736569abab24955a98b25785cbd6a729454e41f1"
     },
     {
       "path": "outputs/silver/silver_transformation_summary.json",
-      "bytes": 8534,
-      "sha256": "ae9070a231a7cb97a0d532a9d80883d20e7743179bdc9e611b9ef400ef5ec9c0"
+      "bytes": 8273,
+      "sha256": "87d933c22cc9f859cd916ff2e90b9cc4107e087a66b141f512cbad208acb9eb8"
     },
     {
       "path": "outputs/validation/README.md",
@@ -1002,8 +1002,8 @@
     },
     {
       "path": "scripts/README.md",
-      "bytes": 3389,
-      "sha256": "c4f76e02780d36d1575f5c149634c12be41deb11b2ffb1167a98a02ab33b3030"
+      "bytes": 3388,
+      "sha256": "ad4a1015824b1d29362d6151b32359407ce908a3bca49b83fb17bdcfc4f8aae4"
     },
     {
       "path": "scripts/battery_config.py",
@@ -1042,13 +1042,13 @@
     },
     {
       "path": "scripts/build_short_report.py",
-      "bytes": 16645,
-      "sha256": "27329ee43ea4341fd66fcf92d94e81be854e29c0793907838e46cca06e73de17"
+      "bytes": 16515,
+      "sha256": "48252f78d5207d12f08550e50eb5f9b52e35c1ab08f3f33902c8803f95c1c5da"
     },
     {
       "path": "scripts/build_task6_visualizations.py",
-      "bytes": 16160,
-      "sha256": "cfc4e72db2378362a70e2ccc167ea72ee438a4e0628ef1966b154cc3c6d2d664"
+      "bytes": 15947,
+      "sha256": "caf8a99e3a9242dd2ea54f7e4a4bebf332a1ceb1266a9f46e829c17e62f05b3b"
     },
     {
       "path": "scripts/compare_capacity_models.py",
@@ -1067,8 +1067,8 @@
     },
     {
       "path": "scripts/estimate_rul_lstm_minimal.py",
-      "bytes": 7685,
-      "sha256": "cf40677f8ac05535315c830cf22490fbf5145237cc8578f5f81ced0ef4c8c72b"
+      "bytes": 7604,
+      "sha256": "f0df196a8978fb6e78318a8bf77678e168f9175f3f9a71afd4ec953448ec5232"
     },
     {
       "path": "scripts/estimate_rul_xgboost_shared.py",
@@ -1082,8 +1082,8 @@
     },
     {
       "path": "scripts/individual_curve_rul.py",
-      "bytes": 6487,
-      "sha256": "e7da0c4113b9f291bfed6e74ed11538a1c7bee03404a763216a05cfe37fc52d8"
+      "bytes": 6486,
+      "sha256": "92afaf041cb56c7d8b977a52ef87d4aee15002daa02de62a3dd2bfc8d254ded1"
     },
     {
       "path": "scripts/investigate_battery_anomalies.py",
@@ -1107,8 +1107,8 @@
     },
     {
       "path": "scripts/run_with_report.py",
-      "bytes": 3757,
-      "sha256": "175c0cb77dd7575112981d23b2c3ae2755b7206b38afa7287f3efcea1576fb62"
+      "bytes": 3756,
+      "sha256": "40d6aab0324c8703d87c3bc0b289190589b398de0a12ddb9b28a9032e614f995"
     },
     {
       "path": "scripts/scale_module_pack.py",
@@ -1127,8 +1127,8 @@
     },
     {
       "path": "scripts/test_rul_merged.py",
-      "bytes": 6826,
-      "sha256": "ac471da07611fcbd5e5d31f3ceeda1fbe2672c71158012ef87d57a5fdab87849"
+      "bytes": 7087,
+      "sha256": "605f0f8ffbd74ad0ee0a17f1ed733153dd4145bc6bc8e7b71a0ec9b6c2c36f79"
     },
     {
       "path": "scripts/validate_submission_integrity.py",
