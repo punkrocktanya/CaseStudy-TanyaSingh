@@ -17,7 +17,7 @@ The complete run starts from `LR1865SZ_cycles201217_001_2.xlsx` and `LR1865SZ_cy
 | Task | Methods and main outputs |
 |---|---|
 | 1. Data engineering | `run_cleaning_pipeline.py`: timestamp normalization, source validation, Silver phase data and Gold cycle features, interval and counter audits. Outputs: `scripts/outputs/01_data_cleaning/` through `03_gold_cycle_features/`. |
-| 2. Degradation | `stage_04_fit_capacity_fade.py`, `05_compare_capacity_models.py`, `06_differential_voltage.py`: empirical models, square-root elapsed time, physics-inspired and sequence baselines, and dV/dQ sensitivity. Outputs: `04_capacity_fade/` through `06_differential_voltage/`. |
+| 2. Degradation | `stage_04_fit_capacity_fade.py`, `05_compare_capacity_models.py`, `06_differential_voltage.py`, `task2_analysis_summary.py`: empirical models, square-root elapsed time, physics-inspired and sequence baselines, and dV/dQ candidate and sensitivity analysis. See `scripts/outputs/06_differential_voltage/task2_analysis.md`. Outputs: `04_capacity_fade/` through `06_differential_voltage/`. |
 | 3. Anomalies | `07_detect_battery_anomalies.py`: robust residual/local screening and DBSCAN with sensitivity analysis. Output: `07_anomaly_detection/`. |
 | 4. RUL | `stage_08_individual_curve_rul.py`, `stage_09_estimate_rul_xgboost_shared.py`, `stage_10_estimate_rul_lstm_minimal.py`, `11_build_common_checkpoint_comparison.py`: curve extrapolation, XGBoost and LSTM, with forecast coverage and common-checkpoint comparisons. Outputs: `08_rul_individual_curves/` through `11_rul_model_comparison/`. |
 | 5. Module/pack | `stage_13_scale_module_pack.py`: illustrative 12S2P capacity-envelope scenarios for cell variation, temperature and balancing. Output: `13_pack_scaling/`. |

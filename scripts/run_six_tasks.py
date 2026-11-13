@@ -9,7 +9,7 @@ import sys
 ROOT = Path(__file__).resolve().parent.parent
 TASKS = {
     1: ['run_cleaning_pipeline.py'],
-    2: ['stage_04_fit_capacity_fade.py', '05_compare_capacity_models.py', '06_differential_voltage.py'],
+    2: ['stage_04_fit_capacity_fade.py', '05_compare_capacity_models.py', '06_differential_voltage.py', 'task2_analysis_summary.py'],
     3: ['07_detect_battery_anomalies.py'],
     4: ['stage_08_individual_curve_rul.py', 'stage_09_estimate_rul_xgboost_shared.py', 'stage_10_estimate_rul_lstm_minimal.py', '11_build_common_checkpoint_comparison.py'],
     5: ['stage_13_scale_module_pack.py'],

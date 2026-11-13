@@ -15,5 +15,6 @@
 - Detection and half-prominence widths are computed within the interior; thresholds use its 5th–95th percentile range.
 - Fixed-grid comparison uses 0.005 Ah spacing and windows spanning 0.050, 0.100 and 0.150 Ah. Sampling support is recorded in physical_grid_sensitivity.csv; interpolation adds no resolution.
 - Duplicate-affected features cannot receive the stability flag. Median aggregation remains exploratory where voltage spread is significant; original trace data are retained.
-- representative_features.csv reports position, signed amplitude, width and repeatability. Cross-cycle feature identities and shifts are left unassigned: proximity alone does not establish the same electrode feature.
+- representative_features.csv reports position, signed amplitude, prominence, width and repeatability. Cross-cycle feature identities and shifts are left unassigned: proximity alone does not establish the same electrode feature.
 - Stability refers only to normalized-window and adjacent-cycle checks, not physical-grid validation or confirmed degradation.
+- Run task2_analysis_summary.py after the model comparison to create task2_analysis.md, feature_cycle_summary.csv and feature_candidates_by_cycle.png.

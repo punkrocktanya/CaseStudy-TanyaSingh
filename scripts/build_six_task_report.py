@@ -34,6 +34,7 @@ def main():
     anomaly=pd.read_csv(OUT/'07_anomaly_detection/dbscan_labels.csv',dtype={'Dataset_ID':str})
     pack=pd.read_csv(OUT/'13_pack_scaling/scenario_summary.csv',dtype={'Dataset_ID':str})
     evaluation=pd.read_csv(OUT/'04_capacity_fade/evaluation_metrics.csv',dtype={'Dataset_ID':str})
+    dvdq_summary=pd.read_csv(OUT/'06_differential_voltage/feature_cycle_summary.csv',dtype={'cell':str})
     rows=[]
     for cell,g in fade.groupby('Dataset_ID'):
         g=g.sort_values('Cycle_Index'); q=float(g.loc[g.Cycle_Index.eq(2),'Discharge_Capacity_Ah'].iloc[0]); below=g.loc[g.Discharge_Capacity_Ah.lt(.8*q),'Cycle_Index']
@@ -65,9 +66,11 @@ def main():
     page('3 | Degradation signatures and anomalies')
     add(figure(Path('14_reporting_visualization/03_deviation_clusters.png'),height=215))
     add(para('Exponential residuals and local deviations identify review candidates; DBSCAN uses robustly scaled residual, change and efficiency features. A noise label is an unsupervised screening result, not a confirmed fault or diagnosis. Sensitivity to clustering settings is reported in the analysis outputs.','CaptionSmall'))
-    add(para('Differential voltage analysis integrates discharge current, interpolates voltage against discharged capacity, smooths curves and compares interior dV/dQ candidates across smoothing windows and neighbouring cycles. Changes in the loaded curves are exploratory signatures: high current, polarization, sampling and smoothing prevent reliable attribution to a specific electrode or loss mechanism.'))
-    add(figure(Path('06_differential_voltage/interior_comparison_001_2.png'),height=170))
-    add(para('Representative dV/dQ comparison for cell 001_2; the output directory includes both cells and the sensitivity audit.','CaptionSmall'))
+    add(para('Differential voltage analysis integrates discharge current, interpolates voltage against discharged capacity, smooths curves and compares interior dV/dQ minima across smoothing windows and neighbouring cycles. Since discharged Q is positive, voltage generally falls and dV/dQ is negative; candidates are peaks in -dV/dQ. A near-zero derivative corresponds to a voltage plateau.'))
+    counts=dvdq_summary.groupby('cell')[['candidate_count','stable_count']].sum()
+    add(para('Across the six selected cycles, candidates and heuristic repeatable detections are: ' + '; '.join(f'{escape(str(cell))}: {int(row.candidate_count)} and {int(row.stable_count)}' for cell,row in counts.iterrows()) + '. Repetition is a sensitivity check, not a verified cross-cycle feature identity.'))
+    add(figure(Path('06_differential_voltage/feature_candidates_by_cycle.png'),height=175))
+    add(para('Unconnected points show candidate position and half-prominence width; no electrode identity or causal trajectory is inferred. High current, polarization, sampling and smoothing prevent unique LLI/LAM attribution.','CaptionSmall'))
     page('4 | Remaining useful life')
     add(figure(Path('14_reporting_visualization/04_forecasted_rul_distribution.png'),height=185))
     add(para('Early forecasts use only history through the stated checkpoint. Per-cell curve extrapolation is compared with pooled feature-based XGBoost and minimal LSTM sequence models. Training uses both cells, so this is not independent unseen-cell validation. Attempts that never cross within the horizon are retained as failures; error metrics must be interpreted with coverage.','CaptionSmall'))
