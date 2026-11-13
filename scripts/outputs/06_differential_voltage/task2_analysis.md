@@ -46,4 +46,17 @@ All models below use a fixed-origin, recursive 15-cycle test after cycle 85. The
 
 Both cells show a substantial reduction in delivered capacity and evolving loaded-voltage derivatives. Different currents, missing temperature, measurement quantization and changing polarization confound the comparison. A stable detector candidate is a repeatable computational observation, not a verified degradation mechanism. Low-rate reference curves, verified voltage cutoffs, measured temperatures and validated electrode models or reference-electrode measurements are required for stronger LLI/LAM attribution.
 
+### LLI and LAM: limits of interpretation
+
+| Mechanism | Meaning | Possible evidence in validated electrode-related features |
+|---|---|---|
+| Loss of lithium inventory (LLI) | Less cyclable lithium is available to move between the electrodes. | Changes in the relative positions of identifiable electrode-related features, sometimes called electrode slippage. |
+| Loss of active material (LAM) | Some electrode material becomes unavailable for reversible lithium storage. | Changes in the capacity span or shape of features associated with the affected electrode. |
+
+The derivative curves and detected minima change as capacity declines. However, the minima have not been reliably matched as the same physical features across cycles, and the early selected cycles have no interior detections under the current settings. We therefore cannot measure a defensible feature shift or compression and attribute it to either mechanism.
+
+The relatively high discharge currents introduce polarization into the measured voltage. Missing temperatures and the absence of electrode-specific reference curves add uncertainty. The decline in delivered capacity is not a direct measurement of LLI or LAM.
+
+Further investigation would require low-rate reference tests at controlled temperatures, together with validated positive- and negative-electrode reference curves or reference-electrode measurements. These inputs can support electrode-level fitting; the resulting estimates must include their assumptions and uncertainty.
+
 Use `overlays_<cell>.png` for voltage and derivative curves, `sensitivity_<cell>.png` for window and adjacent-cycle checks, `interior_comparison_<cell>.png` for physical-grid sensitivity, `feature_candidates_by_cycle.png` for unmatched candidate positions and widths, and `representative_features.csv` for individual values.
