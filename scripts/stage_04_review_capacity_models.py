@@ -6,9 +6,9 @@ os.environ.setdefault('MPLCONFIGDIR',str(ROOT/'tmp/matplotlib'))
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from fit_capacity_fade import fit,predict,metrics
+from stage_04_fit_capacity_fade import fit,predict,metrics
 
-OUT=ROOT/'outputs/04_capacity_fade'
+OUT=ROOT/'scripts/outputs/04_capacity_fade'
 
 def main():
     data=pd.read_csv(OUT/'cycle_capacity_analysis.csv',dtype={'Dataset_ID':str})

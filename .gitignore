@@ -10,8 +10,8 @@ __pycache__/
 /tmp/
 /deliverables/
 /LR1865SZ*.xlsx
-/outputs/battery_cleaning/*.xlsx
-/outputs/battery_cleaning/*_clean.parquet
-/outputs/gold/interval_diagnostics_*.parquet
-/outputs/validation_baseline*/
+/scripts/outputs/01_data_cleaning/*.xlsx
+/scripts/outputs/01_data_cleaning/*_clean.parquet
+/scripts/outputs/03_gold_cycle_features/interval_diagnostics_*.parquet
+/scripts/outputs/validation_baseline*/
 **/.DS_Store

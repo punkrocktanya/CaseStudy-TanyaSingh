@@ -5,7 +5,7 @@ This exploratory study examines two cells using cycle data, capacity-fade models
 ## Repository contents
 
 - [scripts/](scripts/) contains the Python analysis and tests; see the [scripts guide](scripts/README.md) for the analysis run order.
-- [outputs/](outputs/) contains processed Silver and Gold data, saved results, figures, and experiment manifests.
+- [scripts/outputs/](scripts/outputs/) contains processed Silver and Gold data, saved results, figures, and experiment manifests.
 - Two source Excel workbooks are included in the repository root. The saved analysis can be reviewed using the processed data; review the preprocessing scripts and their configuration before regenerating data from the workbooks.
 
 ## Install and check
@@ -32,4 +32,4 @@ The **Full analysis and report** workflow can be started manually from the Actio
 
 ## Output folders
 
-The numbered folders in `outputs/` follow the review process: data cleaning, Silver and Gold data, capacity and voltage analysis, anomaly screening, RUL models and comparisons, pack scaling, reporting, and consistency validation. The analyses are not all sequential; several independently use the Silver or Gold data. Historical experiment manifests preserve the paths and hashes recorded when those experiments were run.
+The numbered folders in `scripts/outputs/` follow the review process: data cleaning, Silver and Gold data, capacity and voltage analysis, anomaly screening, RUL models and comparisons, pack scaling, reporting, and consistency validation. The analyses are not all sequential; several independently use the Silver or Gold data. Historical experiment manifests preserve the paths and hashes recorded when those experiments were run.

@@ -4,10 +4,10 @@ import numpy as np
 import pandas as pd
 from scipy.optimize import least_squares
 from sklearn.ensemble import RandomForestRegressor
-from individual_curve_rul import INPUT
-from estimate_rul_xgboost_shared import examples, FEATURES
-from estimate_rul_lstm_minimal import train, torch
-from fit_capacity_fade import fit, predict, metrics
+from stage_08_individual_curve_rul import INPUT
+from stage_09_estimate_rul_xgboost_shared import examples, FEATURES
+from stage_10_estimate_rul_lstm_minimal import train, torch
+from stage_04_fit_capacity_fade import fit, predict, metrics
 
 OUT=INPUT.parents[1]/'05_capacity_model_comparison'
 
@@ -37,7 +37,7 @@ def main():
             trajectories={'Exponential':predict('Exponential',exp,future,future),
                           'Physics-constrained surrogate':phy[0]*np.exp(-phy[1]*np.sqrt(future)-phy[2]*future),
                           'Persistence':np.repeat(y[-1],15)}
-            from estimate_rul_xgboost_shared import features
+            from stage_09_estimate_rul_xgboost_shared import features
             for name in ['Random Forest','LSTM']:
                 history=list(q); predicted=[]
                 for _ in range(15):

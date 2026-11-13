@@ -17,10 +17,10 @@ from battery_config import CONFIG, CONFIG_SHA256
 
 ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_INPUTS = [
-    ROOT / "outputs" / "01_data_cleaning" / "LR1865SZ_cycles201217_001_2_clean.parquet",
-    ROOT / "outputs" / "01_data_cleaning" / "LR1865SZ_cycles201214_002_4_clean.parquet",
+    ROOT / "scripts"/"outputs" / "01_data_cleaning" / "LR1865SZ_cycles201217_001_2_clean.parquet",
+    ROOT / "scripts"/"outputs" / "01_data_cleaning" / "LR1865SZ_cycles201214_002_4_clean.parquet",
 ]
-DEFAULT_OUTPUT = ROOT / "outputs" / "02_silver_phase_data"
+DEFAULT_OUTPUT = ROOT / "scripts"/"outputs" / "02_silver_phase_data"
 REQUIRED_COLUMNS = [
     "Data_Point", "Test_Time(s)", "Current(A)", "Capacity(Ah)",
     "Voltage(V)", "Energy(Wh)", "Temperature(℃)", "Date_Time", "Cycle_Index",

@@ -9,8 +9,8 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 ROOT=Path(__file__).resolve().parent.parent
-INPUT=ROOT/'outputs/04_capacity_fade/cycle_capacity_analysis.csv'
-OUT=ROOT/'outputs/10_rul_lstm'
+INPUT=ROOT/'scripts/outputs/04_capacity_fade/cycle_capacity_analysis.csv'
+OUT=ROOT/'scripts/outputs/10_rul_lstm'
 SEEDS=[42,7,123]
 SETTINGS=dict(hidden_size=1,layers=1,windows=[3,1],epochs=130,learning_rate=.008,weight_decay=.0001,huber_delta=.02,checkpoints=[5,8,10,12],horizon=1000)
 torch.set_num_threads(1)

@@ -318,7 +318,7 @@ def validate_output(gold, datasets):
 def write_report(gold, comparisons, out, comparison):
     lines = ['# Battery pipeline corrective-action report','',
         '- **Result:** The code checks have been strengthened. The results remain a diagnostic dataset.',
-        '- Original files and the previous results are preserved in `outputs/validation_baseline_20261111`.',
+        '- Original files and the previous results are preserved in `scripts/outputs/validation_baseline_20261111`.',
         '- Gold now reads Silver and keeps its source row IDs, phase IDs, and cycle membership.',
         '- Repeated test times are counted separately. They represent zero elapsed time, not automatically lost charge.',
         '- Calendar-clock reversals are warnings. A valid test-clock interval is no longer discarded just because the calendar clock goes backwards.',
@@ -391,7 +391,7 @@ def write_report(gold, comparisons, out, comparison):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--out',type=Path,default=ROOT/'outputs'/'03_gold_cycle_features')
+    parser.add_argument('--out',type=Path,default=ROOT/'scripts'/'outputs'/'03_gold_cycle_features')
     args = parser.parse_args(); out=args.out; out.mkdir(parents=True,exist_ok=True)
     legacy = load_script('03_build_cycle_features.py')
     normalize = load_script('01_normalize_timestamps.py')
@@ -399,8 +399,8 @@ def main():
     records=[]; counter_rows=[]; coverage_rows=[]; datasets={}; comparisons={}; hashes={}; evidence={}
     for ds,stem in SOURCES.items():
         rawpath=ROOT/(stem+'.xlsx')
-        cleanpath=ROOT/'outputs'/'01_data_cleaning'/(stem+'_clean.parquet')
-        silverpath=ROOT/'outputs'/'02_silver_phase_data'/(stem+'_silver.parquet')
+        cleanpath=ROOT/'scripts'/'outputs'/'01_data_cleaning'/(stem+'_clean.parquet')
+        silverpath=ROOT/'scripts'/'outputs'/'02_silver_phase_data'/(stem+'_silver.parquet')
         _,raw=normalize.normalize_source(rawpath,ds)
         clean=pd.read_parquet(cleanpath); silver=pd.read_parquet(silverpath)
         comparisons[ds]={'raw_to_clean':reconcile(raw,clean,'raw -> cleaned'),
@@ -445,7 +445,7 @@ def main():
     gold.to_csv(out/'battery_cycle_features_gold.csv',index=False)
     pd.DataFrame(counter_rows).to_csv(out/'phase_counter_audit.csv',index=False)
     pd.DataFrame(coverage_rows).to_csv(out/'phase_coverage_audit.csv',index=False)
-    baseline_path=ROOT/'outputs'/'validation_baseline_20261111'/'outputs'/'gold'/'battery_cycle_features_gold.parquet'
+    baseline_path=ROOT/'scripts'/'outputs'/'validation_baseline_20261111'/'outputs'/'gold'/'battery_cycle_features_gold.parquet'
     comparison=pd.DataFrame()
     if baseline_path.exists():
         old=pd.read_parquet(baseline_path)
