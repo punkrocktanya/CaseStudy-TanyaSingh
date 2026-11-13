@@ -977,8 +977,8 @@
     },
     {
       "path": "requirements.txt",
-      "bytes": 411,
-      "sha256": "31bc21c5c18e6298a4b5b4be29cb25588de08cc711c5c385c9165c06f0478c38"
+      "bytes": 423,
+      "sha256": "8f44d7171ec8930138b299a67492c2976bc86d8131f7782981750934c209e511"
     },
     {
       "path": "scripts/01_normalize_timestamps.py",
