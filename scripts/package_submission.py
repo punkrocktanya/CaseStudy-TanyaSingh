@@ -7,9 +7,9 @@ import zipfile
 ROOT=Path(__file__).resolve().parent.parent
 DEST=ROOT/'deliverables'
 TOP={'README.md','requirements.txt','battery_thresholds.json','.gitignore','TASK3_MODEL_GUIDE.md','battery_specification.md'}
-DIRS=['outputs/capacity_fade','outputs/capacity_comparison_local','outputs/differential_voltage/revised',
-      'outputs/anomaly_detection','outputs/rul_individual_curves','outputs/rul_xgboost_shared','outputs/rul_lstm_minimal',
-      'outputs/reporting_visualization','outputs/rul_all_models_validation','outputs/pack_scaling','outputs/rul_common_checkpoint','outputs/validation','output/pdf','notebooks','.github']
+DIRS=['outputs/04_capacity_fade','outputs/05_capacity_model_comparison','outputs/06_differential_voltage',
+      'outputs/07_anomaly_detection','outputs/08_rul_individual_curves','outputs/09_rul_xgboost','outputs/10_rul_lstm',
+      'outputs/14_reporting_visualization','outputs/12_rul_validation','outputs/13_pack_scaling','outputs/11_rul_model_comparison','outputs/15_consistency_validation','output/pdf','notebooks','.github']
 SUFFIXES={'.py','.md','.txt','.json','.csv','.png','.pdf','.ipynb','.yml','.yaml','.pt','.ubj'}
 
 
@@ -17,10 +17,10 @@ def files():
     selected=set((ROOT/'scripts').glob('*.py'))|{ROOT/'scripts/README.md'}|{ROOT/n for n in TOP}
     for directory in DIRS:
         selected.update(p for p in (ROOT/directory).rglob('*') if p.is_file() and p.suffix in SUFFIXES)
-    selected.update((ROOT/'outputs/silver').glob('*_silver.parquet'))
-    selected.update(p for p in (ROOT/'outputs/gold').glob('*') if p.is_file() and not p.name.startswith('interval_diagnostics_') and p.suffix in {'.csv','.json','.md','.parquet'})
-    selected.update(p for p in (ROOT/'outputs/battery_cleaning').glob('*') if p.suffix in {'.md','.json'})
-    selected.update(p for p in (ROOT/'outputs/silver').glob('*') if p.suffix in {'.md','.json'})
+    selected.update((ROOT/'outputs/02_silver_phase_data').glob('*_silver.parquet'))
+    selected.update(p for p in (ROOT/'outputs/03_gold_cycle_features').glob('*') if p.is_file() and not p.name.startswith('interval_diagnostics_') and p.suffix in {'.csv','.json','.md','.parquet'})
+    selected.update(p for p in (ROOT/'outputs/01_data_cleaning').glob('*') if p.suffix in {'.md','.json'})
+    selected.update(p for p in (ROOT/'outputs/02_silver_phase_data').glob('*') if p.suffix in {'.md','.json'})
     updated = ROOT/'output/pdf/Task_6_Reporting_and_Visualization_Updated.pdf'
     if updated.exists():
         selected.discard(ROOT/'output/pdf/Task_6_Reporting_and_Visualization.pdf')

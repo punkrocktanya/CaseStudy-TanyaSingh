@@ -75,10 +75,10 @@ def write_report(anomalous,summary):
 
 def main():
     OUT.mkdir(parents=True,exist_ok=True)
-    gold=pd.read_parquet(ROOT/'outputs/gold/battery_cycle_features_gold.parquet')
+    gold=pd.read_parquet(ROOT/'outputs/03_gold_cycle_features/battery_cycle_features_gold.parquet')
     anomalous=[]; cycles=[]; summary={}
     for ds in ['001_2','002_4']:
-        path=next((ROOT/'outputs/silver').glob('*'+ds+'_silver.parquet'))
+        path=next((ROOT/'outputs/02_silver_phase_data').glob('*'+ds+'_silver.parquet'))
         d=pd.read_parquet(path)
         phases=[]
         for pid,p in d.groupby('Phase_ID',sort=False):
@@ -146,7 +146,7 @@ def main():
     pd.DataFrame(cycles).to_csv(OUT/'cycle_polarization_review.csv',index=False)
     (OUT/'quantitative_findings.json').write_text(json.dumps(summary,indent=2),encoding='utf-8')
     write_report(anomalous,summary)
-    inputs=list((ROOT/'outputs/silver').glob('*silver.parquet'))+[ROOT/'outputs/gold/battery_cycle_features_gold.parquet',Path(__file__)]
+    inputs=list((ROOT/'outputs/02_silver_phase_data').glob('*silver.parquet'))+[ROOT/'outputs/03_gold_cycle_features/battery_cycle_features_gold.parquet',Path(__file__)]
     (OUT/'review_manifest.json').write_text(json.dumps({
         'input_sha256':{str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in inputs},
         'checks':'198 complete diagnostic cycles; phase capacities independently reintegrated and positive instrument counter increments independently summed; all matched Gold to 1e-12 Ah',

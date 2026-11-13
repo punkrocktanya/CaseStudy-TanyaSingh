@@ -8,8 +8,8 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from fit_capacity_fade import fit,predict,profile
 ROOT=Path(__file__).resolve().parent.parent
-INPUT=ROOT/'outputs/capacity_fade/cycle_capacity_analysis.csv'
-OUT=ROOT/'outputs/rul_individual_curves'
+INPUT=ROOT/'outputs/04_capacity_fade/cycle_capacity_analysis.csv'
+OUT=ROOT/'outputs/08_rul_individual_curves'
 MODELS=['Linear','Exponential','Square-root cycle','Power law']
 CHECKPOINTS=[5,8,10,12,15,20]
 

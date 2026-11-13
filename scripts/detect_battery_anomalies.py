@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 from fit_capacity_fade import fit,predict
 
 ROOT=Path(__file__).resolve().parent.parent
-OUT=ROOT/'outputs/anomaly_detection'
+OUT=ROOT/'outputs/07_anomaly_detection'
 
 def robust_z(s):
     center=s.median(); scale=1.4826*(s-center).abs().median()
@@ -19,7 +19,7 @@ def robust_z(s):
 
 def main():
     OUT.mkdir(parents=True,exist_ok=True)
-    gold=pd.read_parquet(ROOT/'outputs/gold/battery_cycle_features_gold.parquet')
+    gold=pd.read_parquet(ROOT/'outputs/03_gold_cycle_features/battery_cycle_features_gold.parquet')
     frames=[]; sensitivity=[]
     figspace,space=plt.subplots(1,2,figsize=(12,5),constrained_layout=True)
     for ax,(cell,g) in zip(space,gold.groupby('Dataset_ID')):

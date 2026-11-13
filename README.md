@@ -29,3 +29,7 @@ The exploratory end-of-life threshold is 80% of each cell's cycle-2 delivered ca
 The **Tests** workflow runs on pushes and pull requests. It installs CPU-only PyTorch, checks submission integrity, and runs the unit tests. The workflow has passed on the `main` branch.
 
 The **Full analysis and report** workflow can be started manually from the Actions tab. It uses the packaged processed data and is configured to upload execution records, figures, and generated PDFs as a workflow artifact. It does not commit regenerated outputs or replace the root report. The full analysis workflow has not yet been run on GitHub, so its completion and artifacts are not yet verified there. See the [scripts guide](scripts/README.md) for local analysis and report-generation commands.
+
+## Output folders
+
+The numbered folders in `outputs/` follow the review process: data cleaning, Silver and Gold data, capacity and voltage analysis, anomaly screening, RUL models and comparisons, pack scaling, reporting, and consistency validation. The analyses are not all sequential; several independently use the Silver or Gold data. Historical experiment manifests preserve the paths and hashes recorded when those experiments were run.

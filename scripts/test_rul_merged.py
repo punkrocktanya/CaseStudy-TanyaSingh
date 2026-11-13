@@ -90,7 +90,7 @@ class MergedRUL(unittest.TestCase):
         self.assertIn(recorded[0],hashes)
 
     def test_common_checkpoint_includes_all_seed_attempts(self):
-        path=ROOT/'outputs/rul_common_checkpoint/predictions.csv'
+        path=ROOT/'outputs/11_rul_model_comparison/predictions.csv'
         d=pd.read_csv(path,dtype={'Dataset_ID':str})
         self.assertEqual(set(d.Checkpoint),{8,10})
         self.assertEqual(len(d),24)
@@ -99,7 +99,7 @@ class MergedRUL(unittest.TestCase):
         self.assertTrue(((d.Predicted_RUL-d.Actual_RUL).abs().fillna(0)-d.Absolute_Error.fillna(0)).abs().max()<1e-9)
 
     def test_all_seven_methods_reconciled_at_common_checkpoints(self):
-        base=ROOT/'outputs/rul_common_checkpoint'
+        base=ROOT/'outputs/11_rul_model_comparison'
         attempts=pd.read_csv(base/'all_method_common_predictions.csv',dtype={'Dataset_ID':str})
         scores=pd.read_csv(base/'all_method_common_metrics.csv',dtype={'Dataset_ID':str})
         self.assertEqual(len(attempts),44)
@@ -114,7 +114,7 @@ class MergedRUL(unittest.TestCase):
             self.assertAlmostEqual(float(t.Absolute_Error.mean()),float(r.MAE_Cycles))
 
     def test_all_96_attempts_appear_in_reporting_source(self):
-        normalized=pd.read_csv(ROOT/'outputs/rul_all_models_validation/all_96_attempts.csv',dtype={'Dataset_ID':str})
+        normalized=pd.read_csv(ROOT/'outputs/12_rul_validation/all_96_attempts.csv',dtype={'Dataset_ID':str})
         self.assertEqual(len(normalized),96)
         self.assertEqual(len(normalized.Method.unique()),7)
         self.assertEqual(int(normalized.Predicted_RUL.isna().sum()),5)

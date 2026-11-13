@@ -8,14 +8,14 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 ROOT=Path(__file__).resolve().parent.parent
-OUT=ROOT/'outputs/differential_voltage/revised'
+OUT=ROOT/'outputs/06_differential_voltage'
 SELECT=[2,10,25,50,75,100]
 WINDOWS=[11,21,31]
 
 def main():
     OUT.mkdir(parents=True,exist_ok=True)
     records=[]; audit=[]; traces=[]; duplicates=[]; physical=[]
-    for path in sorted((ROOT/'outputs/silver').glob('*_silver.parquet')):
+    for path in sorted((ROOT/'outputs/02_silver_phase_data').glob('*_silver.parquet')):
         ds=path.stem.split('cycles')[1].split('_',1)[1].replace('_silver','')
         data=pd.read_parquet(path)
         curves={}
