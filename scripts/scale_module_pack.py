@@ -8,7 +8,7 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-OUT=INPUT.parents[1]/'pack_scaling'
+OUT=INPUT.parents[1]/'13_pack_scaling'
 CONFIG=dict(series_groups_per_module=4,parallel_cells=2,modules_in_series=3,
             ensemble_size=100,seed=42,capacity_cv=.03,rate_cv=.15,
             reference_temperature_K=298.15,activation_energy_J_mol=20000,

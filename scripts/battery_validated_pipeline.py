@@ -391,7 +391,7 @@ def write_report(gold, comparisons, out, comparison):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--out',type=Path,default=ROOT/'outputs'/'gold')
+    parser.add_argument('--out',type=Path,default=ROOT/'outputs'/'03_gold_cycle_features')
     args = parser.parse_args(); out=args.out; out.mkdir(parents=True,exist_ok=True)
     legacy = load_script('03_build_cycle_features.py')
     normalize = load_script('01_normalize_timestamps.py')
@@ -399,8 +399,8 @@ def main():
     records=[]; counter_rows=[]; coverage_rows=[]; datasets={}; comparisons={}; hashes={}; evidence={}
     for ds,stem in SOURCES.items():
         rawpath=ROOT/(stem+'.xlsx')
-        cleanpath=ROOT/'outputs'/'battery_cleaning'/(stem+'_clean.parquet')
-        silverpath=ROOT/'outputs'/'silver'/(stem+'_silver.parquet')
+        cleanpath=ROOT/'outputs'/'01_data_cleaning'/(stem+'_clean.parquet')
+        silverpath=ROOT/'outputs'/'02_silver_phase_data'/(stem+'_silver.parquet')
         _,raw=normalize.normalize_source(rawpath,ds)
         clean=pd.read_parquet(cleanpath); silver=pd.read_parquet(silverpath)
         comparisons[ds]={'raw_to_clean':reconcile(raw,clean,'raw -> cleaned'),

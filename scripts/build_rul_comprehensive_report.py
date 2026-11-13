@@ -19,7 +19,7 @@ import fitz
 
 ROOT=Path(__file__).resolve().parent.parent
 OUT=ROOT/'output/pdf/Battery_RUL_All_Models_Corrected.pdf'
-FIG=ROOT/'outputs/rul_all_models_validation'; FIG.mkdir(exist_ok=True,parents=True)
+FIG=ROOT/'outputs/12_rul_validation'; FIG.mkdir(exist_ok=True,parents=True)
 NAVY=colors.HexColor('#163d57'); LIGHT=colors.HexColor('#edf4f8'); GREY=colors.HexColor('#4a6070')
 S=getSampleStyleSheet()
 S.add(ParagraphStyle(name='ReportTitleNew',fontName='Helvetica-Bold',fontSize=19,leading=23,textColor=NAVY,spaceAfter=10))
@@ -52,13 +52,13 @@ def fmt(v,status=None):
     return str(int(v))
 
 def main():
-    curve=pd.read_csv(ROOT/'outputs/rul_individual_curves/predictions.csv',dtype={'Dataset_ID':str})
-    xgb=pd.read_csv(ROOT/'outputs/rul_xgboost_shared/predictions.csv',dtype={'Dataset_ID':str})
-    lstm=pd.read_csv(ROOT/'outputs/rul_lstm_minimal/predictions.csv',dtype={'Dataset_ID':str})
-    d=pd.read_csv(ROOT/'outputs/rul_common_checkpoint/all_attempts.csv',dtype={'Dataset_ID':str})
-    fair=pd.read_csv(ROOT/'outputs/rul_common_checkpoint/all_method_common_metrics.csv',dtype={'Dataset_ID':str})
-    allmetrics=pd.read_csv(ROOT/'outputs/rul_common_checkpoint/all_checkpoint_metrics.csv',dtype={'Dataset_ID':str})
-    gold=pd.read_csv(ROOT/'outputs/capacity_fade/cycle_capacity_analysis.csv',dtype={'Dataset_ID':str})
+    curve=pd.read_csv(ROOT/'outputs/08_rul_individual_curves/predictions.csv',dtype={'Dataset_ID':str})
+    xgb=pd.read_csv(ROOT/'outputs/09_rul_xgboost/predictions.csv',dtype={'Dataset_ID':str})
+    lstm=pd.read_csv(ROOT/'outputs/10_rul_lstm/predictions.csv',dtype={'Dataset_ID':str})
+    d=pd.read_csv(ROOT/'outputs/11_rul_model_comparison/all_attempts.csv',dtype={'Dataset_ID':str})
+    fair=pd.read_csv(ROOT/'outputs/11_rul_model_comparison/all_method_common_metrics.csv',dtype={'Dataset_ID':str})
+    allmetrics=pd.read_csv(ROOT/'outputs/11_rul_model_comparison/all_checkpoint_metrics.csv',dtype={'Dataset_ID':str})
+    gold=pd.read_csv(ROOT/'outputs/04_capacity_fade/cycle_capacity_analysis.csv',dtype={'Dataset_ID':str})
     assert len(curve)==40 and len(xgb)==8 and len(lstm)==48 and len(d)==96
     assert len(fair)==14 and set(fair.Method)==set(d.Method)
     assert set(d.Checkpoint)=={5,8,10,12,15,20}
@@ -193,7 +193,7 @@ def main():
         ('Source control','Report is generated from saved prediction CSVs; it does not refit model weights')]
     add(tab(['Check','Evidence'],checks,[182,313]),Spacer(1,10))
     add(h('Source fingerprints'))
-    src=['outputs/rul_individual_curves/predictions.csv','outputs/rul_xgboost_shared/predictions.csv','outputs/rul_lstm_minimal/predictions.csv','outputs/rul_common_checkpoint/all_method_common_metrics.csv']
+    src=['outputs/08_rul_individual_curves/predictions.csv','outputs/09_rul_xgboost/predictions.csv','outputs/10_rul_lstm/predictions.csv','outputs/11_rul_model_comparison/all_method_common_metrics.csv']
     sr=[]
     for rel in src:
         digest=hashlib.sha256((ROOT/rel).read_bytes()).hexdigest()
@@ -201,7 +201,7 @@ def main():
     add(tab(['Source output folder','SHA-256 prefix (first 20 hex chars)'],sr,[235,260]),Spacer(1,10))
     add(p('<b>Scientific boundaries:</b> This study has only two cells, different high C-rates, no measured temperature, and no reference-condition SOH check. Relative EOL is not nominal-capacity EOL. Some prediction errors are large, and numerical repeatability does not establish new-cell generalization.'))
     add(p('<b>Other results in the project:</b> The 15-step late-cycle LSTM *capacity regression* in Task 2 evaluates forecasts in Ah over cycles 86–100; it is a different evaluation target from the early-life relative-RUL LSTM in this report. Both use the minimal model architecture, but their RMSE and RUL MAE cannot be compared as the same metric.'))
-    add(p('<b>Reproduction:</b> Run `build_common_checkpoint_comparison.py` and `build_rul_comprehensive_report.py` after the three model generators. The full machine-readable attempts are in `outputs/rul_all_models_validation/all_96_attempts.csv`.'))
+    add(p('<b>Reproduction:</b> Run `build_common_checkpoint_comparison.py` and `build_rul_comprehensive_report.py` after the three model generators. The full machine-readable attempts are in `outputs/12_rul_validation/all_96_attempts.csv`.'))
     def footer(c,doc):
         c.setFont('Helvetica',8);c.setFillColor(GREY);c.drawString(48,28,'Corrected RUL reporting | Two-cell experimental study')
         c.drawRightString(545,28,f'Page {doc.page}')

@@ -8,7 +8,7 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 ROOT=Path(__file__).resolve().parent.parent
-OUT=ROOT/'outputs/capacity_fade'
+OUT=ROOT/'outputs/04_capacity_fade'
 MODELS=['Linear','Exponential','Square-root time','Power law']
 
 def profile(x,y):
@@ -49,7 +49,7 @@ def metrics(y,p):
 
 def main():
     OUT.mkdir(parents=True,exist_ok=True)
-    goldpath=ROOT/'outputs/gold/battery_cycle_features_gold.parquet'
+    goldpath=ROOT/'outputs/03_gold_cycle_features/battery_cycle_features_gold.parquet'
     gold=pd.read_parquet(goldpath)
     params=[]; scores=[]; predictions=[]; prepared=[]; lines=['# Cycle-by-cycle capacity fade','',
         '- Target: high-rate delivered discharge capacity (Ah), not certified SOH.',
@@ -63,7 +63,7 @@ def main():
         '- Square-root-time evaluation uses observed future timestamps and is a conditional retrospective comparison, not a deployable fixed-origin forecast. It is excluded from selecting the cycle-only forecast winner.',
         '- Negative predictions are reported, not clipped. No extrapolated lifetime or mechanism identification is claimed.','']
     for ds,g in gold.groupby('Dataset_ID'):
-        d=pd.read_parquet(next((ROOT/'outputs/silver').glob('*'+ds+'_silver.parquet')))
+        d=pd.read_parquet(next((ROOT/'outputs/02_silver_phase_data').glob('*'+ds+'_silver.parquet')))
         end=d[d.Phase.eq('DISCHARGE')].groupby('Cycle_Index')['Test_Time(s)'].last()
         g=g[g.Computationally_Complete & g.Cycle_Index.between(2,100)].copy().sort_values('Cycle_Index')
         assert len(g)==99 and g.Discharge_Integration_Valid.all()

@@ -17,16 +17,16 @@ from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib import colors
 
 ROOT = Path(__file__).resolve().parent.parent
-OUT = ROOT/'outputs/reporting_visualization'
+OUT = ROOT/'outputs/14_reporting_visualization'
 OUT.mkdir(parents=True, exist_ok=True)
 CELLS = ['001_2','002_4']
 plt.rcParams.update({'font.size':10, 'axes.spines.top':False, 'axes.spines.right':False,
                      'axes.titleweight':'bold', 'savefig.facecolor':'white'})
-SOURCES = ['outputs/capacity_fade/cycle_capacity_analysis.csv',
-           'outputs/capacity_fade/model_parameters.csv', 'outputs/capacity_fade/predictions.csv',
-           'outputs/anomaly_detection/anomaly_features.csv',
-           'outputs/rul_lstm_minimal/predictions.csv','outputs/rul_xgboost_shared/predictions.csv',
-           'outputs/rul_common_checkpoint/all_attempts.csv']
+SOURCES = ['outputs/04_capacity_fade/cycle_capacity_analysis.csv',
+           'outputs/04_capacity_fade/model_parameters.csv', 'outputs/04_capacity_fade/predictions.csv',
+           'outputs/07_anomaly_detection/anomaly_features.csv',
+           'outputs/10_rul_lstm/predictions.csv','outputs/09_rul_xgboost/predictions.csv',
+           'outputs/11_rul_model_comparison/all_attempts.csv']
 
 
 def read(path):

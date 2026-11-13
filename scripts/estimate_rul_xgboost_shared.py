@@ -8,8 +8,8 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import xgboost as xgb
 ROOT=Path(__file__).resolve().parent.parent
-INPUT=ROOT/'outputs/capacity_fade/cycle_capacity_analysis.csv'
-OUT=ROOT/'outputs/rul_xgboost_shared'
+INPUT=ROOT/'outputs/04_capacity_fade/cycle_capacity_analysis.csv'
+OUT=ROOT/'outputs/09_rul_xgboost'
 WINDOW=3
 HORIZON=1000
 SHARED_CHECKPOINTS=[5,8,10,12]

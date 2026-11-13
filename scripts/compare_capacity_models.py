@@ -9,7 +9,7 @@ from estimate_rul_xgboost_shared import examples, FEATURES
 from estimate_rul_lstm_minimal import train, torch
 from fit_capacity_fade import fit, predict, metrics
 
-OUT=INPUT.parents[1]/'capacity_comparison_local'
+OUT=INPUT.parents[1]/'05_capacity_model_comparison'
 
 
 def main():
