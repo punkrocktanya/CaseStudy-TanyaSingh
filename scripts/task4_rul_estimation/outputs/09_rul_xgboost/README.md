@@ -1,0 +1,5 @@
+# Shared XGBoost RUL experiment
+
+One XGBoost model is trained per checkpoint using causal three-capacity examples from both batteries. Examples are built separately within each cell and then pooled. Each battery is forecast from its own history by recursively predicting normalized next-capacity change until crossing 0.80. EOL is the first observed cycle strictly below 80% of that cell's cycle-2 measured capacity. Only checkpoints 5, 8, 10, 12 are used so both cells are pre-EOL. At cycle 8 there are eight pooled examples (four per cell); at cycle 5 only two. Predictions, training examples, model files and Ah-versus-cycle plots are saved here. Future actuals are plotted for evaluation only.
+
+Settings reuse existing exploratory XGBoost parameters. No tuning or early stopping. This is a small two-cell experiment, not an unseen-cell or fleet validation. Loads differ and temperature is unavailable. Failed crossings remain explicitly missing. This script replaces the previous XGBoost experiment in this submission.

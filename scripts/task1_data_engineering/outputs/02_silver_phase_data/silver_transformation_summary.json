@@ -1,0 +1,262 @@
+[
+  {
+    "configuration_sha256": "ce3847e2cfac8c771dc776a341d9a397d13e6c2f73b93909ce7594944a6a4745",
+    "configuration": {
+      "schema_version": "2.0",
+      "limits_status": "provisional; see battery_specification.md; controlled datasheet and test protocol not supplied",
+      "instrument_model": null,
+      "instrument_uncertainty_pct": null,
+      "protocol_verified": false,
+      "counter_semantics_verified": false,
+      "minimum_time_coverage_pct": 99.5,
+      "ce_review_threshold_pct": 100.0,
+      "ce_threshold_basis": "review trigger only; measurement uncertainty unavailable",
+      "voltage_min_v": 3.0,
+      "voltage_max_v": 4.2,
+      "endpoint_tolerance_v": 0.05,
+      "capacity_warning_max_ah": 3.0,
+      "energy_warning_max_wh": 15.0,
+      "nominal_capacity_ah": 2.5,
+      "rest_current_threshold_a": 0.05,
+      "maximum_integration_interval_s": 5.0,
+      "rated_charge_current_a": 2.4,
+      "rated_discharge_current_a": 7.2,
+      "hampel_window_samples": 11,
+      "hampel_sigma": 5.0,
+      "minimum_persistent_samples": 2,
+      "current_jump_threshold_a": 0.5,
+      "neighbour_agreement_tolerance_a": 0.05,
+      "counter_relative_tolerance": 0.05
+    },
+    "source_file": "LR1865SZ_cycles201217_001_2_clean.parquet",
+    "input_rows": 126648,
+    "output_rows": 126648,
+    "conversion_report": {
+      "Data_Point": {
+        "conversion_failures": 0,
+        "missing_after_conversion": 0
+      },
+      "Test_Time(s)": {
+        "conversion_failures": 0,
+        "missing_after_conversion": 0
+      },
+      "Current(A)": {
+        "conversion_failures": 0,
+        "missing_after_conversion": 0
+      },
+      "Capacity(Ah)": {
+        "conversion_failures": 0,
+        "missing_after_conversion": 0
+      },
+      "Voltage(V)": {
+        "conversion_failures": 0,
+        "missing_after_conversion": 0
+      },
+      "Energy(Wh)": {
+        "conversion_failures": 0,
+        "missing_after_conversion": 0
+      },
+      "Temperature(℃)": {
+        "conversion_failures": 0,
+        "missing_after_conversion": 126648
+      },
+      "Cycle_Index": {
+        "conversion_failures": 0,
+        "missing_after_conversion": 0
+      },
+      "Date_Time": {
+        "conversion_failures": 0,
+        "missing_after_conversion": 0
+      }
+    },
+    "cycle_index_min": 1,
+    "cycle_index_max": 101,
+    "unique_cycles": 101,
+    "phase_counts": {
+      "REST": 61604,
+      "DISCHARGE": 32896,
+      "CHARGE": 32148
+    },
+    "phase_segments": 401,
+    "flag_counts": {
+      "Missing_Flag": 126648,
+      "Critical_Missing_Flag": 0,
+      "Capacity_Missing_Flag": 0,
+      "Energy_Missing_Flag": 0,
+      "Temperature_Missing_Flag": 126648,
+      "Timestamp_Duplicate_Flag": 12220,
+      "Timestamp_Reversal_Flag": 25,
+      "Test_Time_Reversal_Flag": 0,
+      "Sampling_Gap_Flag": 0,
+      "Current_Plausibility_Flag": 44092,
+      "Voltage_Plausibility_Flag": 135,
+      "Capacity_Plausibility_Flag": 0,
+      "Energy_Plausibility_Flag": 0
+    },
+    "sign_convention_evidence": {
+      "charge": {
+        "segments_checked": 100,
+        "median_segment_voltage_change_v": 0.39354999999999984,
+        "expected_direction_percentage": 100.0
+      },
+      "discharge": {
+        "segments_checked": 100,
+        "median_segment_voltage_change_v": -0.5891499999999998,
+        "expected_direction_percentage": 100.0
+      },
+      "positive_current_is_charge_supported": true
+    },
+    "validations": {
+      "row_count_preserved": true,
+      "row_order_preserved": true,
+      "all_original_measurements_preserved": true,
+      "original_measurement_checks": {
+        "Data_Point": true,
+        "Test_Time(s)": true,
+        "Current(A)": true,
+        "Capacity(Ah)": true,
+        "Voltage(V)": true,
+        "Energy(Wh)": true,
+        "Temperature(℃)": true,
+        "Date_Time": true,
+        "Cycle_Index": true
+      },
+      "phase_values_valid": true,
+      "phase_ids_consecutive": true,
+      "one_phase_per_phase_id": true,
+      "phase_transition_count_matches_segments": true,
+      "cycle_index_preserved": true,
+      "temperature_missing_not_filled": true
+    }
+  },
+  {
+    "configuration_sha256": "ce3847e2cfac8c771dc776a341d9a397d13e6c2f73b93909ce7594944a6a4745",
+    "configuration": {
+      "schema_version": "2.0",
+      "limits_status": "provisional; see battery_specification.md; controlled datasheet and test protocol not supplied",
+      "instrument_model": null,
+      "instrument_uncertainty_pct": null,
+      "protocol_verified": false,
+      "counter_semantics_verified": false,
+      "minimum_time_coverage_pct": 99.5,
+      "ce_review_threshold_pct": 100.0,
+      "ce_threshold_basis": "review trigger only; measurement uncertainty unavailable",
+      "voltage_min_v": 3.0,
+      "voltage_max_v": 4.2,
+      "endpoint_tolerance_v": 0.05,
+      "capacity_warning_max_ah": 3.0,
+      "energy_warning_max_wh": 15.0,
+      "nominal_capacity_ah": 2.5,
+      "rest_current_threshold_a": 0.05,
+      "maximum_integration_interval_s": 5.0,
+      "rated_charge_current_a": 2.4,
+      "rated_discharge_current_a": 7.2,
+      "hampel_window_samples": 11,
+      "hampel_sigma": 5.0,
+      "minimum_persistent_samples": 2,
+      "current_jump_threshold_a": 0.5,
+      "neighbour_agreement_tolerance_a": 0.05,
+      "counter_relative_tolerance": 0.05
+    },
+    "source_file": "LR1865SZ_cycles201214_002_4_clean.parquet",
+    "input_rows": 202516,
+    "output_rows": 202516,
+    "conversion_report": {
+      "Data_Point": {
+        "conversion_failures": 0,
+        "missing_after_conversion": 0
+      },
+      "Test_Time(s)": {
+        "conversion_failures": 0,
+        "missing_after_conversion": 0
+      },
+      "Current(A)": {
+        "conversion_failures": 0,
+        "missing_after_conversion": 0
+      },
+      "Capacity(Ah)": {
+        "conversion_failures": 0,
+        "missing_after_conversion": 0
+      },
+      "Voltage(V)": {
+        "conversion_failures": 0,
+        "missing_after_conversion": 0
+      },
+      "Energy(Wh)": {
+        "conversion_failures": 0,
+        "missing_after_conversion": 0
+      },
+      "Temperature(℃)": {
+        "conversion_failures": 0,
+        "missing_after_conversion": 202516
+      },
+      "Cycle_Index": {
+        "conversion_failures": 0,
+        "missing_after_conversion": 0
+      },
+      "Date_Time": {
+        "conversion_failures": 0,
+        "missing_after_conversion": 0
+      }
+    },
+    "cycle_index_min": 1,
+    "cycle_index_max": 101,
+    "unique_cycles": 101,
+    "phase_counts": {
+      "DISCHARGE": 70939,
+      "CHARGE": 70172,
+      "REST": 61405
+    },
+    "phase_segments": 401,
+    "flag_counts": {
+      "Missing_Flag": 202516,
+      "Critical_Missing_Flag": 0,
+      "Capacity_Missing_Flag": 0,
+      "Energy_Missing_Flag": 0,
+      "Temperature_Missing_Flag": 202516,
+      "Timestamp_Duplicate_Flag": 28364,
+      "Timestamp_Reversal_Flag": 29,
+      "Test_Time_Reversal_Flag": 0,
+      "Sampling_Gap_Flag": 0,
+      "Current_Plausibility_Flag": 70172,
+      "Voltage_Plausibility_Flag": 121,
+      "Capacity_Plausibility_Flag": 0,
+      "Energy_Plausibility_Flag": 0
+    },
+    "sign_convention_evidence": {
+      "charge": {
+        "segments_checked": 100,
+        "median_segment_voltage_change_v": 0.4817500000000001,
+        "expected_direction_percentage": 100.0
+      },
+      "discharge": {
+        "segments_checked": 100,
+        "median_segment_voltage_change_v": -0.7110000000000001,
+        "expected_direction_percentage": 100.0
+      },
+      "positive_current_is_charge_supported": true
+    },
+    "validations": {
+      "row_count_preserved": true,
+      "row_order_preserved": true,
+      "all_original_measurements_preserved": true,
+      "original_measurement_checks": {
+        "Data_Point": true,
+        "Test_Time(s)": true,
+        "Current(A)": true,
+        "Capacity(Ah)": true,
+        "Voltage(V)": true,
+        "Energy(Wh)": true,
+        "Temperature(℃)": true,
+        "Date_Time": true,
+        "Cycle_Index": true
+      },
+      "phase_values_valid": true,
+      "phase_ids_consecutive": true,
+      "one_phase_per_phase_id": true,
+      "phase_transition_count_matches_segments": true,
+      "cycle_index_preserved": true,
+      "temperature_missing_not_filled": true
+    }
+  }
+]

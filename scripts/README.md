@@ -1,13 +1,7 @@
-# Six-task analysis scripts
+# Scripts organized by case-study task
 
-Run from the project root after installing `requirements.txt`.
+Each task folder contains a runnable entry script, a README explaining its logic and prerequisites, and an `outputs/` folder with results and plots. Start at the [project README](../README.md) for the six commands and limitations.
 
-```bash
-python scripts/run_six_tasks.py              # Tasks 1–6 in order
-python scripts/run_six_tasks.py --task 3     # one task; earlier outputs required
-python -m unittest discover -s scripts -p "test_*.py"
-```
+The task entry scripts call the validated implementation stages stored in this directory; they do not maintain separate copies of model logic. Authoritative working results are in `scripts/outputs/`, and each entry point refreshes that task folder's review copies after the task succeeds. Large intermediate workbooks and interval diagnostic files are left in the working output directories rather than duplicated.
 
-The [project README](../README.md) maps each task to its scripts, output folders, required inputs and limitations. Task 1 reads the two raw Excel workbooks from the root, normalizes timestamps, cleans and classifies rows, builds Silver phase data and integrates diagnostic Gold cycle features. Task 2 fits and evaluates fade models and performs differential-voltage analysis; Task 3 screens unusual cycles; Task 4 compares early RUL methods and records failed crossings; Task 5 performs synthetic pack sensitivity scenarios; Task 6 builds the requested figures and current five-page report.
-
-If local `task1_preprocess.py` through `task6_report_and_visualizations.py` files are present, they are for reference only; they are a separate exploratory implementation, not the inputs to this runner. The root PDF is refreshed by the report builder; the historical submission manifest is not proof that a regenerated run is consistent. Do not interpret forecast seeds as a calibrated RUL distribution or synthetic pack scenarios as pack test measurements.
+Run all six tasks using `python scripts/run_six_tasks.py`. The scientific limitations, including relative rather than verified nominal RUL and uncalibrated pack scenarios, apply to all copied outputs.

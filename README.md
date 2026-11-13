@@ -4,26 +4,32 @@ This repository analyzes two LR1865SZ laboratory cycle-test datasets, from raw E
 
 ## Run the six tasks
 
-Use Python 3.11 or later and run from the repository root:
+Use Python 3.11 or later and run from the project root:
 
 ```bash
 python -m pip install -r requirements.txt
-python scripts/run_six_tasks.py
-python -m unittest discover -s scripts -p "test_*.py"
+python scripts/task1_data_engineering/task1_preprocess.py
+python scripts/task2_degradation_modeling/task2_degradation_modeling.py
+python scripts/task3_anomaly_detection/task3_anomaly_detection.py
+python scripts/task4_rul_estimation/task4_rul_estimation.py
+python scripts/task5_pack_scaling/task5_pack_scaling.py
+python scripts/task6_reporting/task6_report_and_visualizations.py
 ```
 
-The complete run starts from `LR1865SZ_cycles201217_001_2.xlsx` and `LR1865SZ_cycles201214_002_4.xlsx` in the project root. These source workbooks are ignored by Git, so obtain them separately when running from a fresh checkout. The preprocessing stage creates large local intermediate Excel and Parquet files. Set `BATTERY_EXPORT_REVIEW_XLSX=1` to also create the optional cleaned review workbook. Running the pipeline overwrites generated results. A single task can be run with `python scripts/run_six_tasks.py --task N` after its prerequisites have been generated.
+Each task folder has its own runnable entry script, README and `outputs/` containing its reviewable tables and plots. The entry scripts run the existing validated stages in `scripts/` and refresh the copies; the authoritative intermediate results remain in `scripts/outputs/`. The six-task entry points do not replace or duplicate the analysis logic. Large intermediate Excel workbooks, cleaned Parquet files and per-row interval diagnostics are not copied into task folders.
 
-| Task | Methods and main outputs |
-|---|---|
-| 1. Data engineering | `run_cleaning_pipeline.py`: timestamp normalization, source validation, Silver phase data and Gold cycle features, interval and counter audits. Outputs: `scripts/outputs/01_data_cleaning/` through `03_gold_cycle_features/`. |
-| 2. Degradation | `stage_04_fit_capacity_fade.py`, `05_compare_capacity_models.py`, `06_differential_voltage.py`, `task2_analysis_summary.py`: empirical models, square-root elapsed time, physics-inspired and sequence baselines, and dV/dQ candidate and sensitivity analysis. See `scripts/outputs/06_differential_voltage/task2_analysis.md`. Outputs: `04_capacity_fade/` through `06_differential_voltage/`. |
-| 3. Anomalies | `07_detect_battery_anomalies.py`: robust residual/local screening and DBSCAN with sensitivity analysis. Output: `07_anomaly_detection/`. |
-| 4. RUL | `stage_08_individual_curve_rul.py`, `stage_09_estimate_rul_xgboost_shared.py`, `stage_10_estimate_rul_lstm_minimal.py`, `11_build_common_checkpoint_comparison.py`: curve extrapolation, XGBoost and LSTM, with forecast coverage and common-checkpoint comparisons. Outputs: `08_rul_individual_curves/` through `11_rul_model_comparison/`. |
-| 5. Module/pack | `stage_13_scale_module_pack.py`: illustrative 12S2P capacity-envelope scenarios for cell variation, temperature and balancing. Output: `13_pack_scaling/`. |
-| 6. Reporting | `14_build_task6_visualizations.py`, `build_six_task_report.py`: required figures and five-page report. Outputs: `14_reporting_visualization/` and `output/pdf/Technical_Report_Module_Outputs.pdf`. |
+To run all tasks in order, use `python scripts/run_six_tasks.py`. Run tests with `python -m unittest discover -s scripts -p "test_*.py"`. Individual tasks require the outputs of earlier tasks; see their READMEs for prerequisites.
 
-All output directories above are under `scripts/outputs/` unless otherwise stated. If local `scripts/task1_...` through `task6_...` files are present, they are a separate exploratory implementation and are not inputs to the pipeline above. See [scripts/README.md](scripts/README.md) for details.
+| Task | Folder | Key contents |
+|---|---|---|
+| 1. Data engineering | [task1_data_engineering](scripts/task1_data_engineering/) | Cleaning, cycle features, missing data and quality checks |
+| 2. Degradation modeling | [task2_degradation_modeling](scripts/task2_degradation_modeling/) | Capacity fade, model comparisons, dV/dQ analysis and limitations |
+| 3. Anomaly detection | [task3_anomaly_detection](scripts/task3_anomaly_detection/) | Residual screening, DBSCAN and sensitivity |
+| 4. RUL estimation | [task4_rul_estimation](scripts/task4_rul_estimation/) | Extrapolation, XGBoost, LSTM and coverage |
+| 5. Pack scaling | [task5_pack_scaling](scripts/task5_pack_scaling/) | Cell variation, temperature and balancing scenarios |
+| 6. Reporting | [task6_reporting](scripts/task6_reporting/) | Required plots and the five-page report |
+
+The complete run starts from `LR1865SZ_cycles201217_001_2.xlsx` and `LR1865SZ_cycles201214_002_4.xlsx` in the project root. The source workbooks are ignored by Git and must be obtained separately for a fresh checkout. Set `BATTERY_EXPORT_REVIEW_XLSX=1` to create the optional cleaned review workbook. Running the pipeline overwrites generated outputs.
 
 ## Interpretation
 
