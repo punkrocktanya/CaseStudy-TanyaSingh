@@ -58,7 +58,7 @@ def run_task(task):
     env = dict(os.environ, PYTHONUTF8='1', MPLBACKEND='Agg')
     for script in TASKS[task]:
         print(f'Task {task}: {script}', flush=True)
-        subprocess.run([sys.executable, str(ROOT / 'scripts' / script)], cwd=ROOT, env=env, check=True)
+        subprocess.run([sys.executable, str(ROOT / 'scripts' / TASK_FOLDERS[task] / script)], cwd=ROOT, env=env, check=True)
     sync_outputs(task)
 
 def main():

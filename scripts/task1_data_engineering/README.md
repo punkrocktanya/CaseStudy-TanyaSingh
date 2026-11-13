@@ -12,14 +12,16 @@ python scripts/task1_data_engineering/task1_preprocess.py
 
 The two LR1865SZ Excel files must be in the project root. This task generates the intermediate data required by later tasks.
 
-This entry point runs the validated pipeline stages below in order and then copies their reviewable results into this folder. It stops on an error. The authoritative working outputs remain in `scripts/outputs/`; copies are refreshed only when this task runs. Intermediate Excel workbooks, cleaned Parquet files and per-row interval diagnostics are omitted from the copies to avoid duplicating large files.
+This entry point runs the validated implementation files in this folder in order and then copies their reviewable results into this folder. It stops on an error. The authoritative working outputs remain in `scripts/outputs/`; copies are refreshed only when this task runs. Intermediate Excel workbooks, cleaned Parquet files and per-row interval diagnostics are omitted from the copies to avoid duplicating large files.
 
 ## Implementation
 
-- [run_cleaning_pipeline.py](../run_cleaning_pipeline.py)
+- [run_cleaning_pipeline.py](run_cleaning_pipeline.py)
 
 ## Results and plots
 
 - [outputs/01_data_cleaning/](outputs/01_data_cleaning/)
 - [outputs/02_silver_phase_data/](outputs/02_silver_phase_data/)
 - [outputs/03_gold_cycle_features/](outputs/03_gold_cycle_features/)
+
+Supporting files include `battery_config.py`, `battery_validated_pipeline.py`, `battery_data_audit_parquet.py` and `test_battery_validated_pipeline.py`.

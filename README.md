@@ -16,7 +16,7 @@ python scripts/task5_pack_scaling/task5_pack_scaling.py
 python scripts/task6_reporting/task6_report_and_visualizations.py
 ```
 
-Each task folder has its own runnable entry script, README and `outputs/` containing its reviewable tables and plots. The entry scripts run the existing validated stages in `scripts/` and refresh the copies; the authoritative intermediate results remain in `scripts/outputs/`. The six-task entry points do not replace or duplicate the analysis logic. Large intermediate Excel workbooks, cleaned Parquet files and per-row interval diagnostics are not copied into task folders.
+Each task folder has its own runnable entry script, README and `outputs/` containing its reviewable tables and plots. The entry scripts run the validated stages in their task folders and refresh the copies; the authoritative intermediate results remain in `scripts/outputs/`. Shared imports between task folders support the existing analysis logic. Large intermediate Excel workbooks, cleaned Parquet files and per-row interval diagnostics are not copied into task folders.
 
 To run all tasks in order, use `python scripts/run_six_tasks.py`. Run tests with `python -m unittest discover -s scripts -p "test_*.py"`. Individual tasks require the outputs of earlier tasks; see their READMEs for prerequisites.
 
