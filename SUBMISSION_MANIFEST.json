@@ -7,8 +7,8 @@
     },
     {
       "path": ".github/workflows/tests.yml",
-      "bytes": 798,
-      "sha256": "aebd69fd80da9038d474b90211634e216ee1d6ad6a249f4f2005fd4a8b233df3"
+      "bytes": 817,
+      "sha256": "bbec98d0916536d908fe4a5d7e23e13b3c98d6f0e2ba4f9998bbc47f4ce4a922"
     },
     {
       "path": ".gitignore",
@@ -1127,8 +1127,8 @@
     },
     {
       "path": "scripts/test_rul_merged.py",
-      "bytes": 6826,
-      "sha256": "ac471da07611fcbd5e5d31f3ceeda1fbe2672c71158012ef87d57a5fdab87849"
+      "bytes": 7087,
+      "sha256": "605f0f8ffbd74ad0ee0a17f1ed733153dd4145bc6bc8e7b71a0ec9b6c2c36f79"
     },
     {
       "path": "scripts/validate_submission_integrity.py",
