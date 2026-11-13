@@ -7,8 +7,8 @@
     },
     {
       "path": ".github/workflows/tests.yml",
-      "bytes": 466,
-      "sha256": "a23ef3e8f23ce35253f0b961555c5d6e25f028727950a1f31b39d58afdf73cec"
+      "bytes": 798,
+      "sha256": "aebd69fd80da9038d474b90211634e216ee1d6ad6a249f4f2005fd4a8b233df3"
     },
     {
       "path": ".gitignore",
