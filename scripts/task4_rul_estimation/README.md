@@ -1,6 +1,6 @@
 # Task 4: Remaining Useful Life Estimation
 
-Forecasts pack EOL from early cycle history using three model families evaluated at
+Forecasts cell EOL from early cycle history using three model families evaluated at
 four predefined checkpoints. EOL = first cycle strictly below 80 % of own cycle-2
 discharge capacity.
 
@@ -13,10 +13,12 @@ python scripts/task4_rul_estimation/task4_rul_estimation.py
 ## Method
 
 **Step 1 — Individual curve RUL (`stage_08_individual_curve_rul.py`)**
-At each checkpoint (cycles 5, 8, 10, 12), fits all four fade models (Linear, Exponential,
+At each shared checkpoint (cycles 5, 8, 10, 12), fits all four fade models (Linear, Exponential,
 Square-root, Power law) to the history available up to that cycle. Extrapolates the fitted
 curve to find the first predicted crossing of the 80 % threshold. RUL = predicted EOL −
 checkpoint cycle. No-crossing cases within 1,000 cycles are recorded as failures.
+The individual-curve experiment also evaluates cycles 15 and 20 for cells still before
+their observed relative EOL; the shared models use the four shared checkpoints.
 
 **Step 2 — XGBoost RUL (`stage_09_estimate_rul_xgboost_shared.py`)**
 Pools both cells. Features: last 3 discharge capacities, last/mean cycle-to-cycle changes,
@@ -67,9 +69,13 @@ bias, and coverage (fraction of attempts that produced a valid crossing predicti
 
 - Both cells are in the training set for XGBoost and LSTM; results are not independent
   external validation.
-- Only 4 checkpoints × 2 cells = 8 scored attempts per method (very small sample).
+- Four shared checkpoints and two cells provide very little data. Attempt and scored
+  counts differ by method: sequence models include multiple seeds and some forecasts
+  do not cross within the horizon. See `all_checkpoint_metrics.csv` for counts and
+  coverage; MAE is calculated only for scored attempts.
 - The LSTM has 1 hidden unit — a minimal proof-of-concept, not a production model.
-- Actual EOL is 11 and 22 cycles respectively; most checkpoints leave ≤ 14 cycles of
-  history to train on.
+- The observed relative EOL cycle indices are 13 for 001_2 and 24 for 002_4. These
+  correspond to offsets of 11 and 22 cycles from the cycle-2 reference; most shared
+  checkpoints provide fewer than 14 observed cycles for training.
 - RUL bias is positive (overestimate) for XGBoost and LSTM on 001_2 — the model
   extrapolates more cautiously than the cell actually degrades.

@@ -34,7 +34,7 @@ python scripts/task1_data_engineering/task1_data_engineering.py
 
 ## Key results
 
-- Both cells: 99 complete cycles (2–100), all `Discharge_Integration_Valid`.
+- Both cells: 99 computationally complete paired cycles (2–100), all `Discharge_Integration_Valid` and marked `REVIEW`; physical protocol completeness is not verified.
 - Cell 001_2: cycle-2 discharge = 1.5114 Ah; cycle-2 CE = 100.52 % (flagged).
 - Cell 002_4: cycle-2 discharge = 1.6878 Ah.
 - Temperature column is entirely missing (all rows flagged `temperature_missing`).

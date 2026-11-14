@@ -1,6 +1,6 @@
 # Battery Degradation & RUL Analysis — Case Study 2
 
-Two LR1865SZ laboratory cells (`001_2`, `002_4`, 99 complete cycles each) are processed
+Two LR1865SZ laboratory cells (`001_2`, `002_4`) each have 99 computationally complete paired cycles, all marked for review. They are processed
 through a six-task pipeline that takes raw Excel measurements from source to pack-level
 degradation projections and a five-page technical report.
 
@@ -50,6 +50,13 @@ python scripts/run_six_tasks.py --task 4
 > **Tasks 2–6** read from the outputs of earlier tasks — run in order on first use.
 
 ---
+
+## Notebooks
+
+- [Preprocessing and model diagnostics](notebooks/preprocessing_and_models.ipynb): inspect quality flags, derived cycle features, capacity-model forecasts, RUL coverage and pack scenarios.
+- [Visualization report](notebooks/visualization_report.ipynb): review the required capacity, efficiency, anomaly and RUL figures, plus dV/dQ and pack results.
+
+The notebooks read saved pipeline outputs and do not retrain models. Install `requirements.txt`, generate the relevant task outputs, and run `jupyter lab` from the project root. Open either notebook and run its cells in order.
 
 ## Pipeline flow
 
@@ -164,7 +171,7 @@ coulombic efficiency (%), energy throughput (Wh), C-rate, quality flags.
 | File | Description |
 |---|---|
 | `outputs/07_anomaly_detection/anomaly_features.csv` | 92-column per-cycle table with all scores/flags |
-| `outputs/07_anomaly_detection/anomaly_summary.csv` | Per-cell summary counts |
+| `outputs/07_anomaly_detection/anomaly_summary.csv` | Per-cycle decisions and review reasons |
 | `outputs/07_anomaly_detection/dbscan_labels.csv` | Per-cycle DBSCAN cluster labels |
 
 **What you get:** 001_2 has 9 local flags (early cycles), 0 trend candidates, ~25/98
