@@ -1,1 +1,0 @@
-The current five-page report is output/pdf/Technical_Report_Module_Outputs.pdf. Root-level duplicate Python scripts were removed in this package. Historical model and visualization manifests retain original source hashes.
