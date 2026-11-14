@@ -1,4 +1,4 @@
-# Battery Degradation & RUL Analysis — Case Study 2
+# Advanced Cell-Level Degradation Analysis & Scaling
 
 Two LR1865SZ laboratory cells (`001_2`, `002_4`) each have 99 computationally complete paired cycles, all marked for review. They are processed
 through a six-task pipeline that takes raw Excel measurements from source to pack-level
