@@ -284,17 +284,7 @@ Task 5 → scenario_summary.csv ────────────────
 
 ---
 
-## Code sanity notes
-
-| Issue | Location | Impact |
-|---|---|---|
-| `Fade_Rate_Ah_per_Cycle_Smoothed` has opposite sign to `Fade_Rate_Ah_per_Cycle` | `stage_04_fit_capacity_fade.py` | Naming inconsistency — use unsmoothed or negate smoothed |
-| Voltage "outside plausible" bounds (2.5/4.3 V) hardcoded | `01_clean_and_validate.py` | Low — both currently correct alongside config |
-| `assert len(g)==99` crashes if cell has < 99 valid cycles | `stage_04_fit_capacity_fade.py` | Fragile on rerun with different data |
-| Pack `Ea = 20,000 J/mol` assumed | `stage_13_scale_module_pack.py` | Thermal sensitivity requires chemistry-specific calibration |
-| `cycle_elapsed_s` groupby uses unvalidated cycle index | `01_clean_and_validate.py` | NaN indices silently excluded |
-
----
+--
 
 ## Limitations
 
